@@ -1,0 +1,23 @@
+//---------------------------------------------------------------------------------------------------------------------------------------//
+//------------------------------------------- NO TOCAR EL CÓDIGO CONTENIDO ENTRE ESTAS LINEAS -------------------------------------------//
+//-----------------------------------------------------------------( INI )---------------------------------------------------------------//
+
+@import './mova/styles.scss'; // Importar los estilos y las fuentes de MOVA
+
+//---------------------------------------------------------------------------------------------------------------------------------------//
+//------------------------------------------- NO TOCAR EL CÓDIGO CONTENIDO ENTRE ESTAS LINEAS -------------------------------------------//
+//-----------------------------------------------------------------( FIN )---------------------------------------------------------------//
+
+/**
+ * Definir el valor de la variable SCSS '$corporative' para su uso en los estilos de los componentes de la App
+ */
+
+// Color corporativo de la Comunidad de Madrid
+$corporative: $corporative-comunidad-madrid;
+// Color corporativo de Salud Madrid
+//$corporative: $corporative-salud-madrid; // (Descomentar el principio de la linea para utilizar este valor)
+
+// Color accent de la Comunidad de Madrid
+$accent: $accent-comunidad-madrid;
+// Color accent de Salud Madrid
+//$accent: $accent-salud-madrid; // (Descomentar el principio de la linea para utilizar este valor)

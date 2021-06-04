@@ -1,0 +1,18 @@
+@import "~src/styles";
+
+.card-code{
+  margin-right: auto;
+  margin-left: auto;
+  max-width: $container-max-width-medium;
+}
+.advice{
+  margin: 1rem 0 1rem 0;
+  color: #dc3030;
+  font-size: larger;
+  font-style: italic;
+}
+#backButton{
+::ng-deepbutton{
+    margin: 1rem 0 0 0;
+  }
+}

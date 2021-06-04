@@ -1,0 +1,27 @@
+{
+  "project_info": {
+    "project_number": "853554735575",
+    "firebase_url": "https://fir-mova.firebaseio.com",
+    "project_id": "firebase-mova"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853554735575:android:1a2a3e5ecfd75c5d",
+        "android_client_info": {
+          "package_name": "org.madrid.MOVA.xxxxApp"
+        }
+      },
+      "oauth_client": [
+      ],
+      "api_key": [
+        {
+          "current_key": ""
+        }
+      ],
+      "services": {
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,80 @@
+<mv-star></mv-star>
+<div class="external-container-landing-view">
+  <div class="container-landing-view">
+    <div id="title">Comunidad de Madrid</div>
+    <div id="subtitle">
+      <img id="subtitle-img" src="assets/logo-app.png">
+      <div id="subtitle-text">Plantilla de ejemplo</div>
+    </div>
+
+    <div id="main">
+      <p>Presentación al ciudadano de la aplicación explicando brevemente las funcionalidades de la aplicación.
+        Se pueden añadir alguna imágen o simplemente un texto html</p>
+      <img src="assets/examples/madrid-towers.jpg">
+    </div>
+
+    <p class="info-text">
+      Para acceder debe autenticarse con los medios disponibles en la Comunidad de Madrid
+    </p>
+
+    <p class="info-text auth">Clave PIN | Certificado Digital o DNI electrónico | Clave Permanente</p>
+
+    <mv-button
+      (clickEvent)="goToHome()"
+      appearance="raised"
+      color="primary">
+      <mat-icon>exit_to_app</mat-icon>
+      Acceder
+    </mv-button>
+  </div>
+</div>
+
+<div class="footer-landing-view-hack">
+  <div class="footer-landing-view">
+
+    <ul>
+      <li>
+        <a
+          routerLink="/device-view">
+            V.{{ appVersion }}
+        </a>
+      </li>
+      <li>
+        <a
+          (click)="openUrlOnExternalbrowserClick('urlContacta')">
+            Contacta
+          <mat-icon>open_in_new</mat-icon>
+        </a>
+      </li>
+      <li>
+        <a
+          (click)="openUrlOnExternalbrowserClick('urlAvisoLegal')">
+            Aviso legal
+          <mat-icon>open_in_new</mat-icon>
+        </a>
+      </li>
+      <li>
+        <a
+          (click)="doOnClickConditions()">
+            Condiciones de acceso
+        </a>
+      </li>
+      <li>
+        <a routerLink="/data-protection-view">
+          <div class="largeText">
+            Información sobre protección de datos
+          </div>
+          <div class="shortText">
+            Inf. Prot. Datos
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <a class="link-portales-madrid" (click)="openUrlOnExternalbrowserClick('urlPortales')">
+  		Todos los portales de la Comunidad de Madrid
+      <mat-icon>open_in_new</mat-icon>
+  	</a>
+
+  </div>
+</div>

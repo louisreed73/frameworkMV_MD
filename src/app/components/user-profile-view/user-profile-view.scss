@@ -1,0 +1,26 @@
+@import "~src/styles";
+
+.card-code{
+  margin-right: auto;
+  margin-left: auto;
+  max-width: $container-max-width-medium;
+}
+.container-profile-view{
+  mv-card-title{
+    mat-icon{
+      vertical-align: -3px;
+    }
+  }
+}
+.profile-view-listado{
+  list-style: none;
+  li{
+    margin: 0 0 5px;
+    .title, .data{
+      display: inline-block;
+    }
+    .data{
+      margin: 0 0 0 10px;
+    }
+  }
+}

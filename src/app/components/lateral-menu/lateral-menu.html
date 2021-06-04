@@ -1,0 +1,65 @@
+<!--
+    Este componente es el menú lateral general, puede modificarse como se considere necesario o sustituirse por un componente propio,
+    pero es necesario mantener el nombre del componente ya que es el que MOVA carga desde el appComponente.
+
+    Desde el componente main-frame de MOVA se incluyen estilos que afectan a los elementos contenidos en la sección 'mova-default'.
+-->
+
+<!-- Sección mova-default INI -->
+<section class="mova-default">
+
+    <!-- Botón de acceso -->
+    <section class="sidenav-left-login-button"
+        *ngIf="!isLogged">
+        <mv-button-login #hiddenButtonLogin hidden=true></mv-button-login>
+        <mv-button adapt class="login-button" (clickEvent)="doLogin()">Acceder<mat-icon class="login-icon">lock_open</mat-icon></mv-button>
+    </section>
+
+    <!-- Datos del usuario -->
+    <section class="sidenav-left-user-section"
+        *ngIf="isLogged"
+        >
+        <!--<img class="avatar" src="./assets/examples/user.jpg">-->
+        <section class="username-section">
+
+            <mat-accordion multi>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon class="icon" fontSet="fas" fontIcon="fa-user"></mat-icon>
+                            <span class="username truncate">{{ username }}</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <section class="user-options">
+
+                        <!-- Menú de opciones lateral -->
+                        <mv-tree-filter
+                            class="sidenav-left-menu"
+                            [treeFilterItems]="treeFilterElementsMenuUser"
+                            showFilter=false
+                            multiOpen=true
+                            (selectItem)="onSelectItem($event)">
+                        </mv-tree-filter>
+
+                        <mv-button-login #hiddenButtonLogout hidden=true></mv-button-login>
+                    </section>
+
+                    <hr>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </section>
+    </section>
+
+    <!-- Menú de opciones lateral -->
+    <mv-tree-filter
+        class="sidenav-left-menu"
+        [treeFilterItems]="treeFilterElementsMenu"
+        showFilter=false
+        multiOpen=true
+        (selectItem)="onSelectItem($event)">
+    </mv-tree-filter>
+
+</section>
+<!-- Sección mova-default FIN -->

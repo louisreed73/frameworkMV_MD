@@ -1,0 +1,14 @@
+/*******************
+ * Estilos de MOVA *
+ *******************/
+
+@import '~@mova/components/_theming.scss'; // Producción - Desde dependencia empaquetada
+@import "~@fortawesome/fontawesome-free/css/all.css"; // Iconos de fontwaesome locales
+@import './src/mova/assets/fonts/iconfont/material-icons'; // Iconos de material locales
+@import './src/mova/assets/fonts/montserrat/monserrat'; // Fuente principal
+
+/***********************************************
+* Estilos de la dependencia 'ngx-highlightjs' *
+***********************************************/
+
+@import '~highlight.js/styles/github.css';

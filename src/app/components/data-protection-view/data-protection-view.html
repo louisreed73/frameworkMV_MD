@@ -1,0 +1,183 @@
+<section class="view-default-style">
+
+  <!-- Protección de datos resumen -->
+  <mv-card class="card-code"  *ngIf="showResume">
+    <mv-card-header>
+      <mv-card-title><strong>Condiciones de uso y política de privacidad - resumen</strong></mv-card-title>
+    </mv-card-header>
+
+    <mv-card-content>
+      <p class="advice">* Esto es un ejemplo, se deberá cambiar por las condiciones correspondientes a cada aplicación</p>
+      <p>El acceso y uso de la aplicación XXX le atribuye la condición de usuario, lo que implica la observancia
+        y cumplimiento de las disposiciones que aquí se contienen, así como de cualquier otra disposición legal
+        que fuera de aplicación.</p>
+
+      <mv-button
+        color="primary"
+        adapt=true
+        appearance="raised"
+        (clickEvent)="goTo('complete')">
+        Más información sobre protección de datos
+      </mv-button>
+
+      <mv-button
+        id="backButton"
+        color="primary"
+        adapt=true
+        appearance="raised"
+        (clickEvent)="goTo('back')">
+        Volver
+      </mv-button>
+
+    </mv-card-content>
+  </mv-card>
+
+  <!-- Protección de datos completo -->
+  <mv-card class="card-code" *ngIf="showComplete">
+    <mv-card-header>
+      <mv-card-title><strong>Condiciones de uso y política de privacidad - completo</strong></mv-card-title>
+    </mv-card-header>
+
+    <mv-card-content>
+      <p class="advice">* Esto es un ejemplo, se deberá cambiar por las condiciones correspondientes a cada aplicación</p>
+
+      <p>El responsable del tratamiento de los datos utilizados por la aplicación variará dependiendo
+        de si la gestión de la cita se corresponde con Atención Primaria, o si la cita se solicita con un especialista:
+      </p>
+      <ul>
+        <li>Responsable Cita en Atención Primaria: Gerencia Asistencial de Atención Primaria.
+        </li>
+        <li>Responsable Cita en Atención Hospitalaria: Gerencia Asistencial de Atención Hospitalaria.
+        </li>
+      </ul>
+
+      <p>En adelante nos referiremos de manera genérica a "Responsable", para designar al organismo afectado en función
+        del tipo de cita solicitada que corresponda.</p>
+
+      <div class="title">
+        <strong>NORMAS DE SEGURIDAD EN RELACIÓN CON LOS DATOS</strong>
+      </div>
+      <ul>
+        <li>Es responsabilidad del usuario hacer buen uso de la aplicación.</li>
+        <li>El acceso a la información será personal y sus datos de acceso, intransferibles.
+          Se han de tomar las diligencias oportunas a fin de evitar accesos no autorizados.
+        </li>
+        <li>En el caso de los menores de 16 años, el DNI/NIE que deben introducir es el del adulto que se
+          haga responsable de la cita.
+        </li>
+        <li>Los usuarios únicamente revelarán sus datos de acceso a aquellas personas a las que autoricen.
+        </li>
+        <li>Los usuarios no deben utilizar datos, ni suplantar la identidad de otro usuario.
+          En el caso en el que se usen datos de otra persona para utilizar algunas de las funciones de
+          la aplicación, el usuario deberá encontrarse en condiciones d acreditar que cuenta con el
+          consentimiento de esta persona para su uso.
+        </li>
+        <li>
+          Si un usuario tiene sospechas de que sus datos están siendo utilizadas
+          por otra persona, debe proceder inmediatamente a comunicar esta incidencia
+          de seguridad al responsable. La aplicación podría guardar algunos datos personales
+          en el propio dispositivo móvil, en concreto:
+          <ul>
+            <li>Se permite guardar perfiles para acceder a la gestión de las citas.
+            </li>
+            <li>Se pueden almacenar las citas confirmadas en la agenda del dispositivo móvil.
+              Por seguridad se recomienda que el usuario los elimine cuando ya no sean necesarios.
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="title">
+        <strong>QUEDA PROHIBIDO</strong>
+      </div>
+      <ul>
+        <li>El uso inadecuado de la información contenida en Cita Sanitaria, y en concreto,
+          aquellos usos que vulneren o transgredan el honor, la intimidad o la imagen de terceros,
+          así como aquellos que sean ilícitos o atenten contra la moralidad. Asimismo,
+          queda prohibida la utilización de dicha información para incurrir
+          en actividades contrarias a la buena fe y el ordenamiento jurídico.
+        </li>
+        <li>El diseño y sus códigos fuente, así como los logos, marcas y demás signos distintivos que
+          aparecen en la aplicación están protegidos por los correspondientes derechos de propiedad
+          intelectual e industrial.
+        </li>
+        <li>El uso de Cita Sanitaria para propósitos que puedan influir negativamente en la imagen del Responsable.
+        </li>
+        <li>La realización de cualquier actividad que pueda comprometer la seguridad de los sistemas
+          y recursos electrónicos del Responsable.
+        </li>
+        <li>Congestionar, afectar, interferir o paralizar el uso del servicio.
+        </li>
+      </ul>
+
+      <p>
+        El Responsable se reserva el derecho a bloquear el acceso de cualquier usuario si detecta un uso
+        contrario a la legalidad, la buena fe, o a las presentes condiciones generales.
+      </p>
+      <p>
+        Asimismo, el Responsable se reserva el derecho a realizar cambios en el aplicativo sin previo aviso,
+        al objeto de mantener actualizada su información, añadiendo, modificando, corrigiendo o eliminando contenidos.
+      </p>
+
+      <div class="title">
+        <strong>EL RESPONSABLE NO RESPONDERÁ DE</strong>
+      </div>
+
+      <ul>
+        <li>Los daños que genere al usuario en caso de imposibilidad de prestar el servicio objeto de las presentes
+        Condiciones de uso, debida a supuestos de caso fortuito, fuerza mayor u otras causas no imputables a
+        los responsables.</li>
+        <li>Del inadecuado funcionamiento del presente servicio si ello obedece a labores de mantenimiento y similares,
+        a incidencias que afecten a sistemas u operadores externos, así como al no cumplimiento de los requisitos técnicos necesarios para el funcionamiento de la aplicación.</li>
+      </ul>
+
+      <div class="title">
+        <strong>PROTECCIÓN DE DATOS DE CARÁCTER PERSONAL Y CONFIDENCIALIDAD DE LA INFORMACIÓN</strong>
+      </div>
+
+      <p>
+        Le informamos que sus datos personales serán tratados con las siguientes finalidades:
+      </p>
+      <ul>
+        <li>Gestión de citas en Atención Primaria.</li>
+        <li>Gestión de citas en Atención Hospitalaria</li>
+      </ul>
+
+      <p>
+        Sus datos serán conservados durante los años necesarios para cumplir con la normativa vigente aplicable,
+        entre otras la Ley 41/2002, de 14 de noviembre, básica reguladora autonomía del paciente y de derechos y
+        obligaciones en materia de información y documentación clínica. El Delegado de Protección de Datos (DPD)
+        del Responsable es el "Comité DPD de la Consejería de Sanidad de la Comunidad de Madrid" con dirección en
+        Plaza Carlos Trías Bertrán n°7 (Edif. Sollube) Madrid 28020. La base jurídica que legitima el tratamiento
+        es la prestación de su consentimiento mediante la aceptación de las presentes condiciones, y el uso
+        voluntario de la aplicación. Sus datos no serán cedidos, salvo en los casos obligados por Ley, así como
+        en aquellos casos estrictamente necesarios para el correcto funcionamiento de las diferentes funciones de
+        la aplicación antes descritas. En todo momento podrá revocar el consentimiento prestado, asimismo, podrá ,
+        ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad,
+        en la medida que sean aplicables, a través de comunicación escrita al Responsable del Tratamiento, con
+        domicilio en Plaza Carlos Trías Bertrán, 7, Planta 3 Código Postal 28020, Madrid, concretando su solicitud,
+        junto con su DNI o documento equivalente. Asimismo, le informamos de la posibilidad de presentar una
+        reclamación ante la Agencia Española de Protección de Datos.
+      </p>
+      <p>
+        *Tenga en cuenta que si usted ejerce su derecho de oposición al tratamiento telemático,
+        se bloquearán sus datos en todos los servicios electrónicos del SERMAS y dejará de gozar de
+        las ventajas de las gestiones online o telefónicas, debiendo acudir a su centro para cualquier gestión.
+      </p>
+
+      <mv-button
+        id="backButton"
+        color="primary"
+        adapt=true
+        appearance="raised"
+        (clickEvent)="goTo('resume')">
+        Volver
+      </mv-button>
+
+    </mv-card-content>
+  </mv-card>
+
+</section>
+
+<mv-button-scroll-to-top>
+</mv-button-scroll-to-top>

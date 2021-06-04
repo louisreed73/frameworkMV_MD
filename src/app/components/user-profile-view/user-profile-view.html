@@ -1,0 +1,47 @@
+<section class="view-default-style">
+  <mv-card class="card-code container-profile-view">
+    <mv-card-title>
+      <mat-icon>person</mat-icon>
+      Información de usuario
+    </mv-card-title>
+
+    <mv-card-content>
+
+      <ul class="profile-view-listado">
+        <li *ngIf="globalCredentials.user">
+          <div class="title"><strong>Usuario:</strong></div>
+          <div class="data">{{ globalCredentials.user }}</div>
+        </li>
+        <li>
+          <div class="title"><strong>Nombre de usuario:</strong></div>
+          <div class="data">{{ globalCredentials.userName }}</div>
+        </li>
+        <li>
+          <div class="title"><strong>Fecha de expiración:</strong></div>
+          <div class="data">{{ globalCredentials.expiredDate | date:'dd/MM/yyyy hh:mm:ss' }}</div>
+        </li>
+        <li>
+          <div class="title"><strong>Fecha de petición:</strong></div>
+          <div class="data">{{ globalCredentials.requestDate | date:'dd/MM/yyyy hh:mm:ss' }}</div>
+        </li>
+        <li>
+          <div class="title"><strong>Rol:</strong></div>
+          <div class="data">{{ globalCredentials.role }}</div>
+        </li>
+        <li>
+          <div class="title"><strong>Módulo técnico:</strong></div>
+          <div class="data">{{ globalCredentials.technicalModule }}</div>
+        </li>
+        <li>
+          <div class="title"><strong>Información autologin:</strong></div>
+          <div class="data">{{ globalCredentials.oAutologin | json }}</div>
+        </li>
+        <li>
+          <div class="title"><strong>Información wso2:</strong></div>
+          <div class="data">{{ globalCredentials.oWso2 | json }}</div>
+        </li>
+      </ul>
+    </mv-card-content>
+
+  </mv-card>
+</section>

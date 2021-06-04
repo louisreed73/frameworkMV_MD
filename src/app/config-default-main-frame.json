@@ -1,0 +1,30 @@
+{
+  "generalConfig": {
+    "style": 1
+  },
+  "headerConfig": {
+    "fixed": true,
+    "showBackButton": true,
+    "showHeader": true,
+    "showHeaderButtonLogin": true,
+    "showLateralMenu": true,
+    "showMenuButton": true,
+    "type": "white-corporative_",
+    "headerButtonLoginFontSet": "",
+    "headerButtonLogoutFontSet": "",
+    "headerButtonLoginIcon": "",
+    "headerButtonLogoutIcon": ""
+  },
+  "lateralMenuConfig": {
+    "appShortName":"",
+    "appLongName":"",
+    "appDesc":"",
+    "position": "start",
+    "mode": "side",
+    "modeSmall": "over",
+    "initOpen": true,
+    "alwaysOpen": false,
+    "logoApp": "logo-app.png",
+    "closeOnSelectItem": false
+  }
+}
