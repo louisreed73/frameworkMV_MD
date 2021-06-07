@@ -15,7 +15,7 @@ export class ResumeDocumentComponent implements OnInit {
   ngOnInit() {
     console.log(this.documento);
     // this.pdfDownload_Name = `documento_${this.documento.id}.pdf`;
-    // this.pdfDownload_Name = `documento_${this.documento.id}.pdf`;
+    this.pdfDownload_Name = `documento_${this.documento.id}.pdf`;
     console.log(this.pdfDownload_Name);
   }
 

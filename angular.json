@@ -37,6 +37,12 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/app2/src/app/scss/abstracts",
+                "projects/app2/src/app/scss/base"
+              ]
+            },
             "scripts": [
               "node_modules/@lib/cordova-plugin-lib/cordova-plugin-lib.js"
             ]
