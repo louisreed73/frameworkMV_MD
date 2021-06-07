@@ -1,0 +1,132 @@
+<ng-container *ngIf="(show$ | async);else cargando">
+  <form [formGroup]="filtroFormGroup">
+    <ng-container *ngFor="let key of keys;let i=index">
+      <!-- Level 0 Flex each filter -->
+      <div class="formFilterGroup">
+        <input type="checkbox" [id]="clase+'_'+i" class="showFilterOptions">
+        <label class="toggleFilter" [for]="clase+'_'+i" #toggleEl  (click)="filtroParent()">
+          <div class="iconBox">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32" x="0px" y="0px"><title>previous-1</title><path fill="#006797" d="M16 0.6c-8.498 0-15.4 6.903-15.4 15.4s6.903 15.4 15.4 15.4c8.498 0 15.4-6.903 15.4-15.4s-6.903-15.4-15.4-15.4zM16 1.641c7.914 0 14.359 6.445 14.359 14.359s-6.445 14.359-14.359 14.359c-7.914 0-14.359-6.445-14.359-14.359s6.445-14.359 14.359-14.359zM17.754 10.76c-0.135 0-0.265 0.048-0.369 0.152l-4.709 4.709c-0.095 0.095-0.152 0.235-0.152 0.367s0.056 0.269 0.152 0.365l4.715 4.721c0.099 0.099 0.238 0.152 0.367 0.152 0.131 0 0.263-0.052 0.363-0.152h0.002c0.209-0.209 0.209-0.529 0-0.738l-4.342-4.342 4.342-4.342c0.208-0.208 0.208-0.532 0-0.74-0.104-0.104-0.234-0.152-0.369-0.152z"/></svg>
+
+          </div>
+          <!-- checking arrayForms length, ie if changed checking! -->
+          <span class="informerEdited" *ngIf="filtroFormGroup.get(key).value.length">
+            <!-- {{filtroFormGroup.get(key).value.length}} -->
+          </span>
+          <span class="informerNotEdited" *ngIf="!filtroFormGroup.get(key).value.length">
+            <!-- {{filtroFormGroup.get(key).value.length}} -->
+          </span>
+          <!-- checking arrayForms length, ie if changed checking! End-->
+
+          <!-- checking Forms Groups changes length, ie if changed checking! -->
+          <span class="informerEdited" *ngIf="whatIs(key)&&dameTipo(key)==='FormGroup'">
+            <!-- {{whatIs(key)}} -->
+          </span>
+          <span class="informerNotEdited" *ngIf="!whatIs(key)&&dameTipo(key)==='FormGroup'">
+            <!-- {{'fal'}} -->
+          </span>
+          <!-- checking Forms Groups changes length, ie if changed checking! End-->
+
+          {{configFiltro[i].name | titlecase}}
+        </label>
+        <ng-container *ngIf="dameTipo(key)==='FormGroup'">
+          <div [formGroupName]="key" class="filter_common filter_common-static">
+            <!-- {{whatIs(key)}}
+              {{filtroFormGroup.controls[key].dirty}} -->
+            <ng-container *ngIf="configFiltro[i].tipo==='date'">
+              <!-- {{filtroFormGroup.controls[key].dirty}} -->
+
+              <ng-container *ngFor="let item of configFiltro[i].values;let dateI=index;">
+                <div class="input_flexItem input_flexItem--date">
+                  <label [for]="configFiltro[i].name+'_'+dateI">{{item}}</label>
+                  <input type="date" [id]="configFiltro[i].name+'_'+dateI"
+                    [formControlName]="configFiltro[i].values[dateI]">
+                </div>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="configFiltro[i].tipo==='input'">
+              <div class="inputBox__Y">
+                <ng-container *ngFor="let item of configFiltro[i].values;let inputI=index;">
+                  <div class="input_flexItem input_flexItem--input">
+                    <label class="" [for]="configFiltro[i].name+'_'+inputI"><span *ngIf="inputI===1"
+                        [ngClass]="{'space': inputI===1}">{{'/'}}</span>{{item}}</label>
+                    <input type="number" [id]="configFiltro[i].name+'_'+inputI"
+                      [formControlName]="configFiltro[i].values[inputI]" [placeholder]="placeHold(inputI)">
+                  </div>
+                </ng-container>
+              </div>
+
+
+            </ng-container>
+
+            <ng-container *ngIf="configFiltro[i].tipo==='checkbox' && configFiltro[i].multi===true">
+              <ng-container *ngFor="let item of configFiltro[i].values;let checkboxI=index;">
+                <div class="input_flexItem">
+                  <input type="checkbox" [id]="configFiltro[i].name+'_'+checkboxI"
+                    [formControlName]="configFiltro[i].values[checkboxI]" class="custom-radio-check">
+                  <label class="staticControl" [for]="configFiltro[i].name+'_'+checkboxI">{{item}}</label>
+                </div>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="configFiltro[i].tipo==='checkbox' && configFiltro[i].multi===false">
+              <!-- {{configFiltro[i].values}}  -->
+              <ng-container *ngFor="let item of configFiltro[i].values;let checkboxI=index;">
+                <div class="input_flexItem">
+                  <input type="radio" [id]="configFiltro[i].name+'_'+checkboxI"
+                    [formControlName]="configFiltro[i].multiValue" [name]="configFiltro[i].multiValue" [value]="item"
+                    class="custom-radio-check">
+                  <label class="staticControl" [for]="configFiltro[i].name+'_'+checkboxI">{{item}}</label>
+                </div>
+              </ng-container>
+            </ng-container>
+
+          </div>
+
+        </ng-container>
+        <ng-container *ngIf="dameTipo(key)==='FormArray'">
+
+          <div [formArrayName]="'arrayData'+i" class="filter_common">
+            <app-autocomplete [sugerenciasData]="configFiltro[i].values" [autocompleteInstance]="i"
+              (sugerenciasOut)="getSugerencia($event)">
+            </app-autocomplete>
+            <ng-container *ngFor="let item of dameformGroupArray(i); index as i2" [formGroupName]="i2">
+              <!-- {{informa)}} -->
+              <ng-container *ngFor="let key of dameControlsKeys(item)">
+                <div class="input_flexItem">
+                  <input type="checkbox" [id]="key+'_'+i2" [formControlName]="key" class="custom-radio-check">
+                  <label class="dynamicControl" [for]="key+'_'+i2">{{key}}</label>
+                  <button class="removeControl" (click)="eliminaControl('arrayData'+i,i2)">
+                    <img src="/assets/images/close_icons/close_icon_1.svg" alt="" srcset="">
+
+                  </button>
+                </div>
+              </ng-container>
+
+            </ng-container>
+
+          </div>
+        </ng-container>
+        <!-- Level 0 Header for each Filter -->
+
+        <!-- Level 0 Header for each Filter End -->
+
+        <!-- Level 0 Loop for Each FormGroup or Array -->
+
+
+        <!-- Level 0 Loop for Each FormGroup or Array End-->
+
+
+      </div>
+      <!-- Level 0 Flex each filter End-->
+    </ng-container>
+
+
+  </form>
+</ng-container>
+<ng-template #cargando>
+  <p class="cargandoFiltros">
+    Cargando Filtros...
+  </p>
+</ng-template>

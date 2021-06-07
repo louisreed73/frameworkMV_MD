@@ -1,0 +1,49 @@
+:host {
+    position:relative;
+}
+
+:host {
+    position:relative;
+}
+
+.canvasWrapper {
+    width:100%;
+}
+
+input[type="search"] {
+    position:absolute;
+    min-width:15rem;
+    top: 0rem;
+    z-index: 10;
+    -webkit-transform: translate(0rem, 12rem);
+    transform: translate(calc(50vw - 11rem), -4.4rem);
+}
+
+// .fuzzyS {
+//     position: absolute;
+//     top: -4.7rem;
+//     left: 2.7vw;
+//     z-index: 10;
+//     display: flex;
+//     button {
+//         height: auto;
+//         margin-left:.4rem;
+//         padding: 0 1rem;
+//         cursor:pointer;
+//     }
+// }
+
+
+// .m-l30 {
+    
+//     margin-left:30rem;
+// }
+
+// pdf-viewer {
+//     transition: margin-left .3s ease-in-out;
+
+
+// }
+
+
+

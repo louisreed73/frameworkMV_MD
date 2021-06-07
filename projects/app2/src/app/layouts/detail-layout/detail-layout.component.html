@@ -1,0 +1,41 @@
+<div class="gains">
+  <div class="infoHeader">
+    <p (click)="volver()" class="iconBackBox">
+      <span class="iconBack">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
+          viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+          <g>
+            <path
+              d="M94.094,46.676H16.415l23.23-24.737c1.524-1.514,1.524-3.969,0-5.487c-1.529-1.514-4.002-1.514-5.526,0L2.255,50.638   L33.63,85.062c0.764,0.758,1.762,1.138,2.763,1.138c0.998,0,1.999-0.38,2.763-1.138c1.524-1.517,1.524-3.969,0-5.486L16.164,54.434   h77.93c2.155,0,3.906-1.737,3.906-3.879S96.249,46.676,94.094,46.676z" />
+          </g>
+        </svg>
+      </span>
+      Volver al Listado
+    </p>
+  </div>
+  <div>
+    <div class="flexBoxAside" [ngClass]="{'isNotShowSideBar': !_isShowSideBar}">
+      <input type="checkbox" name="" id="showInfoDocument">
+      <label for="showInfoDocument" (click)="isShowSideBar()">
+        <!-- Esconder lateral -->
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32" x="0px" y="0px">
+          <title>previous-1</title>
+          <path fill="#006797"
+            d="M16 0.6c-8.498 0-15.4 6.903-15.4 15.4s6.903 15.4 15.4 15.4c8.498 0 15.4-6.903 15.4-15.4s-6.903-15.4-15.4-15.4zM16 1.641c7.914 0 14.359 6.445 14.359 14.359s-6.445 14.359-14.359 14.359c-7.914 0-14.359-6.445-14.359-14.359s6.445-14.359 14.359-14.359zM17.754 10.76c-0.135 0-0.265 0.048-0.369 0.152l-4.709 4.709c-0.095 0.095-0.152 0.235-0.152 0.367s0.056 0.269 0.152 0.365l4.715 4.721c0.099 0.099 0.238 0.152 0.367 0.152 0.131 0 0.263-0.052 0.363-0.152h0.002c0.209-0.209 0.209-0.529 0-0.738l-4.342-4.342 4.342-4.342c0.208-0.208 0.208-0.532 0-0.74-0.104-0.104-0.234-0.152-0.369-0.152z" />
+        </svg>
+      </label>
+      <aside>
+        <!-- <app-document-card [documento]="documento"></app-document-card> -->
+        <!-- <p>{{documento | json}}</p> -->
+        <app-resume-document [documento]="documento"></app-resume-document>
+        <!-- <p>Hijos de puta</p> -->
+      </aside>
+    </div>
+    <main [ngClass]="{'m-l30': _isShowSideBar}">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+
+</div>

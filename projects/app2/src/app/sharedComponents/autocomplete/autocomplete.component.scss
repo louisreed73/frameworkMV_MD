@@ -1,0 +1,19 @@
+// input[type="search"] {
+//     padding:.25rem;
+//     margin-bottom: .2rem;
+// }
+
+
+form {
+    max-height: 10rem;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+p {
+    width: 14rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0.2rem 0.5rem;
+}

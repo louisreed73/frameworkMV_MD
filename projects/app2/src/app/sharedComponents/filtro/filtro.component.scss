@@ -1,0 +1,349 @@
+:host(.fijo) {
+  position: fixed;
+  display: block;
+  width: calc(100% - 5.9rem);
+  top: 12.8rem;
+  z-index: 10;
+}
+
+
+form {
+  display: flex;
+  flex-flow: row wrap;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: .3rem;
+  margin: 0 auto;
+  user-select: none;
+  position: relative;
+  width: 100%;
+}
+
+
+
+
+.formFilterGroup {
+
+  flex: 0 1 auto;
+
+}
+
+
+
+.filter_common {
+  display: none;
+  height: auto;
+  padding-bottom: 1.5rem;
+}
+
+input.showFilterOptions:checked~.filter_common {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 1.7rem 1rem 1.7rem 1rem;
+  border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  outline: 1px solid #bbbaba;
+  background: white;
+  outline-offset: -0.1rem;
+}
+
+input.showFilterOptions:checked~.filter_common-static {
+  padding: 0rem 1rem 1.2rem 1rem;
+}
+
+
+
+input.showFilterOptions {
+  opacity: 0;
+  width: 0;
+  display:none;
+
+}
+
+
+
+.input_flexItem {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+input[type="text"] {
+  border: 1px solid gainsboro;
+  outline: none;
+
+  &:focus {
+    outline: .25px solid green;
+  }
+}
+
+
+input[type="date"],
+input[type="text"],
+input[type="number"] {
+  padding: 0.5rem;
+  margin: 0.5rem .5rem .5rem 1.1rem;
+  width: 12.6rem;
+  font-family: inherit;
+  font-size: 1rem;
+
+}
+
+input[type="number"] {
+  padding: 0.5rem;
+  margin: 0.5rem .5rem .5rem 1.1rem;
+  width: 6.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+
+}
+
+input[type="date"] {
+  padding: 0.5rem 0.5rem;
+  margin: 0.5rem 0rem 0.5rem 0.5rem;
+}
+
+.filter_common {
+  & .input_flexItem--date:first-of-type {
+    margin-top: 1.2rem;
+  }
+}
+
+.inputBox__Y {
+  display: flex;
+  align-items: center;
+  padding-top: 1.2rem;
+}
+
+
+
+
+label.toggleFilter {
+  padding: 1.5rem 1rem 1rem 0.5rem;
+  background: gainsboro;
+  text-align: center;
+  position: relative;
+  border: .003rem solid #0000001c;
+  outline-offset: -1px;
+  background: #ebebeb;
+  display: inline-flex;
+  flex-flow: row-reverse;
+  justify-content: center;
+  background: #f3f3f3;
+
+}
+
+
+
+label.toggleFilter .iconBox {
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+  top: -.35rem;
+  left: 0.6rem;
+  z-index: 10;
+  transform: rotate(-180deg) scale(1.1);
+
+  svg {
+    transform: scale(.9);
+  }
+
+}
+
+input.showFilterOptions:checked~label.toggleFilter .iconBox {
+  transform: rotate(270deg) scale(1.1);
+
+  path {
+    stroke: #007c25;
+    stroke-width: 1.15;
+  }
+
+}
+
+label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+
+}
+
+label.dynamicControl {
+
+  margin: 0 0.5rem 0;
+  width: 13rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+label.staticControl {
+
+  margin: 0 0 0 2rem;
+}
+
+
+.input_flexItem--date label {
+  width: auto;
+}
+
+input.custom-radio-check {
+  display: none;
+  margin-right: 2.2rem;
+}
+
+
+input.custom-radio-check+label::before {
+  display: block;
+  content: "";
+  position: relative;
+  top: 13px;
+  left: -20px;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 0.3px solid rgb(170, 170, 170);
+  border-radius: .3rem;
+}
+
+
+
+
+input.custom-radio-check+label::after {
+  display: block;
+  content: "\2713";
+  position: absolute;
+  top: 12.3px;
+  left: -17.8px;
+  color: transparent;
+}
+
+input.custom-radio-check:checked+label::after {
+  color: rgba(0, 103, 151, 1);
+  font-weight: 600;
+}
+
+.removeControl {
+  position: relative;
+  top: 0.9rem;
+  right: 0.6rem;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+
+.cargandoFiltros {
+  height: 35.5px;
+  background: gainsboro;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+label.dynamicControl {
+  pointer-events: none;
+}
+
+
+
+
+
+
+.informerEdited,
+.informerNotEdited {
+  position: absolute;
+  top: 15%;
+  left: calc(50% - .35rem);
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: rgba(0, 103, 151, 1);
+}
+
+.informerNotEdited {
+
+  background: rgba(190, 190, 190, .21);
+
+}
+
+.space {
+  width: 1rem;
+  display: inline-block;
+}
+
+.collapsa.isNotCollapsed {
+  width: 4rem;
+  height: 3rem;
+  cursor: pointer;
+  margin: 0.7rem 1rem 0rem -1rem;
+  position: fixed;
+  top: 14.6rem;
+  right: 1.5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: rotate(180deg) scale(1.2);
+  }
+
+  p {
+    position: absolute;
+    top: 1.2rem;
+    left: -9.8rem;
+    width: 11rem;
+  }
+
+
+
+}
+
+.collapsa {
+  width: 4rem;
+  height: 3rem;
+  margin: 0.7rem 1rem 0rem -1rem;
+  position: fixed;
+  display: inline-flex;
+  top: 15rem;
+  right: 1.1rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: rotate(270deg) scale(1.2);
+  }
+
+  p {
+    position: absolute;
+    top: .8rem;
+    left: -10.2rem;
+    width: 11rem;
+  }
+
+
+}
+
+.collapsableBox {
+  top: 0rem
+}

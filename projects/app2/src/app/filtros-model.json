@@ -1,0 +1,48 @@
+{
+  "documentos": {
+    "tipo documental": [{
+      "varios notificable": true
+    }, {
+      "acuerdo": true
+    }],
+    "fecha tramitacion": {
+      "desde": "2021-04-29",
+      "hasta": ""
+    },
+    "tipo procedimiento": [{
+      "conciliación": true
+    }, {
+      "demanda": true
+    }],
+    "procedimiento nº / año": {
+      "numero": 341,
+      "año": 6666
+    },
+    "magistrado": [{
+      "nombrejuez2": true
+    }, {
+      "nombrejuez7": true
+    }]
+  },
+  "escritos": {
+    "tipo escrito": [{
+      "escrito de alegaciones": true
+    }, {
+      "escrito acuse de recibo": true
+    }],
+    "fecha presentacion": {
+      "desde": "",
+      "hasta": "2021-05-26"
+    }
+  },
+  "resoluciones": {
+    "tipo resolucion": {
+      "auto": true,
+      "sentencia": true
+    },
+    "fecha resolucion": {
+      "desde": "2021-05-05",
+      "hasta": "2021-06-02"
+    }
+  }
+}

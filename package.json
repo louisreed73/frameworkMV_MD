@@ -5,7 +5,9 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start:main": "ng serve -o",
+    "start:app1": "ng serve -o --project=app1",
+    "start:app2": "ng serve -o --project=app2",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

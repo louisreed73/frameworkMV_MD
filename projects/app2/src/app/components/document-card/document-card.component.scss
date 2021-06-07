@@ -1,0 +1,114 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+article {
+  border: 1px solid rgba(220, 220, 220, 0.466);
+  background: rgb(243, 243, 243);
+  padding: 1rem;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .3);
+  margin: 4rem 0;
+}
+
+.flexInfoBox {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.iconFileBox {
+  width: 9rem;
+  height: 9rem;
+  margin-top: 2rem;
+  cursor:pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(1.2) translate(-4px, 0px);
+  }
+}
+
+
+
+hr {
+  border: none;
+  height: 1px;
+  background: #c5c5c5a1;
+}
+
+.mainInfoBox {
+  flex: 1 1 75rem;
+  height: auto;
+  background: white;
+
+}
+
+.downloadBox {
+  flex: 1 1 3rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  // align-items:center;
+  font-weight: 600;
+  margin-left: 1rem;
+
+}
+
+.iconDownloadBox {
+  display: flex;
+  flex: 0 1 0;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor:pointer;
+
+  &> :first-child {
+    text-transform: uppercase;
+    font-weight: 600;
+    padding:.6rem;
+  }
+
+
+}
+
+.iconDownload {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin:1rem;
+
+  // img {
+  //   width: 100%;
+  //   height: 100%;
+  //   object-fit: cover;
+  // }
+
+}
+
+.relevanciaBox {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items:center;
+  width: 100%;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 1.12rem;
+
+  & :first-child {
+    // color: green;
+    padding:.6rem;
+  }
+  & :last-child {
+    color: green;
+    margin:1rem;
+  }
+}
+
+p {
+  font-weight: inherit;
+}

@@ -1,0 +1,58 @@
+<!-- <a (click)="volver()">Volver</a> -->
+<!-- <p>documento works!</p> -->
+<!-- <iframe height="600px" width="100%" src="/assets/pdfs/guitars_esp.pdf" frameborder="0"></iframe> -->
+
+<!-- <input type="text" [ngModel]="busqueda" (ngModelChange)="buscando($event)"> -->
+<!-- <input type="search" [(ngModel)]="searchtext" placeholder="search term" (input)="find($event)"> -->
+<!-- <input type="number" name="" id="" [(ngModel)]="paginaAct" value="1" placeholder="1">
+<input type="number" name="" id="" [(ngModel)]="zoomAct" 
+value="1"
+ step="0.25" placeholder="1" min="0.5" max="1.25"> -->
+<!-- <pdf-viewer [ngClass]="{'m-l30': !!(documentosServ.isShowSideBar)}"[show-all]="true" [page]="paginaAct" [src]="pdfSrc" [render-text]="true" style="display: block;"
+  [rotation]="0" [zoom]="1" [zoom-scale]=""
+   [fit-to-page]="true" [original-size]="true" [autoresize]="true" [show-borders]="true"
+  (text-layer-rendered)="textLayerRendered($event)" 
+  (on-progress)="onProgress($event)"
+  (page-changing)="pageChange($event)"
+  (after-load-complete)="afterLoadComplete($event)"
+  ></pdf-viewer> -->
+<!-- <pdf-viewer-button-component></pdf-viewer-button-component> -->
+<!-- <ngx-extended-pdf-viewer [src]="'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'" 
+>
+</ngx-extended-pdf-viewer> -->
+<!-- <div class="fuzzyS">
+  <input type="text" name="" id="" [(ngModel)]="fuzzyQuery">
+  <button>fuzzy</button>
+</div> -->
+<ngx-extended-pdf-viewer 
+[src]="pdfSrc" 
+useBrowserLocale="true" 
+height="81vh" 
+[textLayer]="true"
+(pageRendered)="pRendered($event)" 
+(updateFindMatchesCount)="buscando($event)"
+(updateFindState)="estadoBusqueda($event)"
+[showOpenFileButton]="false"
+[showBookmarkButton]="false"
+>
+</ngx-extended-pdf-viewer>
+
+<!-- [showPresentationModeButton]="true"
+[(page)]="page"
+[(pageLabel)]="pageLabel" -->
+
+<!-- <div class="findbar hidden doorHanger" id="findbar">
+    <pdf-find-input-area>
+      <pdf-search-input-field id="findInput"></pdf-search-input-field>
+    </pdf-find-input-area>
+  </div> -->
+
+
+<!-- <ng-template #customFindbarInputArea>
+  <div id="findbarInputContainer">
+    <pdf-search-input-field></pdf-search-input-field>
+    <br />
+    <pdf-find-previous></pdf-find-previous>
+    <pdf-find-next></pdf-find-next>
+  </div>
+</ng-template> -->

@@ -1,0 +1,35 @@
+:host(.mat-spinner) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: red;
+  color: white;
+  padding: 2rem;
+}
+
+.uploader-status ::ng-deep .mat-spinner circle {
+  // stroke: #000000;
+  // stroke: #860d8a;
+  stroke: red;
+}
+
+.uploader-status ::ng-deep .mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner-text {
+
+  position: relative;
+  display: inline-flex;
+  width: 90px;
+  height: 90px;
+  top: 50%;
+  left: 50%;
+  transform: translate(0px, 72px);
+  text-align: center;
+  line-height: 1.8;
+}

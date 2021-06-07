@@ -1,0 +1,52 @@
+
+
+
+.flexHeaderBox {
+    height:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    flex-flow:row wrap;
+    background:white;
+}
+
+
+.headerLogoBox {
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-flow:row wrap;
+    margin: 0 2rem 0;
+
+}
+.headerLoginBox {
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-flow:row wrap;
+    font-size: 1.3rem;
+
+}
+
+.imageLogin {
+    width:4rem;
+    height:4rem;
+    margin: 0rem 2rem 0 2rem;
+    img {
+        width:100%;
+        height: 100%;
+        object-fit:contain;
+        transform:rotate(-90deg)
+    }
+}
+
+.imageLogo {
+    width: 9rem;
+    height: 7rem;
+    padding: 0.4rem 0;
+    img {
+        width:100%;
+        height: 100%;
+        object-fit:contain;
+    }
+}

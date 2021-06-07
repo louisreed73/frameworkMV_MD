@@ -1,0 +1,15 @@
+
+.percentage {
+    position: relative;
+    left: -30px;
+    display: block;
+    height: 1rem;
+    background: purple;
+    /* margin-top: 1.35rem; */
+    margin: 0.9rem 3rem 1.7rem;
+    transition: width 0.25s ease-in-out;
+    max-width: 100%;
+    top: -.1rem;
+}
+
+

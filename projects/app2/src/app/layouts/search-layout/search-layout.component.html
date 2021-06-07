@@ -1,0 +1,16 @@
+<!-- <app-header></app-header> -->
+<div class="search-results" infiniteScroll [infiniteScrollDisabled]="stopScroll" [infiniteScrollUpDistance]=".1"
+  [infiniteScrollDistance]=".5" [infiniteScrollThrottle]="10" (scrolled)="onScroll()">
+  <!-- Parent container for infinite scroll -->
+
+  {{stopSpinner$ | async}}
+  <div class="spinner-container" *ngIf="spinner$ | async">
+    <!-- <p>Loading.......</p> -->
+    <app-spinner></app-spinner>
+  </div>
+  <main>
+    <!-- <section> -->
+      <app-user-input appFijar [offset]="10"></app-user-input>
+  </main>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,14 @@
+:host {
+    position: absolute;
+    z-index: 10;
+    top: 0.2rem;
+    right: 3rem;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+
+.fijo :host {
+    top: -1rem;
+    right: 0rem;
+}

@@ -1,0 +1,43 @@
+<div *ngIf="((actualURL$|async)==='/documentos')">
+  <p>
+    {{((documentosInfo$ | async) ? 'Total Documentos encontrados:':null)}} {{(!(documentosInfo$ | async)?null:(documentosInfo$ | async))  }}
+    {{((documentosAcumInfo$ | async) ? 'Visualizando:':null)}} {{(!(documentosAcumInfo$ | async)?null:(documentosAcumInfo$ | async))}}    
+  </p>
+</div>
+<div *ngIf="( ((actualURL$|async)==='/documentos') && (!(documentosInfo$ | async)) && (!(httpErrorInfo$|async)) )">
+  <p>
+    Sin Documentos
+  </p>
+</div>
+
+
+
+<div *ngIf="((actualURL$|async)==='/resoluciones')">
+  <p>
+    {{((resolucionesInfo$ | async) ? 'Total Resoluciones encontradas:':null)}} {{(!(resolucionesInfo$ | async)?null:(resolucionesInfo$ | async))  }}
+    {{((resolucionesAcumInfo$ | async) ? 'Visualizando:':null)}} {{(!(resolucionesAcumInfo$ | async)?null:(resolucionesAcumInfo$ | async))}}    
+  </p>
+</div>
+<div *ngIf="( ((actualURL$|async)==='/resoluciones') && (!(resolucionesInfo$ | async))  && (!(httpErrorInfo$|async)) )">
+  <p>
+    Sin Resoluciones
+  </p>
+</div>
+<div *ngIf="((actualURL$|async)==='/escritos')">
+  <p>
+    {{((escritosInfo$ | async) ? 'Total Escritos encontrados:':null)}} {{(!(escritosInfo$ | async)?null:(escritosInfo$ | async))  }}
+    {{((escritosAcumInfo$ | async) ? 'Visualizando:':null)}} {{(!(escritosAcumInfo$ | async)?null:(escritosAcumInfo$ | async))}}    
+  </p>
+</div>
+<div *ngIf="( ((actualURL$|async)==='/escritos') && (!(escritosInfo$ | async))  && (!(httpErrorInfo$|async)) )">
+  <p>
+    Sin Escritos
+  </p>
+</div>
+<div *ngIf="(httpErrorInfo$|async)">
+  <!-- <p  [style.color]="'red'">Algo va mal, lo sentimos. Error HTTP</p> -->
+  <p>&nbsp;</p>
+</div>
+
+
+
