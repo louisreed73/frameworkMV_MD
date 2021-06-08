@@ -1,6 +1,6 @@
 {
-  "name": "xxxx_mov_nombreAplicacion",
-  "displayName": "xxxx_mov_nombreAplicacion",
+  "name": "bjus_mov_buscadorjusticia",
+  "displayName": "bjus_mov_buscadorjusticia",
   "main": "index.js",
   "version": "1.0.0",
   "scripts": {

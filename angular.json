@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "xxxx_mov_nombreAplicacion": {
+    "bjus_mov_buscadorjusticia": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -76,21 +76,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "xxxx_mov_nombreAplicacion:build"
+            "browserTarget": "bjus_mov_buscadorjusticia:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "xxxx_mov_nombreAplicacion:build:production"
+              "browserTarget": "bjus_mov_buscadorjusticia:build:production"
             },
             "validation": {
-              "browserTarget": "xxxx_mov_nombreAplicacion:build:validation"
+              "browserTarget": "bjus_mov_buscadorjusticia:build:validation"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "xxxx_mov_nombreAplicacion:build"
+            "browserTarget": "bjus_mov_buscadorjusticia:build"
           }
         },
         "test": {
@@ -128,11 +128,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "xxxx_mov_nombreAplicacion:serve"
+            "devServerTarget": "bjus_mov_buscadorjusticia:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "xxxx_mov_nombreAplicacion:serve:production"
+              "devServerTarget": "bjus_mov_buscadorjusticia:serve:production"
             }
           }
         }
@@ -384,5 +384,5 @@
         }
       }
     }},
-  "defaultProject": "xxxx_mov_nombreAplicacion"
+  "defaultProject": "bjus_mov_buscadorjusticia"
 }

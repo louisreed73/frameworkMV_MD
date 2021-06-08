@@ -44,6 +44,8 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
 
   /*=====  End of Pagination memeber  ======*/
 
+  container=".mat-sidenav-container-main"
+
   constructor(
     private documentos: DocumentosService,
     private spinner: SpinnerService,
@@ -69,6 +71,8 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
   onScroll() {
     // On scroll we stopped the handler to prevent continously sending request to API
     // We increment pagination for the next request
+
+    console.log('Scrolling!!!')
     this.documentos.stopScroll$.next(true);
     this.searchTrigger.updatedPagina += 1;
     this.searchTrigger.newTriggerSearch.next();
