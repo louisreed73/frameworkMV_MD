@@ -1,6 +1,6 @@
 <!-- <app-header></app-header> -->
 <div class="search-results" infiniteScroll [infiniteScrollDisabled]="stopScroll" [infiniteScrollUpDistance]=".1"
-  [infiniteScrollDistance]=".5" [infiniteScrollThrottle]="10" (scrolled)="onScroll()" [infiniteScrollContainer]="container" [fromRoot]="true">
+  [infiniteScrollDistance]=".5" [infiniteScrollThrottle]="10" (scrolled)="onScroll()" [fromRoot]="true">
   <!-- Parent container for infinite scroll -->
 
   {{stopSpinner$ | async}}

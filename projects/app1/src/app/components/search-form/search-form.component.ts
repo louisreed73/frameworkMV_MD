@@ -90,6 +90,6 @@ export class SearchFormComponent implements OnInit {
     // this.combinacion.pagina$.next(this.pagina);
 
     this.searchTrigger.updatedSearch = inputSearch;
-    this.searchTrigger.updatedPagina = this.pagina;
+    this.searchTrigger.updatedPaginaDocumentos = this.pagina;
   }
 }

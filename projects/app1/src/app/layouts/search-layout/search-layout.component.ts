@@ -11,6 +11,7 @@ import { SearchTriggerService } from "projects/app1/src/app/services/search-trig
 import { SpinnerService } from "projects/app1/src/app/services/spinner.service";
 import { MatDrawerContent } from "@angular/material";
 import { AppService } from "@mova/components/core";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-search-layout",
@@ -52,7 +53,8 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
     private documentos: DocumentosService,
     private spinner: SpinnerService,
     private searchTrigger: SearchTriggerService,
-    private _appService: AppService
+    private _appService: AppService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -78,11 +80,23 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
     // On scroll we stopped the handler to prevent continously sending request to API
     // We increment pagination for the next request
 
-    console.log("Scrolling!!!");
+    // console.log("Scrolling!!!");
+    let routePath = this.location.path().replace(/\//, "");
+    console.log("Scrolling!!!!", routePath);
     this.documentos.stopScroll$.next(true);
-    this.searchTrigger.updatedPagina += 1;
-    this.searchTrigger.newTriggerSearch.next();
-    // this.documentos.pagina$.next(this.searchTrigger.updatedPagina + 1);
+    if (routePath==='documentos') {
+      this.searchTrigger.updatedPaginaDocumentos += 1;
+      this.searchTrigger.newTriggerSearchDocumentos.next();
+    }
+    if (routePath==='resoluciones') {
+      this.searchTrigger.updatedPaginaResoluciones += 1;
+      this.searchTrigger.newTriggerSearchResoluciones.next();
+    }
+    if (routePath==='escritos') {
+      this.searchTrigger.updatedPaginaEscritos += 1;
+      this.searchTrigger.newTriggerSearchEscritos.next();
+    }
+    // this.documentos.pagina$.next(this.searchTrigger.updatedPaginaDocumentos + 1);
   }
 
   ngOnDestroy(): void {

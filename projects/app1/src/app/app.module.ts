@@ -12,6 +12,7 @@ import { NgxExtendedPdfViewerModule,
      // NgxExtendedPdfViewerServerComponent,
 
  } from "ngx-extended-pdf-viewer";
+import { DatePipe } from "@angular/common";
 // import { PdfFindbarService } from "ngx-extended-pdf-viewer/lib/toolbar/pdf-findbar/pdf-findbar-service";
 
 // import {serverAPI} from "./mirage.api";
@@ -26,6 +27,7 @@ const providers:Array<any>=[
        provide: Window,
        useValue: window,
   },
+  DatePipe
   // {
   //      provide:"finder",
   //      useClass:PdfFindbarService

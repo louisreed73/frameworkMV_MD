@@ -178,7 +178,7 @@ export class FiltroComponent implements OnInit, OnDestroy {
     }
 
     this.searchTrigger.updatedFiltro = updatedChangesFiltro;
-    this.searchTrigger.updatedPagina = this.pagina;
+    this.searchTrigger.updatedPaginaDocumentos = this.pagina;
   }
 
   whatIs(obj) {

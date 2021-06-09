@@ -47,26 +47,48 @@ export class ButtonTriggerComponent implements OnInit, AfterViewInit {
         if (event instanceof KeyboardEvent && event.key === "Enter") {
           //  console.log(event.key);
 
-          this.elementScrollTrigger.scrollTo({
+          // this.elementScrollTrigger.scrollTo({
+          //   top: 0,
+          //   left: 0,
+          //   behavior: environment.app.scrollBehavior,
+          // });
+          this.window.scrollTo({
             top: 0,
             left: 0,
             behavior: environment.app.scrollBehavior,
           });
-          this.searchTrigger.updatedPagina = 1;
           this.searchTrigger.updatedSearch.tipo = routePath;
-          this.searchTrigger.newTriggerSearch.next("busca");
+          if (routePath==='documentos') {
+            this.searchTrigger.updatedPaginaDocumentos = 1;
+            this.searchTrigger.newTriggerSearchDocumentos.next("busca");
+            // this.searchTrigger.updatedSearch.tipo = routePath;
+          }
+          if (routePath==='resoluciones') {
+            this.searchTrigger.updatedPaginaResoluciones = 1;
+            this.searchTrigger.newTriggerSearchResoluciones.next("busca");
+            // this.searchTrigger.updatedSearch.tipo = routePath;
+          }
+          if (routePath==='escritos') {
+            this.searchTrigger.updatedPaginaEscritos = 1;
+            this.searchTrigger.newTriggerSearchEscritos.next("busca");
+          }
         }
 
         if (event instanceof MouseEvent) {
           // console.log(event.type)
-          this.elementScrollTrigger.scrollTo({
+          // this.elementScrollTrigger.scrollTo({
+          //   top: 0,
+          //   left: 0,
+          //   behavior: environment.app.scrollBehavior,
+          // });
+          this.window.scrollTo({
             top: 0,
             left: 0,
             behavior: environment.app.scrollBehavior,
           });
-          this.searchTrigger.updatedPagina = 1;
+          this.searchTrigger.updatedPaginaDocumentos = 1;
           this.searchTrigger.updatedSearch.tipo = routePath;
-          this.searchTrigger.newTriggerSearch.next("busca");
+          this.searchTrigger.newTriggerSearchDocumentos.next("busca");
         }
       });
   }
