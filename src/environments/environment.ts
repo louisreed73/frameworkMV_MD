@@ -109,6 +109,7 @@ export const environment = {
   app: {
     // Situar aqui las variables propias de la app segun entornos
     baseURLApi: "http://localhost:8080/bjus_rest_catalogos/v1",
+    scrollBehavior: "smooth" as ScrollBehavior,
   },
 };
 

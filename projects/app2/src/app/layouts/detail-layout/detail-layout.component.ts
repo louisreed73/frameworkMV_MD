@@ -1,5 +1,6 @@
 import { Location } from "@angular/common";
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { environment } from "@environments/environment";
 import { DocumentosService } from "projects/app2/src/app/services/documentos.service";
 
 @Component({
@@ -10,6 +11,8 @@ import { DocumentosService } from "projects/app2/src/app/services/documentos.ser
 export class DetailLayoutComponent implements OnInit, OnDestroy {
   documento: any = 23;
   _isShowSideBar: boolean = true;
+  elementScrollTrigger:HTMLElement=this.window.document.querySelector("mat-sidenav-content");
+  
   constructor(
     private documentosServ: DocumentosService,
     private location: Location,
@@ -20,7 +23,11 @@ export class DetailLayoutComponent implements OnInit, OnDestroy {
     this.documento = this.documentosServ.selectedDocument;
 
     console.log(this.documento);
-    this.window.scrollTo(0, 0);
+    this.elementScrollTrigger.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: environment.app.scrollBehavior
+    });
     this.window.document.body.style.overflow = "hidden";
   }
 

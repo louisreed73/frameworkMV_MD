@@ -38,6 +38,7 @@ export class MainMenu implements OnInit {
     }
 
 
+
     // Cargar el menú lateral con los datos que queremos.
     let headerAndlateralMenuConfigs = {
       "headerConfig": headerConfig

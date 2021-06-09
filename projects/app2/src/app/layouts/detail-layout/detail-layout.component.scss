@@ -15,10 +15,23 @@
     // margin: 0.5rem 0 0.8rem;
     // background: white;
     // border-radius: 0.5rem;
-    position: absolute;
-    top: 2.4rem;
-    left: 50%;
+    // position: absolute;
+    // top: 2.4rem;
+    // left: 50%;
+    // transform: translateX(-50%);
+
+    position: fixed;
+    top: 0.4rem;
+    right: -2.6rem;
+    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
+    z-index: 9999;
+    color: white;
+
+    svg {
+        fill:white;
+    }
+
 
     & > *:not(:first-child) {
         margin-left:3rem;

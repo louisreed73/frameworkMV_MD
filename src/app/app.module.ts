@@ -219,27 +219,27 @@ const MOMENT_FORMATS = {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    // MOVA_PROVIDERS,
-    // {
-    //   provide: MAT_DATE_FORMATS,
-    //   useValue: MOMENT_FORMATS,
-    // },
-    // {
-    //   provide: DateAdapter, // Adaptador para que datepicker coja los dias desde el lunes
-    //   useClass: MvDateAdapter,
-    // },
-    // {
-    //   provide: LOCALE_ID,
-    //   useValue: "es",
-    // },
-    // ApplicationRef,
-    // {
-    //   provide: MAT_STEPPER_GLOBAL_OPTIONS,
-    //   useValue: {
-    //     displayDefaultIndicatorType: false,
-    //     showError: true,
-    //   },
-    // },
+    MOVA_PROVIDERS,
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: MOMENT_FORMATS,
+    },
+    {
+      provide: DateAdapter, // Adaptador para que datepicker coja los dias desde el lunes
+      useClass: MvDateAdapter,
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: "es",
+    },
+    ApplicationRef,
+    {
+      provide: MAT_STEPPER_GLOBAL_OPTIONS,
+      useValue: {
+        displayDefaultIndicatorType: false,
+        showError: true,
+      },
+    },
   ],
   bootstrap: [AppComponent],
 })

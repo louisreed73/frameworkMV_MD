@@ -10,6 +10,7 @@ import {
 import { fromEvent, merge } from "rxjs";
 import { tap } from "rxjs/operators";
 import { SearchTriggerService } from "projects/app2/src/app/services/search-trigger.service";
+import { environment } from "@environments/environment";
 
 @Component({
   selector: "app-button-trigger",
@@ -18,8 +19,8 @@ import { SearchTriggerService } from "projects/app2/src/app/services/search-trig
 })
 export class ButtonTriggerComponent implements OnInit, AfterViewInit {
   @ViewChild("searchTrigger", { static: true }) button: ElementRef;
-
-  constructor(
+  elementScrollTrigger:HTMLElement=this.window.document.querySelector("mat-sidenav-content");
+    constructor(
     @Inject(Window) private window: Window,
     private searchTrigger: SearchTriggerService,
     private location: Location
@@ -44,7 +45,11 @@ export class ButtonTriggerComponent implements OnInit, AfterViewInit {
         if (event instanceof KeyboardEvent && event.key === "Enter") {
           //  console.log(event.key);
 
-          this.window.scrollTo(0, 0);
+          this.elementScrollTrigger.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: environment.app.scrollBehavior
+          });
           this.searchTrigger.updatedPagina = 1;
           this.searchTrigger.updatedSearch.tipo = routePath;
           this.searchTrigger.newTriggerSearch.next("busca");
@@ -52,7 +57,11 @@ export class ButtonTriggerComponent implements OnInit, AfterViewInit {
 
         if (event instanceof MouseEvent) {
           // console.log(event.type)
-          this.window.scrollTo(0, 0);
+          this.elementScrollTrigger.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: environment.app.scrollBehavior
+          });
           this.searchTrigger.updatedPagina = 1;
           this.searchTrigger.updatedSearch.tipo = routePath;
           this.searchTrigger.newTriggerSearch.next("busca");

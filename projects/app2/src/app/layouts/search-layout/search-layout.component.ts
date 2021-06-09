@@ -9,6 +9,8 @@ import { tap } from "rxjs/operators";
 import { DocumentosService } from "projects/app2/src/app/services/documentos.service";
 import { SearchTriggerService } from "projects/app2/src/app/services/search-trigger.service";
 import { SpinnerService } from "projects/app2/src/app/services/spinner.service";
+import { MatDrawerContent } from "@angular/material";
+import { AppService } from "@mova/components/core";
 
 @Component({
   selector: "app-search-layout",
@@ -44,16 +46,22 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
 
   /*=====  End of Pagination memeber  ======*/
 
-  container=".mat-sidenav-container-main"
+  container = "mat-sidenav-content";
 
   constructor(
     private documentos: DocumentosService,
     private spinner: SpinnerService,
-    private searchTrigger: SearchTriggerService
+    private searchTrigger: SearchTriggerService,
+    private _appService: AppService,
+
   ) {}
 
   ngOnInit() {
-    // on Init we subscribe to initial page - ie page 1
+    // on Init we subscribe to initial page - ie page 1;
+
+    this._appService.closeLateralMenu();
+
+
     this.paginaSub = this.documentos.pagina$
       .pipe(
         tap((numPag) => {
@@ -72,7 +80,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
     // On scroll we stopped the handler to prevent continously sending request to API
     // We increment pagination for the next request
 
-    console.log('Scrolling!!!')
+    console.log("Scrolling!!!");
     this.documentos.stopScroll$.next(true);
     this.searchTrigger.updatedPagina += 1;
     this.searchTrigger.newTriggerSearch.next();
