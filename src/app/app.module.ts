@@ -121,8 +121,7 @@ import { MainMenu } from "./components/main-menu/main-menu.component";
 import { UserProfileView } from "./components/user-profile-view/user-profile-view.component";
 import { NoseguraView } from "./components/nosegura-view/nosegura-view.component";
 import { SeguraView } from "./components/segura-view/segura-view.component";
-import { App2Module } from "../../projects/app1/src/app/app.module";
-import { App3Module } from "../../projects/app2/src/app/app.module";
+import { App1Module } from "../../projects/app1/src/app/app.module";
 
 /**********************************
  * Configuración de la navegación *
@@ -207,7 +206,7 @@ const MOMENT_FORMATS = {
     }),
     MatomoModule,
     // App2Module.forRoot(),
-    App3Module.forRoot(),
+    App1Module.forRoot(),
   ],
   // Incluir los componentes que necesiten ser incluidos dinámicamente (mv-component-host)
   entryComponents: [

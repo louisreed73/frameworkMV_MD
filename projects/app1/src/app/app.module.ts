@@ -1,29 +1,40 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import {Routes,RouterModule} from '@angular/router';
+import { BrowserModule } from "@angular/platform-browser";
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { GuitarsComponent } from './pages/guitars/guitars.component';
-import { BassComponent } from './pages/bass/bass.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { HeadermainComponent } from './components/headermain/headermain.component';
-import { MainHomeComponent } from './components/main-home/main-home.component';
-import { MainguitarsComponent } from './components/mainguitars/mainguitars.component';
-import { MainBassComponent } from './components/main-bass/main-bass.component';
-import { MainContactComponent } from './components/main-contact/main-contact.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { DataRetrievalInterceptor } from "./interceptors/data-retrieval.service";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HeaderComponent } from "./components/header/header.component";
+import { NgxExtendedPdfViewerModule, 
+     // NgxExtendedPdfViewerService,
+     // NgxExtendedPdfViewerServerComponent,
 
-const appRoutes:Routes=[
-  {path:"segura-view" ,component:HomeComponent},
-  {path:"guitars2" ,component:GuitarsComponent},
-  {path:"bass" ,component:BassComponent},
-  {path:"contact" ,component:ContactComponent}
-]
+ } from "ngx-extended-pdf-viewer";
+// import { PdfFindbarService } from "ngx-extended-pdf-viewer/lib/toolbar/pdf-findbar/pdf-findbar-service";
 
-const providers:Array<any>=[];
+// import {serverAPI} from "./mirage.api";
+
+const providers:Array<any>=[
+  {
+       provide: HTTP_INTERCEPTORS,
+       useClass: DataRetrievalInterceptor,
+       multi: true,
+  },
+  {
+       provide: Window,
+       useValue: window,
+  },
+  // {
+  //      provide:"finder",
+  //      useClass:PdfFindbarService
+  // }
+  // NgxExtendedPdfViewerService
+];
 
 @NgModule({})
-export class App2Module { 
+export class App1Module { 
   static forRoot():ModuleWithProviders<any> {
     return {
       ngModule:AppModule,
@@ -33,28 +44,21 @@ export class App2Module {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    GuitarsComponent,
-    BassComponent,
-    ContactComponent,
-    HeadermainComponent,
-    MainHomeComponent,
-    MainguitarsComponent,
-    MainBassComponent,
-    MainContactComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes)
-    
-  ],
-  providers: [
-  ],
-  bootstrap: [AppComponent]
+     declarations: [AppComponent, HeaderComponent],
+     imports: [
+          BrowserModule,
+          AppRoutingModule,
+          HttpClientModule,
+          BrowserAnimationsModule,
+          // NgxExtendedPdfViewerModule,
+          // NgxExtendedPdfViewerService
+           
+     ],
+     providers: providers,
+     bootstrap: [AppComponent],
 })
-export class AppModule { 
-
-
+export class AppModule {
+     constructor() {
+          // serverAPI();
+     }
 }

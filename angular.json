@@ -39,8 +39,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "projects/app2/src/app/scss/abstracts",
-                "projects/app2/src/app/scss/base"
+                "projects/app1/src/app/scss/abstracts",
+                "projects/app1/src/app/scss/base"
               ]
             },
             "scripts": [
@@ -140,11 +140,7 @@
     },
     "app1": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "projects/app1",
       "sourceRoot": "projects/app1/src",
       "prefix": "app",
@@ -160,11 +156,22 @@
             "aot": false,
             "assets": [
               "projects/app1/src/favicon.ico",
-              "projects/app1/src/assets"
+              "projects/app1/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "projects/app1/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/app1/src/app/scss/abstracts",
+                "projects/app1/src/app/scss/base"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -189,11 +196,6 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
                 }
               ]
             }
@@ -228,7 +230,7 @@
               "projects/app1/src/assets"
             ],
             "styles": [
-              "projects/app1/src/styles.scss"
+              "projects/app1/src/styles.css"
             ],
             "scripts": []
           }
@@ -255,130 +257,6 @@
           "configurations": {
             "production": {
               "devServerTarget": "app1:serve:production"
-            }
-          }
-        }
-      }
-    },
-    "app2": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "projects/app2",
-      "sourceRoot": "projects/app2/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/app2",
-            "index": "projects/app2/src/index.html",
-            "main": "projects/app2/src/main.ts",
-            "polyfills": "projects/app2/src/polyfills.ts",
-            "tsConfig": "projects/app2/tsconfig.app.json",
-            "aot": false,
-            "assets": [
-              "projects/app2/src/favicon.ico",
-              "projects/app2/src/assets",
-              {
-                "glob": "**/*",
-                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
-                "output": "/assets/"
-              }
-            ],
-            "styles": [
-              "projects/app2/src/styles.scss"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "projects/app2/src/app/scss/abstracts",
-                "projects/app2/src/app/scss/base"
-              ]
-            },
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/app2/src/environments/environment.ts",
-                  "with": "projects/app2/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app2:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app2:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app2:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/app2/src/test.ts",
-            "polyfills": "projects/app2/src/polyfills.ts",
-            "tsConfig": "projects/app2/tsconfig.spec.json",
-            "karmaConfig": "projects/app2/karma.conf.js",
-            "assets": [
-              "projects/app2/src/favicon.ico",
-              "projects/app2/src/assets"
-            ],
-            "styles": [
-              "projects/app2/src/styles.css"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/app2/tsconfig.app.json",
-              "projects/app2/tsconfig.spec.json",
-              "projects/app2/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/app2/e2e/protractor.conf.js",
-            "devServerTarget": "app2:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app2:serve:production"
             }
           }
         }
