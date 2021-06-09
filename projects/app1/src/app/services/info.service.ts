@@ -13,7 +13,7 @@ export class InfoService {
   escritosInfoTotalLength$:BehaviorSubject<any>=new BehaviorSubject(null);
   escritosInfoAcumLength$:BehaviorSubject<any>=new BehaviorSubject(null);
   
-  // infoPath$:BehaviorSubject<any>=new BehaviorSubject("documentos");
+  infoPath$:BehaviorSubject<any>=new BehaviorSubject("documentos");
   
   httpErrorInfo$:Subject<any>=new Subject();
   constructor() { }

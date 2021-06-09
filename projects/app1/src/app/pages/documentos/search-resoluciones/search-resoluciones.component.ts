@@ -14,6 +14,7 @@ import { DocumentosService } from "projects/app1/src/app/services/documentos.ser
 import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { InfoService } from "projects/app1/src/app/services/info.service";
 import { FiltroComponent } from "projects/app1/src/app/sharedComponents/filtro/filtro.component";
+import { ResolucionesService } from "../../../services/resoluciones.service";
 
 @Component({
   selector: "app-search-resoluciones",
@@ -27,7 +28,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
     =============================================*/
 
   // Recibimos el Observable con los datos del número total de documentos / Resoluciones / por término de búsqueda acumulado en pagination.
-  docsResoluciones$ = this.docsResoluciones.docsResolucionesSource$.pipe(
+  docsResoluciones$ = this.resoluciones.resoluciones$.pipe(
     catchError((e: any) => {
       // Saving error message from http Request Error
       // this.errorObj = e.name;
@@ -54,7 +55,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
  =============================================*/
 
   // Nos subscribimos al Observable de Documentos acumulados de pagination. Para actualizar en esta sección el filtro global del término de búsqueda.
-  documentosSub: Subscription = this.documentos.documentos$.subscribe();
+  // documentosSub: Subscription = this.documentos.documentos$.subscribe();
 
   /*=====  End of Subscriptions  ======*/
 
@@ -113,8 +114,9 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   /*=====  End of Incorporacion Integracion nuevo Filtro  ======*/
 
   constructor(
-    private documentos: DocumentosService,
-    private docsResoluciones: DocsResolucionesService,
+    // private documentos: DocumentosService,
+    // private docsResoluciones: DocsResolucionesService,
+    private resoluciones: ResolucionesService,
     // private spinner: SpinnerService,
     //TODO to remove only for checking response and reload page
     @Inject(Window) private window: Window,
@@ -125,6 +127,13 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   // Método para comprobar que los datos del OBservable son efectivamente un array
   isArray(obj) {
     return Array.isArray(obj);
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.infoServ.infoPath$.next("resoluciones")
+
   }
 
   ngAfterViewInit(): void {

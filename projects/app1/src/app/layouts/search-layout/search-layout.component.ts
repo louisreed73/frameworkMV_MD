@@ -12,6 +12,7 @@ import { SpinnerService } from "projects/app1/src/app/services/spinner.service";
 import { MatDrawerContent } from "@angular/material";
 import { AppService } from "@mova/components/core";
 import { Location } from "@angular/common";
+import { ResolucionesService } from "../../services/resoluciones.service";
 
 @Component({
   selector: "app-search-layout",
@@ -26,6 +27,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
 
   paginaSub: Subscription;
   stopScrollSub: Subscription;
+  stopScrollSubResoluciones: Subscription;
 
   /*=====  End of Subscriptions  ======*/
 
@@ -51,6 +53,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
 
   constructor(
     private documentos: DocumentosService,
+    private resoluciones: ResolucionesService,
     private spinner: SpinnerService,
     private searchTrigger: SearchTriggerService,
     private _appService: AppService,
@@ -60,18 +63,21 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // on Init we subscribe to initial page - ie page 1;
 
-    this._appService.closeLateralMenu();
+    // this._appService.closeLateralMenu();
 
-    this.paginaSub = this.documentos.pagina$
-      .pipe(
-        tap((numPag) => {
-          this.pagina = numPag;
-          console.log(numPag, "Este es el número de página", "pink");
-        })
-      )
-      .subscribe();
+    // this.paginaSub = this.documentos.pagina$
+    //   .pipe(
+    //     tap((numPag) => {
+    //       this.pagina = numPag;
+    //       console.log(numPag, "Este es el número de página", "pink");
+    //     })
+    //   )
+    //   .subscribe();
     // We subscribe to stop Scroll Observable and save it into variable
     this.stopScrollSub = this.documentos.stopScroll$.subscribe((mustStop) => {
+      this.stopScroll = mustStop;
+    });
+    this.stopScrollSubResoluciones = this.resoluciones.stopScroll$.subscribe((mustStop) => {
       this.stopScroll = mustStop;
     });
   }
@@ -101,6 +107,8 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // We unsubscribe from actual page
-    this.paginaSub.unsubscribe();
+    // this.paginaSub.unsubscribe();
+    this.stopScrollSub.unsubscribe();
+    this.stopScrollSubResoluciones.unsubscribe();
   }
 }

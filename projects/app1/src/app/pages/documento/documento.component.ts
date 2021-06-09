@@ -55,8 +55,8 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   })();
 
   constructor(
-    private route: ActivatedRoute,
-    private documentosServ: DocumentosService,
+    // private route: ActivatedRoute,
+    // private documentosServ: DocumentosService,
     private ngxExtendedPdfViewerService: NgxExtendedPdfViewerService,
     private searchTriggerServ: SearchTriggerService,
     @Inject(DOCUMENT) private _document: Document

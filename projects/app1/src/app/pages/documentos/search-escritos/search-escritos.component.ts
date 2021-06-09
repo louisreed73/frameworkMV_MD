@@ -127,6 +127,12 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   isArray(obj) {
     return Array.isArray(obj);
   }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.infoServ.infoPath$.next("escritos")
+
+  }
   ngAfterViewInit(): void {
     this.toggleCollapseSub = this.filtrosComp.first.triggerCollapse
       .pipe(

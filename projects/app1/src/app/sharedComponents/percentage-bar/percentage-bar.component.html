@@ -1,4 +1,10 @@
-<p class="percentage"
+<p 
+class="percentage"
   [style.width.%]="((documentosLength$ | async) / (documentosTotalQueryLength$ | async) * 100)?(documentosLength$ | async) / (documentosTotalQueryLength$ | async) * 100:0">
 </p>
+<!-- <p *ngIf="(path$|async)==='resoluciones'" 
+class="percentage"
+  [style.width.%]="((resolucionesLength$ | async) / (resolucionesTotalQueryLength$ | async) * 100)?(documentosLength$ | async) / (documentosTotalQueryLength$ | async) * 100:0">
+</p> -->
+<!-- <p>{{path$|async}}</p> -->
 <app-info></app-info>
