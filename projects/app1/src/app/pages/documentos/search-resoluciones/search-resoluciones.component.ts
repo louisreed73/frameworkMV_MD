@@ -7,8 +7,8 @@ import {
   QueryList,
   ViewChildren,
 } from "@angular/core";
-import { of, Subject, Subscription } from "rxjs";
-import { catchError, delay, map } from "rxjs/operators";
+import { combineLatest, of, Subject, Subscription } from "rxjs";
+import { catchError, delay, map, tap } from "rxjs/operators";
 import { DocsResolucionesService } from "projects/app1/src/app/services/docs-resoluciones.service";
 import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
@@ -84,6 +84,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   filtrosComp: QueryList<FiltroComponent>;
   someCollap$: Subject<boolean> = new Subject();
   toggleCollapseSub: Subscription;
+  infoServSubs:Subscription;
 
   filtrosDocumentos;
   filtrosResoluciones;
@@ -132,7 +133,26 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.infoServ.infoPath$.next("resoluciones")
+    this.infoServ.infoPath$.next("resoluciones");
+
+    this.infoServSubs=combineLatest([
+      this.infoServ.resolucionesInfoAcumLength$,
+      this.infoServ.resolucionesInfoTotalLength$,
+    ])    
+    .pipe(
+      tap(data=>{
+        let result=data[0]/data[1];
+        console.log(`%ccalculando si se puede detener el Scroll en esta página:${result===1}`,'color:gold')
+        if(result===1) {
+          this.resoluciones.stopScroll$.next(true)
+        }
+        else {
+          this.resoluciones.stopScroll$.next(false)
+
+        }
+      })
+    )
+    .subscribe()
 
   }
 
@@ -163,6 +183,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
     this.filtroDocumentosSub.unsubscribe();
     this.filtroResolucionesSub.unsubscribe();
     this.toggleCollapseSub.unsubscribe();
+    this.infoServSubs.unsubscribe();
   }
 
   collapsing() {

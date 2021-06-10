@@ -261,14 +261,14 @@ export class ResolucionesService implements OnDestroy {
 
         // if we get total documents we stop scroll handler to prevent more API calls
         if (resolucionesQueryAcum.length / this.resolucionesQueryTotal >= 1) {
-          this.stopScroll$.next(true);
+          // this.stopScroll$.next(true);
           console.log(
             `%c${resolucionesQueryAcum.length / this.resolucionesQueryTotal}`,
             "lightred"
           );
         } else {
           // if not we continue making new API calls and handling scrolls
-          this.stopScroll$.next(false);
+          // this.stopScroll$.next(false);
           console.log(
             `%c${resolucionesQueryAcum.length / this.resolucionesQueryTotal}`,
             "lightred"

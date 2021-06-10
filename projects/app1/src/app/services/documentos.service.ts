@@ -259,14 +259,14 @@ export class DocumentosService implements OnDestroy {
 
         // if we get total documents we stop scroll handler to prevent more API calls
         if (documentsQueryAcum.length / this.docsQueryTotal >= 1) {
-          this.stopScroll$.next(true);
+          // this.stopScroll$.next(true);
           console.log(
             `%c${documentsQueryAcum.length / this.docsQueryTotal}`,
             "lightred"
           );
         } else {
           // if not we continue making new API calls and handling scrolls
-          this.stopScroll$.next(false);
+          // this.stopScroll$.next(false);
           console.log(
             `%c${documentsQueryAcum.length / this.docsQueryTotal}`,
             "lightred"
