@@ -21,6 +21,9 @@ export class PercentageBarComponent implements OnInit {
   resolucionesTotalQueryLength$ = this.infoS.resolucionesInfoTotalLength$;
   // Recibimos el Observable con los datos del número total de resoluciones filtrados por término de búsqueda + filtros aplicados o pagination.
   resolucionesLength$ = this.infoS.resolucionesInfoAcumLength$;
+  escritosTotalQueryLength$ = this.infoS.escritosInfoTotalLength$;
+  // Recibimos el Observable con los datos del número total de resoluciones filtrados por término de búsqueda + filtros aplicados o pagination.
+  escritosLength$ = this.infoS.escritosInfoAcumLength$;
   path$ = this.infoS.infoPath$;
   // Recibimos el Observable con los datos del número total de documentos filtrados por término de búsqueda + filtros aplicados. 'Solo Escritos'!!!
   // escritosLength$ = this.docsEscritos.documentosEscritosLength$;

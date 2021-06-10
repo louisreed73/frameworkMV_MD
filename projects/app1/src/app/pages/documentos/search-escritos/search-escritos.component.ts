@@ -8,13 +8,14 @@ import {
   QueryList,
   ViewChildren,
 } from "@angular/core";
-import { of, Subject, Subscription } from "rxjs";
+import { combineLatest, of, Subject, Subscription } from "rxjs";
 import { catchError, delay, map, tap } from "rxjs/operators";
 import { DocsEscritosService } from "projects/app1/src/app/services/docs-escritos.service";
 import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { InfoService } from "projects/app1/src/app/services/info.service";
 import { FiltroComponent } from "projects/app1/src/app/sharedComponents/filtro/filtro.component";
+import { EscritosService } from "../../../services/escritos.service";
 
 @Component({
   selector: "app-search-escritos",
@@ -28,7 +29,7 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
     =============================================*/
 
   // Recibimos el Observable con los datos del número total de documentos / Escritos / por término de búsqueda acumulado en pagination.
-  docsEscritos$ = this.docsEscritos.docsEscritosSource$.pipe(
+  docsEscritos$ = this.escritos.escritos$.pipe(
     catchError((e: any) => {
       // Saving error message from http Request Error
       // this.errorObj = e.name;
@@ -55,7 +56,7 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
  =============================================*/
 
   // Nos subscribimos al Observable de Documentos acumulados de pagination. Para actualizar en esta sección el filtro global del término de búsqueda.
-  documentosSub: Subscription = this.documentos.documentos$.subscribe();
+  // documentosSub: Subscription = this.documentos.documentos$.subscribe();
 
   /*=====  End of Subscriptions  ======*/
 
@@ -84,23 +85,25 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   filtrosComp: QueryList<FiltroComponent>;
   someCollap$: Subject<boolean> = new Subject();
   toggleCollapseSub: Subscription;
+  infoServSubs:Subscription;
 
-  filtrosDocumentos;
+
+  // filtrosDocumentos;
   filtrosEscritos;
 
-  filtroDocumentosSub = this.filtroS
-    .getFiltrosDocumentos()
-    .pipe()
-    .subscribe((data) => {
-      // console.log(data);
-      // this.filtrosDocumentos = data;
-      this.filtrosDocumentos = {
-        data: data,
-        clase: "documentos",
-      };
-    });
+  // filtroDocumentosSub = this.filtroS
+  //   .getFiltrosDocumentos()
+  //   .pipe()
+  //   .subscribe((data) => {
+  //     // console.log(data);
+  //     // this.filtrosDocumentos = data;
+  //     this.filtrosDocumentos = {
+  //       data: data,
+  //       clase: "documentos",
+  //     };
+  //   });
 
-  filtroEscritosSub = this.filtroS
+  filtroEscritosSub:Subscription  = this.filtroS
     .getFiltrosEscritos()
     .pipe()
     .subscribe((data) => {
@@ -114,8 +117,9 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   /*=====  End of Incorporacion Integracion nuevo Filtro  ======*/
 
   constructor(
-    private documentos: DocumentosService,
-    private docsEscritos: DocsEscritosService,
+    // private documentos: DocumentosService,
+    // private docsEscritos: DocsEscritosService,
+    private escritos: EscritosService,
     // private spinner: SpinnerService,
     //TODO to remove only for checking response and reload page
     @Inject(Window) private window: Window,
@@ -130,7 +134,26 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.infoServ.infoPath$.next("escritos")
+    this.infoServ.infoPath$.next("escritos");
+
+    this.infoServSubs=combineLatest([
+      this.infoServ.escritosInfoAcumLength$,
+      this.infoServ.escritosInfoTotalLength$,
+    ])    
+    .pipe(
+      tap(data=>{
+        let result=data[0]/data[1];
+        console.log(`%ccalculando si se puede detener el Scroll en esta página:${result===1}`,'color:gold')
+        if(result===1) {
+          this.escritos.stopScroll$.next(true)
+        }
+        else {
+          this.escritos.stopScroll$.next(false)
+
+        }
+      })
+    )
+    .subscribe()
 
   }
   ngAfterViewInit(): void {
@@ -156,7 +179,7 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     // this.documentosSub.unsubscribe();
-    this.filtroDocumentosSub.unsubscribe();
+    // this.filtroDocumentosSub.unsubscribe();
     this.filtroEscritosSub.unsubscribe();
     this.toggleCollapseSub.unsubscribe();
   }

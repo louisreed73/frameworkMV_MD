@@ -25,7 +25,7 @@ import { SearchTriggerService } from "./search-trigger.service";
 @Injectable({
   providedIn: "root",
 })
-export class ResolucionesService implements OnDestroy {
+export class EscritosService implements OnDestroy {
   /*=============================================
      =            Observables            =
      =============================================*/
@@ -64,7 +64,7 @@ export class ResolucionesService implements OnDestroy {
      =============================================*/
 
   //Subscription for http request query string
-  resolucionesTotalQueryLengthS: Subscription;
+  escritosTotalQueryLengthS: Subscription;
 
   /*=====  End of Subscriptions  ======*/
 
@@ -85,12 +85,12 @@ export class ResolucionesService implements OnDestroy {
   // saving an array for acumulating pages - to use depending of actual page -acumulated
   data = [];
   // saving total number of documents for query string - to send in observer of total documents
-  resolucionesQueryTotal: number;
+  escritosQueryTotal: number;
 
   //TODO remove only for checking testing wrong url
   // save url from observable toggling url right and wrong
   url: string =
-    "https://my-json-server.typicode.com/louisreed73/fakeAPI/resoluciones";
+    "https://my-json-server.typicode.com/louisreed73/fakeAPI/escritos";
   // url: string="/api/documentos";
 
   /*=====  End of Class members  ======*/
@@ -98,7 +98,7 @@ export class ResolucionesService implements OnDestroy {
   // Observable to react to input query string / Form Filters / page change
   // in this pipeline we are going to make http request based in this information
   // Logic to check acumulated data, based in page number - API pagination
-  resoluciones$: Observable<any>;
+  escritos$: Observable<any>;
   private _selectedDocument: any;
   // private _isShowSideBar:boolean=true;
 
@@ -125,20 +125,20 @@ export class ResolucionesService implements OnDestroy {
     private searchTrigger: SearchTriggerService,
     private infoServ: InfoService
   ) {
-    this.resoluciones$ = this.searchTrigger.newTriggerSearchResoluciones.pipe(
+    this.escritos$ = this.searchTrigger.newTriggerSearchEscritos.pipe(
       tap(console.log),
       // startWith("Comienzo"),
       switchMap((params) => {
         console.log(
           this.searchTrigger.updatedFiltro,
           this.searchTrigger.updatedSearch,
-          this.searchTrigger.updatedPaginaResoluciones
+          this.searchTrigger.updatedPaginaEscritos
         );
 
         return from([
           this.searchTrigger.updatedFiltro,
           this.searchTrigger.updatedSearch,
-          this.searchTrigger.updatedPaginaResoluciones,
+          this.searchTrigger.updatedPaginaEscritos,
         ]).pipe(toArray());
       }),
       tap(console.log),
@@ -148,7 +148,7 @@ export class ResolucionesService implements OnDestroy {
         this.formulario = formulario;
         this.pagina = pagina;
         this.formulario.currentSearch = search.tipo;
-        //    this.infoServ.infoPath$.next(search.tipo)
+     //    this.infoServ.infoPath$.next(search.tipo)
         console.log(
           `%cEsto es lo que recibo de los filtros: ${JSON.stringify(
             this.formulario,
@@ -177,28 +177,28 @@ export class ResolucionesService implements OnDestroy {
       switchMap((obsCombined) => {
         // if page is 1 / we send new data with the new string query -or change in filters - new API request - to get total documents
         if (this.pagina < 2) {
-          this.resolucionesTotalQueryLengthS = this.http
+          this.escritosTotalQueryLengthS = this.http
             .get<any>(`${this.url}?q=${this.search}`)
             .subscribe((d) => {
               // this.documentosTotalQueryLength$.next(d.length);
 
               // data to calculate total perc of documents received from pagination with respecto to documents.
-              //     this.infoServ.documentosInfoTotalLength$.next(d.length);
-              this.resolucionesQueryTotal = d.length;
-              this.infoServ.resolucionesInfoTotalLength$.next(d.length);
-              //     let filtroResoluciones = d.filter(
-              //       (doc) => doc.tipo === "resolucion"
-              //     );
-              //     this.infoServ.resolucionesInfoTotalLength$.next(
-              //       filtroResoluciones.length
-              //     );
-              //     let filtroEscritos = d.filter((doc) => doc.tipo === "escrito");
-              //     this.infoServ.escritosInfoTotalLength$.next(
-              //       filtroEscritos.length
-              //     );
-              // this.docsEscritos.documentosEscritosLength$.next(
-              //      filtroEscritos.length
-              // );
+          //     this.infoServ.documentosInfoTotalLength$.next(d.length);
+              this.escritosQueryTotal = d.length;
+              this.infoServ.escritosInfoTotalLength$.next(d.length)
+          //     let filtroResoluciones = d.filter(
+          //       (doc) => doc.tipo === "resolucion"
+          //     );
+          //     this.infoServ.resolucionesInfoTotalLength$.next(
+          //       filtroResoluciones.length
+          //     );
+          //     let filtroEscritos = d.filter((doc) => doc.tipo === "escrito");
+          //     this.infoServ.escritosInfoTotalLength$.next(
+          //       filtroEscritos.length
+          //     );
+          // this.docsEscritos.documentosEscritosLength$.next(
+          //      filtroEscritos.length
+          // );
             });
         }
 
@@ -212,13 +212,13 @@ export class ResolucionesService implements OnDestroy {
       }),
       catchError((err) => {
         //Error throwing to handle data in each observable pipe
-        //    this.docsEscritos.docsEscritosSource$.error(err);
-        //    this.docsResoluciones.docsResolucionesSource$.error(err);
+     //    this.docsEscritos.docsEscritosSource$.error(err);
+     //    this.docsResoluciones.docsResolucionesSource$.error(err);
 
         return throwError(err);
       }),
       switchMap((obsPagination) => {
-        console.log(obsPagination);
+        console.log(obsPagination)
         //Depending of page number we overwrite acumulated array or inserting more documents based on query string and filters
         if (this.pagina < 2) {
           this.data = obsPagination;
@@ -227,29 +227,29 @@ export class ResolucionesService implements OnDestroy {
           this.data = this.data.concat(obsPagination);
         }
         // returning acumulated array as observable // saved in data class member;
-        this.infoServ.resolucionesInfoAcumLength$.next(this.data.length);
+        this.infoServ.escritosInfoAcumLength$.next(this.data.length);
         return of(this.data);
       }),
-      tap((resolucionesQueryAcum) => {
+      tap((escritosQueryAcum) => {
         //Realizamos el filtro de escritos.
-        //    let filtroEscritos = resolucionesQueryAcum.filter(
-        //      (doc) => doc.tipo === "escrito"
-        //    );
+     //    let filtroEscritos = resolucionesQueryAcum.filter(
+     //      (doc) => doc.tipo === "escrito"
+     //    );
 
         // Enviamos el filtro de 'solo escritos' de los datos de busqueda + filtros. Será recibido en search-escritos.component.
-        //    this.docsEscritos.docsEscritosSource$.next(filtroEscritos);
+     //    this.docsEscritos.docsEscritosSource$.next(filtroEscritos);
 
         // Enviamos el contador de registros del dato anterior al componente que se subscribe a este Subject: filter-tabs.component
-        //    this.infoServ.escritosInfoAcumLength$.next(filtroEscritos.length);
+     //    this.infoServ.escritosInfoAcumLength$.next(filtroEscritos.length);
 
-        //    this.documentosLength$.next(resolucionesQueryAcum.length);
+     //    this.documentosLength$.next(resolucionesQueryAcum.length);
 
         // this.infoServ.documentosInfo$.next(`Mostrando ${resolucionesQueryAcum.length} documentos del Total Documentos: ${this.resolucionesQueryTotal}`);
 
         //Realizamos el filtro de resoluciones.
-        //    let filtroResoluciones = resolucionesQueryAcum.filter(
-        //      (doc) => doc.tipo === "resolucion"
-        //    );
+     //    let filtroResoluciones = resolucionesQueryAcum.filter(
+     //      (doc) => doc.tipo === "resolucion"
+     //    );
         // console.log(filtroResoluciones.length)
         // Enviamos el filtro de 'solo resoluciones' de los datos de busqueda + filtros. Será recibido en search-resoluciones.component.
 
@@ -258,18 +258,19 @@ export class ResolucionesService implements OnDestroy {
         //      +filtroResoluciones.length
         // );
 
+
         // if we get total documents we stop scroll handler to prevent more API calls
-        if (resolucionesQueryAcum.length / this.resolucionesQueryTotal >= 1) {
+        if (escritosQueryAcum.length / this.escritosQueryTotal >= 1) {
           // this.stopScroll$.next(true);
           console.log(
-            `%c${resolucionesQueryAcum.length / this.resolucionesQueryTotal}`,
+            `%c${escritosQueryAcum.length / this.escritosQueryTotal}`,
             "lightred"
           );
         } else {
           // if not we continue making new API calls and handling scrolls
           // this.stopScroll$.next(false);
           console.log(
-            `%c${resolucionesQueryAcum.length / this.resolucionesQueryTotal}`,
+            `%c${escritosQueryAcum.length / this.escritosQueryTotal}`,
             "lightred"
           );
         }
@@ -281,6 +282,6 @@ export class ResolucionesService implements OnDestroy {
 
   ngOnDestroy(): void {
     //Unsubscribe from http request query string
-    this.resolucionesTotalQueryLengthS.unsubscribe();
+    this.escritosTotalQueryLengthS.unsubscribe();
   }
 }

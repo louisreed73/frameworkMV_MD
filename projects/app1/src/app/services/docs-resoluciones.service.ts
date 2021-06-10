@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from "rxjs";
      providedIn: "root",
 })
 export class DocsResolucionesService {
-     docsResolucionesSource$: BehaviorSubject<{}> = new BehaviorSubject({})
+     // docsResolucionesSource$: BehaviorSubject<{}> = new BehaviorSubject({})
 
      constructor() {}
 }

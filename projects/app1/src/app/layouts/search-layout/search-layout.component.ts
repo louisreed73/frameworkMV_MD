@@ -13,6 +13,7 @@ import { MatDrawerContent } from "@angular/material";
 import { AppService } from "@mova/components/core";
 import { Location } from "@angular/common";
 import { ResolucionesService } from "../../services/resoluciones.service";
+import { EscritosService } from "../../services/escritos.service";
 
 @Component({
   selector: "app-search-layout",
@@ -28,6 +29,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
   paginaSub: Subscription;
   stopScrollSub: Subscription;
   stopScrollSubResoluciones: Subscription;
+  stopScrollSubEscritos: Subscription;
 
   /*=====  End of Subscriptions  ======*/
 
@@ -54,6 +56,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private documentos: DocumentosService,
     private resoluciones: ResolucionesService,
+    private escritos: EscritosService,
     private spinner: SpinnerService,
     private searchTrigger: SearchTriggerService,
     private _appService: AppService,
@@ -85,6 +88,16 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
       console.log(this.stopScroll);
     });
     this.stopScrollSubResoluciones = this.resoluciones.stopScroll$
+    .pipe(
+      tap(data=>{
+        console.log(`%cRecibiendo la subscripcion de si debo detener el ScrollInfinite: ${data}`,'color:lime')
+      })
+    )
+    .subscribe((mustStop) => {
+      this.stopScroll = mustStop;
+      console.log(this.stopScroll);
+    });
+    this.stopScrollSubEscritos = this.escritos.stopScroll$
     .pipe(
       tap(data=>{
         console.log(`%cRecibiendo la subscripcion de si debo detener el ScrollInfinite: ${data}`,'color:lime')
@@ -127,5 +140,6 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
     // this.paginaSub.unsubscribe();
     this.stopScrollSub.unsubscribe();
     this.stopScrollSubResoluciones.unsubscribe();
+    this.stopScrollSubEscritos.unsubscribe();
   }
 }

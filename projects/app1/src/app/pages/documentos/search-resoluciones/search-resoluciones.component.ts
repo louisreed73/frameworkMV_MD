@@ -86,22 +86,22 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   toggleCollapseSub: Subscription;
   infoServSubs:Subscription;
 
-  filtrosDocumentos;
+  // filtrosDocumentos;
   filtrosResoluciones;
 
-  filtroDocumentosSub = this.filtroS
-    .getFiltrosDocumentos()
-    .pipe()
-    .subscribe((data) => {
-      // console.log(data);
-      // this.filtrosDocumentos = data;
-      this.filtrosDocumentos = {
-        data: data,
-        clase: "documentos",
-      };
-    });
+  // filtroDocumentosSub = this.filtroS
+  //   .getFiltrosDocumentos()
+  //   .pipe()
+  //   .subscribe((data) => {
+  //     // console.log(data);
+  //     // this.filtrosDocumentos = data;
+  //     this.filtrosDocumentos = {
+  //       data: data,
+  //       clase: "documentos",
+  //     };
+  //   });
 
-  filtroResolucionesSub = this.filtroS
+  filtroResolucionesSub:Subscription = this.filtroS
     .getFiltrosResoluciones()
     .pipe()
     .subscribe((data) => {
@@ -180,7 +180,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     // this.documentosSub.unsubscribe();
     // this.filtroEscritosSub.unsubscribe();
-    this.filtroDocumentosSub.unsubscribe();
+    // this.filtroDocumentosSub.unsubscribe();
     this.filtroResolucionesSub.unsubscribe();
     this.toggleCollapseSub.unsubscribe();
     this.infoServSubs.unsubscribe();
