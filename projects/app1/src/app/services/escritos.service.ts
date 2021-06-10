@@ -17,8 +17,6 @@ import {
   tap,
   toArray,
 } from "rxjs/operators";
-import { DocsEscritosService } from "./docs-escritos.service";
-import { DocsResolucionesService } from "./docs-resoluciones.service";
 import { InfoService } from "./info.service";
 import { SearchTriggerService } from "./search-trigger.service";
 

@@ -7,7 +7,6 @@ import { FijarDirective } from "projects/app1/src/app/directives/fijar.directive
 import { FiltroComponent } from "../../sharedComponents/filtro/filtro.component";
 import { AutocompleteComponent } from "../../sharedComponents/autocomplete/autocomplete.component";
 import { ButtonTriggerComponent } from "../../sharedComponents/button-trigger/button-trigger.component";
-import { InfoComponent } from "../../sharedComponents/info/info.component";
 import { PercentageBarComponent } from "../../sharedComponents/percentage-bar/percentage-bar.component";
 import { CollapsibleComponent } from "../../sharedComponents/collapsible/collapsible.component";
 import { DocumentCardComponent } from "projects/app1/src/app/components/document-card/document-card.component";
@@ -20,7 +19,6 @@ import { ResumeDocumentComponent } from "../../sharedComponents/resume-document/
     AutocompleteComponent,
     FiltroComponent,
     ButtonTriggerComponent,
-    InfoComponent,
     PercentageBarComponent,
     CollapsibleComponent,
     ResumeDocumentComponent,
@@ -41,7 +39,6 @@ import { ResumeDocumentComponent } from "../../sharedComponents/resume-document/
     FijarDirective,
     AutocompleteComponent,
     ButtonTriggerComponent,
-    InfoComponent,
     PercentageBarComponent,
     CollapsibleComponent,
     ResumeDocumentComponent,

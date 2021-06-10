@@ -9,8 +9,6 @@ import {
 } from "@angular/core";
 import { combineLatest, of, Subject, Subscription } from "rxjs";
 import { catchError, delay, map, tap } from "rxjs/operators";
-import { DocsResolucionesService } from "projects/app1/src/app/services/docs-resoluciones.service";
-import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { InfoService } from "projects/app1/src/app/services/info.service";
 import { FiltroComponent } from "projects/app1/src/app/sharedComponents/filtro/filtro.component";
