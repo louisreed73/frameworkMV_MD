@@ -1,4 +1,4 @@
-<div *ngIf="((actualURL$|async)==='/documentos')">
+<div *ngIf="(path$|async)==='documentos'">
   <p>
     {{((documentosInfo$ | async) ? 'Total Documentos encontrados:':null)}} {{(!(documentosInfo$ | async)?null:(documentosInfo$ | async))  }}
     {{((documentosAcumInfo$ | async) ? 'Visualizando:':null)}} {{(!(documentosAcumInfo$ | async)?null:(documentosAcumInfo$ | async))}}    

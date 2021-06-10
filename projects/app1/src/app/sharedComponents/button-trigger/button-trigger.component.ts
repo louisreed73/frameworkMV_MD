@@ -58,17 +58,17 @@ export class ButtonTriggerComponent implements OnInit, AfterViewInit {
             behavior: environment.app.scrollBehavior,
           });
           this.searchTrigger.updatedSearch.tipo = routePath;
-          if (routePath==='documentos') {
+          if (routePath === "documentos") {
             this.searchTrigger.updatedPaginaDocumentos = 1;
             this.searchTrigger.newTriggerSearchDocumentos.next("busca");
             // this.searchTrigger.updatedSearch.tipo = routePath;
           }
-          if (routePath==='resoluciones') {
+          if (routePath === "resoluciones") {
             this.searchTrigger.updatedPaginaResoluciones = 1;
             this.searchTrigger.newTriggerSearchResoluciones.next("busca");
             // this.searchTrigger.updatedSearch.tipo = routePath;
           }
-          if (routePath==='escritos') {
+          if (routePath === "escritos") {
             this.searchTrigger.updatedPaginaEscritos = 1;
             this.searchTrigger.newTriggerSearchEscritos.next("busca");
           }
@@ -87,17 +87,17 @@ export class ButtonTriggerComponent implements OnInit, AfterViewInit {
             behavior: environment.app.scrollBehavior,
           });
           this.searchTrigger.updatedSearch.tipo = routePath;
-          if (routePath==='documentos') {
+          if (routePath === "documentos") {
             this.searchTrigger.updatedPaginaDocumentos = 1;
             this.searchTrigger.newTriggerSearchDocumentos.next("busca");
             // this.searchTrigger.updatedSearch.tipo = routePath;
           }
-          if (routePath==='resoluciones') {
+          if (routePath === "resoluciones") {
             this.searchTrigger.updatedPaginaResoluciones = 1;
             this.searchTrigger.newTriggerSearchResoluciones.next("busca");
             // this.searchTrigger.updatedSearch.tipo = routePath;
           }
-          if (routePath==='escritos') {
+          if (routePath === "escritos") {
             this.searchTrigger.updatedPaginaEscritos = 1;
             this.searchTrigger.newTriggerSearchEscritos.next("busca");
           }

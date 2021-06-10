@@ -1,10 +1,29 @@
-<p 
-class="percentage"
-  [style.width.%]="((documentosLength$ | async) / (documentosTotalQueryLength$ | async) * 100)?(documentosLength$ | async) / (documentosTotalQueryLength$ | async) * 100:0">
-</p>
+<div *ngIf="(path$|async)==='documentos'">
+  <p class="percentage"
+    [style.width.%]="((documentosLength$ | async) / (documentosTotalQueryLength$ | async) * 100)?(documentosLength$ | async) / (documentosTotalQueryLength$ | async) * 100:0">
+  </p>
+  <p class="infoDocumentos">
+    <span>{{path$|async|titlecase}}: </span>
+    <span *ngIf="(documentosLength$|async)"> mostrando <span class="number">{{documentosLength$|async}}</span> {{path$|async}} de
+    <span class="number">{{documentosTotalQueryLength$|async}}</span></span>
+  </p>
+</div>
+<div *ngIf="(path$|async)==='resoluciones'">
+  <p class="percentage"
+    [style.width.%]="((resolucionesLength$ | async) / (resolucionesTotalQueryLength$ | async) * 100)?(resolucionesLength$ | async) / (resolucionesTotalQueryLength$ | async) * 100:0">
+  </p>
+  <!-- <p>{{path$|async}}</p> -->
+  <p class="infoDocumentos">
+    <span>{{path$|async|titlecase}}: </span>
+    <span *ngIf="(resolucionesLength$|async)"> mostrando <span class="number">{{resolucionesLength$|async}}</span>
+      {{path$|async}} de
+      <span class="number">{{resolucionesTotalQueryLength$|async}}</span></span>
+  </p>
+</div>
 <!-- <p *ngIf="(path$|async)==='resoluciones'" 
 class="percentage"
   [style.width.%]="((resolucionesLength$ | async) / (resolucionesTotalQueryLength$ | async) * 100)?(documentosLength$ | async) / (documentosTotalQueryLength$ | async) * 100:0">
 </p> -->
-<!-- <p>{{path$|async}}</p> -->
-<app-info></app-info>
+<!-- <app-info></app-info> -->
+
+<!-- <app-info></app-info> -->

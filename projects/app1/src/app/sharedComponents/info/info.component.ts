@@ -40,6 +40,7 @@ export class InfoComponent implements OnInit, OnDestroy {
     shareReplay(1)
   );
   httpErrorInfo$ = this.infoServ.httpErrorInfo$;
+  // path$ = this.infoServ.infoPath$;
 
   // vmD$=combineLatest([
   //      this.infoServ.documentosInfoTotalLength$,

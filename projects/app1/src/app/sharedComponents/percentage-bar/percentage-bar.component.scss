@@ -12,4 +12,15 @@
     top: -.1rem;
 }
 
+.infoDocumentos {
+    font-weight:600;
+    span {
+        font-weight: inherit;
+        &.number {
+            font-size:1.2em;
+        }
+    }
+    
+}
+
 
