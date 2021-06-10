@@ -78,35 +78,44 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
     //   .subscribe();
     // We subscribe to stop Scroll Observable and save it into variable
     this.stopScrollSub = this.documentos.stopScroll$
-    .pipe(
-      tap(data=>{
-        console.log(`%cRecibiendo la subscripcion de si debo detener el ScrollInfinite: ${data}`,'color:lime')
-      })
-    )
-    .subscribe((mustStop) => {
-      this.stopScroll = mustStop;
-      console.log(this.stopScroll);
-    });
+      .pipe(
+        tap((data) => {
+          console.log(
+            `%cRecibiendo la subscripcion de si debo detener el ScrollInfinite: ${data}`,
+            "color:lime"
+          );
+        })
+      )
+      .subscribe((mustStop) => {
+        this.stopScroll = mustStop;
+        console.log(this.stopScroll);
+      });
     this.stopScrollSubResoluciones = this.resoluciones.stopScroll$
-    .pipe(
-      tap(data=>{
-        console.log(`%cRecibiendo la subscripcion de si debo detener el ScrollInfinite: ${data}`,'color:lime')
-      })
-    )
-    .subscribe((mustStop) => {
-      this.stopScroll = mustStop;
-      console.log(this.stopScroll);
-    });
+      .pipe(
+        tap((data) => {
+          console.log(
+            `%cRecibiendo la subscripcion de si debo detener el ScrollInfinite: ${data}`,
+            "color:lime"
+          );
+        })
+      )
+      .subscribe((mustStop) => {
+        this.stopScroll = mustStop;
+        console.log(this.stopScroll);
+      });
     this.stopScrollSubEscritos = this.escritos.stopScroll$
-    .pipe(
-      tap(data=>{
-        console.log(`%cRecibiendo la subscripcion de si debo detener el ScrollInfinite: ${data}`,'color:lime')
-      })
-    )
-    .subscribe((mustStop) => {
-      this.stopScroll = mustStop;
-      console.log(this.stopScroll);
-    });
+      .pipe(
+        tap((data) => {
+          console.log(
+            `%cRecibiendo la subscripcion de si debo detener el ScrollInfinite: ${data}`,
+            "color:lime"
+          );
+        })
+      )
+      .subscribe((mustStop) => {
+        this.stopScroll = mustStop;
+        console.log(this.stopScroll);
+      });
   }
 
   onScroll() {
@@ -116,21 +125,20 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
     // console.log("Scrolling!!!");
     let routePath = this.location.path().replace(/\//, "");
     console.log("Scrolling!!!!", routePath);
-    if(!this.stopScroll) {
-      if (routePath==='documentos') {
+    if (!this.stopScroll) {
+      if (routePath === "documentos") {
         this.searchTrigger.updatedPaginaDocumentos += 1;
         this.searchTrigger.newTriggerSearchDocumentos.next();
       }
-      if (routePath==='resoluciones') {
+      if (routePath === "resoluciones") {
         this.searchTrigger.updatedPaginaResoluciones += 1;
         this.searchTrigger.newTriggerSearchResoluciones.next();
       }
-      if (routePath==='escritos') {
+      if (routePath === "escritos") {
         this.searchTrigger.updatedPaginaEscritos += 1;
         this.searchTrigger.newTriggerSearchEscritos.next();
       }
       // this.documentos.stopScroll$.next(true);
-
     }
     // this.documentos.pagina$.next(this.searchTrigger.updatedPaginaDocumentos + 1);
   }

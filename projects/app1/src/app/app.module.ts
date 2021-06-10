@@ -27,7 +27,6 @@ const providers:Array<any>=[
        provide: Window,
        useValue: window,
   },
-  DatePipe
   // {
   //      provide:"finder",
   //      useClass:PdfFindbarService

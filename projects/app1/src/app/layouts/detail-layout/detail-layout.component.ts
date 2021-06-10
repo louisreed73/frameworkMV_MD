@@ -25,16 +25,16 @@ export class DetailLayoutComponent implements OnInit, OnDestroy {
     this.documento = this.documentosServ.selectedDocument;
 
     console.log(this.documento);
-    // this.elementScrollTrigger.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: environment.app.scrollBehavior,
-    // });
-    this.window.scrollTo({
+    this.elementScrollTrigger.scrollTo({
       top: 0,
       left: 0,
       behavior: environment.app.scrollBehavior,
     });
+    // this.window.scrollTo({
+    //   top: 0,
+    //   left: 0,
+    //   behavior: environment.app.scrollBehavior,
+    // });
     this.window.document.body.style.overflow = "hidden";
   }
 

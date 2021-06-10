@@ -82,7 +82,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   filtrosComp: QueryList<FiltroComponent>;
   someCollap$: Subject<boolean> = new Subject();
   toggleCollapseSub: Subscription;
-  infoServSubs:Subscription;
+  infoServSubs: Subscription;
 
   // filtrosDocumentos;
   filtrosResoluciones;
@@ -99,7 +99,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   //     };
   //   });
 
-  filtroResolucionesSub:Subscription = this.filtroS
+  filtroResolucionesSub: Subscription = this.filtroS
     .getFiltrosResoluciones()
     .pipe()
     .subscribe((data) => {
@@ -133,25 +133,27 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
     //Add 'implements OnInit' to the class.
     this.infoServ.infoPath$.next("resoluciones");
 
-    this.infoServSubs=combineLatest([
+    this.infoServSubs = combineLatest([
       this.infoServ.resolucionesInfoAcumLength$,
       this.infoServ.resolucionesInfoTotalLength$,
-    ])    
-    .pipe(
-      tap(data=>{
-        let result=data[0]/data[1];
-        console.log(`%ccalculando si se puede detener el Scroll en esta página:${result===1}`,'color:gold')
-        if(result===1) {
-          this.resoluciones.stopScroll$.next(true)
-        }
-        else {
-          this.resoluciones.stopScroll$.next(false)
-
-        }
-      })
-    )
-    .subscribe()
-
+    ])
+      .pipe(
+        tap((data) => {
+          let result = data[0] / data[1];
+          console.log(
+            `%ccalculando si se puede detener el Scroll en esta página:${
+              result === 1
+            }`,
+            "color:gold"
+          );
+          if (result === 1) {
+            this.resoluciones.stopScroll$.next(true);
+          } else {
+            this.resoluciones.stopScroll$.next(false);
+          }
+        })
+      )
+      .subscribe();
   }
 
   ngAfterViewInit(): void {
