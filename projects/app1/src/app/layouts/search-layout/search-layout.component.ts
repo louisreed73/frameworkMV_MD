@@ -192,7 +192,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     // console.log("Scrolling!!!");
     let routePath = this.location.path().replace(/\//, "");
     console.log("Scrolling!!!!", routePath);
-    if (!this.stopScroll) {
+    // if (!this.stopScroll) {
       if (routePath === "documentos") {
         this.searchTrigger.updatedPaginaDocumentos += 1;
         this.searchTrigger.newTriggerSearchDocumentos.next();
@@ -206,7 +206,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
         this.searchTrigger.newTriggerSearchEscritos.next();
       }
       // this.documentos.stopScroll$.next(true);
-    }
+    // }
     // this.documentos.pagina$.next(this.searchTrigger.updatedPaginaDocumentos + 1);
   }
 
@@ -243,9 +243,12 @@ export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
         clientHeight = this.element.clientHeight,
         scrollHeight = this.element.scrollHeight;
       let marginToBottom = scrollHeight - (scrollTop + clientHeight);
-      if (marginToBottom < 140 && scrollDown) {
+      if (marginToBottom < 140 && scrollDown && !this.stopScroll) {
         console.log(`%cMargin to Bottom: ${marginToBottom}`, "color:yellow");
-        this.onScroll();
+
+
+          this.onScroll();
+        
       } else {
         console.log(`%cNo has llegado!!!: ${marginToBottom}`, "color:red");
       }
