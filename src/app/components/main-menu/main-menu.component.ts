@@ -21,7 +21,6 @@ export class MainMenu implements OnInit {
 
   ngOnInit() {
 
-    console.log('main-menu init');
 
     /***********************************************
      * Configuración del header y del menú lateral *
@@ -49,13 +48,11 @@ export class MainMenu implements OnInit {
 
   ngAfterViewInit() {
 
-    console.log('main-menu after view init');
 
   }
 
   ngOnDestroy() {
 
-    console.log('main-menu destroy');
   }
 
 }

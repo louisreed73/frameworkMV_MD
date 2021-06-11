@@ -107,40 +107,23 @@ export class ResolucionesService implements OnDestroy {
 
   set selectedDocument(doc: any) {
     this._selectedDocument = doc;
-    console.log(
-      `%c Nuevo Documento a visualizar!!!: ${JSON.stringify(
-        this._selectedDocument,
-        null,
-        2
-      )}`,
-      "color:lime"
-    );
+
   }
 
   constructor(
     private http: HttpClient,
-    // private docsEscritos: DocsEscritosService,
-    // private docsResoluciones: DocsResolucionesService,
     private searchTrigger: SearchTriggerService,
     private infoServ: InfoService
   ) {
     this.resoluciones$ = this.searchTrigger.newTriggerSearchResoluciones.pipe(
-      tap(console.log),
       // startWith("Comienzo"),
       switchMap((params) => {
-        console.log(
-          this.searchTrigger.updatedFiltro,
-          this.searchTrigger.updatedSearch,
-          this.searchTrigger.updatedPaginaResoluciones
-        );
-
         return from([
           this.searchTrigger.updatedFiltro,
           this.searchTrigger.updatedSearch,
           this.searchTrigger.updatedPaginaResoluciones,
         ]).pipe(toArray());
       }),
-      tap(console.log),
       tap(([formulario, search, pagina]) => {
         // saving all the data
         this.search = search.query;
@@ -217,7 +200,6 @@ export class ResolucionesService implements OnDestroy {
         return throwError(err);
       }),
       switchMap((obsPagination) => {
-        console.log(obsPagination);
         //Depending of page number we overwrite acumulated array or inserting more documents based on query string and filters
         if (this.pagina < 2) {
           this.data = obsPagination;
@@ -229,50 +211,7 @@ export class ResolucionesService implements OnDestroy {
         this.infoServ.resolucionesInfoAcumLength$.next(this.data.length);
         return of(this.data);
       }),
-      tap((resolucionesQueryAcum) => {
-        //Realizamos el filtro de escritos.
-        //    let filtroEscritos = resolucionesQueryAcum.filter(
-        //      (doc) => doc.tipo === "escrito"
-        //    );
 
-        // Enviamos el filtro de 'solo escritos' de los datos de busqueda + filtros. Será recibido en search-escritos.component.
-        //    this.docsEscritos.docsEscritosSource$.next(filtroEscritos);
-
-        // Enviamos el contador de registros del dato anterior al componente que se subscribe a este Subject: filter-tabs.component
-        //    this.infoServ.escritosInfoAcumLength$.next(filtroEscritos.length);
-
-        //    this.documentosLength$.next(resolucionesQueryAcum.length);
-
-        // this.infoServ.documentosInfo$.next(`Mostrando ${resolucionesQueryAcum.length} documentos del Total Documentos: ${this.resolucionesQueryTotal}`);
-
-        //Realizamos el filtro de resoluciones.
-        //    let filtroResoluciones = resolucionesQueryAcum.filter(
-        //      (doc) => doc.tipo === "resolucion"
-        //    );
-        // console.log(filtroResoluciones.length)
-        // Enviamos el filtro de 'solo resoluciones' de los datos de busqueda + filtros. Será recibido en search-resoluciones.component.
-
-        // Enviamos el contador de resoluciones del dato anterior al componente que se subscribe a este Subject: filter-tabs.component
-        // this.docsResoluciones.documentosResolucionesLength$.next(
-        //      +filtroResoluciones.length
-        // );
-
-        // if we get total documents we stop scroll handler to prevent more API calls
-        if (resolucionesQueryAcum.length / this.resolucionesQueryTotal >= 1) {
-          // this.stopScroll$.next(true);
-          console.log(
-            `%c${resolucionesQueryAcum.length / this.resolucionesQueryTotal}`,
-            "lightred"
-          );
-        } else {
-          // if not we continue making new API calls and handling scrolls
-          // this.stopScroll$.next(false);
-          console.log(
-            `%c${resolucionesQueryAcum.length / this.resolucionesQueryTotal}`,
-            "lightred"
-          );
-        }
-      }),
       //cache of acumulated array of documents - pagination
       shareReplay(1)
     );

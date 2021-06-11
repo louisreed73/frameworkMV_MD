@@ -14,7 +14,6 @@ import {
 import { FormArray, FormControl, FormGroup } from "@angular/forms";
 import { Subject, Subscription } from "rxjs";
 import { debounceTime, tap } from "rxjs/operators";
-// import { filtroDocumentos } from 'projects/app1/src/app/formulariosFiltrado/formulariosFiltrado.data';
 import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { SearchTriggerService } from "projects/app1/src/app/services/search-trigger.service";
@@ -88,12 +87,6 @@ export class FiltroComponent implements OnInit, OnDestroy {
       .pipe(debounceTime(300))
       .subscribe((data) => {
         let transformedData = this.mapeadoFiltro(data);
-
-        console.log(
-          `%cEl filtro mapeado es: ${JSON.stringify(transformedData, null, 2)}`,
-          "color:lime"
-        );
-
         this.triggerNewSearch(transformedData);
       });
   }
@@ -119,7 +112,6 @@ export class FiltroComponent implements OnInit, OnDestroy {
   })();
 
   eliminaControl(keyArray, i) {
-    // console.log(keyArray,i);
     let key = Object.keys(
       <FormArray>this.filtroFormGroup.get(keyArray).value[i]
     )[0];
@@ -129,7 +121,6 @@ export class FiltroComponent implements OnInit, OnDestroy {
   }
 
   eliminaTodo(keyArray) {
-    // console.log(keyArray,i);
 
     let numberLength = (<FormArray>this.filtroFormGroup.get(keyArray)).length;
 
@@ -199,26 +190,16 @@ export class FiltroComponent implements OnInit, OnDestroy {
         let tempAutocomplete = [];
         value.forEach((val) => {
           tempAutocomplete.push(Object.keys(val)[0]);
-
-          console.log(
-            `%cLos valor actual es: ${JSON.stringify(value, null, 2)}`,
-            "color:gold"
-          );
         });
         transformedData[this.configFiltro[indice].name] = tempAutocomplete;
         indice++;
       } else {
-        console.log(
-          `%cLos valor actual es: ${JSON.stringify(value, null, 2)}`,
-          "color:lime"
-        );
         if (this.configFiltro[indice].name === "tipo resolucion") {
           let filtrotipoResoluciones = Object.keys(value).filter(
             (k) => value[k]
           );
           transformedData[this.configFiltro[indice].name] =
             filtrotipoResoluciones;
-          // console.log(`%c${filtro}!!!!`,'color:cyan')
           indice++;
         } else {
           transformedData[this.configFiltro[indice].name] = value;

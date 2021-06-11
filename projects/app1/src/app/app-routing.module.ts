@@ -25,20 +25,12 @@ const routes: Routes = [
                     (m) => m.PagesDocumentsModule
                ),
      },
-     // {
-     //      path: "",
-     //      loadChildren: () =>
-     //           import("./modules/auth/auth.module").then(
-     //                (m) => m.AuthModule
-     //           ),
-     // },
-
      {
           path: "documento",
           component: DetailLayoutComponent,
           children: [{ path: ":id", component: DocumentoComponent }],
      },
-     // { path: "**", redirectTo: "documentos" },
+
 ];
 
 @NgModule({
@@ -47,8 +39,6 @@ const routes: Routes = [
                preloadingStrategy: PreloadAllModules,
           }),
           CommonModule,
-          // FormsModule,
-          // ReactiveFormsModule,
           InfiniteScrollModule,
           SharedUtilitiesModule,
           NgxExtendedPdfViewerModule,
@@ -62,13 +52,6 @@ const routes: Routes = [
           FilterTabsComponent,
           SearchFormComponent,
           UserInputComponent,
-          
-          // DocumentCardComponent,
-
-          // HeaderComponent,
      ],
-     providers:[
-          // PdfFindbarService
-     ]
 })
 export class AppRoutingModule {}

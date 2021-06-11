@@ -1,7 +1,4 @@
-import { Location } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 import { InfoService } from "../../services/info.service";
 
 @Component({
@@ -25,26 +22,10 @@ export class PercentageBarComponent implements OnInit {
   // Recibimos el Observable con los datos del número total de resoluciones filtrados por término de búsqueda + filtros aplicados o pagination.
   escritosLength$ = this.infoS.escritosInfoAcumLength$;
   path$ = this.infoS.infoPath$;
-  // Recibimos el Observable con los datos del número total de documentos filtrados por término de búsqueda + filtros aplicados. 'Solo Escritos'!!!
-  // escritosLength$ = this.docsEscritos.documentosEscritosLength$;
-  // Recibimos el Observable con los datos del número total de documentos filtrados por término de búsqueda + filtros aplicados. 'Solo Resoluciones'!!!
-  // resolucionesLength$ = this.docsResoluciones.documentosResolucionesLength$;
 
   /*=====  Observables to Subscribe End  ======*/
-  // routePath:string = ""; 
-  constructor(
-    // private documentos: DocumentosService, // private docsEscritos: DocsEscritosService, // private docsResoluciones: DocsResolucionesService
-    // private location: Location,
-    private infoS:InfoService,
-    // private route:ActivatedRoute
-    
-  ) {
-    // this.routePath=this.location.path().replace(/\//, "");
-  }
+  // routePath:string = "";
+  constructor(private infoS: InfoService) {}
 
-  ngOnInit() {
-    // this.route.url.subscribe(d=>{
-    //   console.log(d)
-    // })
-  }
+  ngOnInit() {}
 }

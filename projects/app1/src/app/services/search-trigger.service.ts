@@ -23,9 +23,7 @@ export class SearchTriggerService {
   _updatedPaginaEscritos: number = null;
 
   set updatedFiltro(v: { [k: string]: any }) {
-    console.log("Me acaban de actualizar!!!");
     this._updatedFiltro = v;
-    console.log(this.updatedFiltro);
   }
 
   get updatedFiltro() {
@@ -36,9 +34,7 @@ export class SearchTriggerService {
     return this._updatedSearch;
   }
   set updatedSearch(v: any) {
-    console.log("Me acaban de actualizar!!!");
     this._updatedSearch.query = v;
-    console.log(this.updatedSearch);
   }
 
   get updatedPaginaDocumentos() {
@@ -46,27 +42,21 @@ export class SearchTriggerService {
   }
 
   set updatedPaginaDocumentos(v: number) {
-    console.log("Me acaban de actualizar!!!");
     this._updatedPaginaDocumentos = v;
-    console.log(this.updatedPaginaDocumentos);
   }
   get updatedPaginaResoluciones() {
     return this._updatedPaginaResoluciones;
   }
 
   set updatedPaginaResoluciones(v: number) {
-    console.log("Me acaban de actualizar!!!");
     this._updatedPaginaResoluciones = v;
-    console.log(this.updatedPaginaResoluciones);
   }
   get updatedPaginaEscritos() {
     return this._updatedPaginaEscritos;
   }
 
   set updatedPaginaEscritos(v: number) {
-    console.log("Me acaban de actualizar!!!");
     this._updatedPaginaEscritos = v;
-    console.log(this.updatedPaginaEscritos);
   }
 
   constructor() {}

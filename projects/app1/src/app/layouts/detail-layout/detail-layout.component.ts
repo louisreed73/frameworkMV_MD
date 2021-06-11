@@ -1,6 +1,5 @@
 import { Location } from "@angular/common";
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
-import { environment } from "@environments/environment";
 import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 
 @Component({
@@ -23,18 +22,6 @@ export class DetailLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.documento = this.documentosServ.selectedDocument;
-
-    console.log(this.documento);
-    // this.elementScrollTrigger.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: environment.app.scrollBehavior,
-    // });
-    // this.window.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: environment.app.scrollBehavior,
-    // });
     this.window.document.body.style.overflow = "hidden";
   }
 

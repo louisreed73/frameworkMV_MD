@@ -27,15 +27,12 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
   autoCompleteInputEvSub: Subscription;
 
   set nuevo(v) {
-    console.log(`%cEl nuevo valor es:${v}`,"color:gold");
 
     if (v === '') {
-      console.log(`Hay un cambio del input: ${v}`,"color:pink")
       this.sugerencias = [];
       return
     }
     this.sugerencias = this.sugerenciasData.filter((value) => {
-      // console.log("estoy filtrando", ciudad)
       // return ciudad.search(new RegExp(`${data}`, 'gi')) !== -1;
       return value.search(new RegExp(`${v}`, 'gi')) !== -1;
     })
@@ -43,10 +40,6 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
     
   }
 
-  // get sugerenciasdar () {
-  //   console.log("dando sugerencias!")
-  //   return this.sugerencias
-  // }
   constructor() {
     
   }
@@ -61,24 +54,17 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
       .valueChanges
       .pipe(
         debounceTime(100),
-        // startWith("")
         )
       .subscribe((data) => {
-        // console.log(data)
-        // console.log(this.sugerenciasData)
+
         
         this.sugerencias = this.sugerenciasData.filter((value) => {
-          console.log("estoy filtrando", value)
-          // return value.search(new RegExp(`${data}`, 'gi')) !== -1;
           return value.search(new RegExp(`${data}`, 'gi')) !== -1;
         });
 
         if (data === '') {
-          // console.log(`Hay un cambio del input: ${data}`,"color:pink")
           this.sugerencias = [];
-          // return
         }
-        // console.log(this.sugerencias)
 
       });
   }

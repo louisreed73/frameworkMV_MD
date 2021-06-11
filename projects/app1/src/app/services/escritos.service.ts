@@ -106,40 +106,23 @@ export class EscritosService implements OnDestroy {
 
   set selectedDocument(doc: any) {
     this._selectedDocument = doc;
-    console.log(
-      `%c Nuevo Documento a visualizar!!!: ${JSON.stringify(
-        this._selectedDocument,
-        null,
-        2
-      )}`,
-      "color:lime"
-    );
+
   }
 
   constructor(
     private http: HttpClient,
-    // private docsEscritos: DocsEscritosService,
-    // private docsResoluciones: DocsResolucionesService,
     private searchTrigger: SearchTriggerService,
     private infoServ: InfoService
   ) {
     this.escritos$ = this.searchTrigger.newTriggerSearchEscritos.pipe(
-      tap(console.log),
       // startWith("Comienzo"),
       switchMap((params) => {
-        console.log(
-          this.searchTrigger.updatedFiltro,
-          this.searchTrigger.updatedSearch,
-          this.searchTrigger.updatedPaginaEscritos
-        );
-
         return from([
           this.searchTrigger.updatedFiltro,
           this.searchTrigger.updatedSearch,
           this.searchTrigger.updatedPaginaEscritos,
         ]).pipe(toArray());
       }),
-      tap(console.log),
       tap(([formulario, search, pagina]) => {
         // saving all the data
         this.search = search.query;
@@ -178,25 +161,10 @@ export class EscritosService implements OnDestroy {
           this.escritosTotalQueryLengthS = this.http
             .get<any>(`${this.url}?q=${this.search}`)
             .subscribe((d) => {
-              // this.documentosTotalQueryLength$.next(d.length);
 
-              // data to calculate total perc of documents received from pagination with respecto to documents.
-          //     this.infoServ.documentosInfoTotalLength$.next(d.length);
               this.escritosQueryTotal = d.length;
               this.infoServ.escritosInfoTotalLength$.next(d.length)
-          //     let filtroResoluciones = d.filter(
-          //       (doc) => doc.tipo === "resolucion"
-          //     );
-          //     this.infoServ.resolucionesInfoTotalLength$.next(
-          //       filtroResoluciones.length
-          //     );
-          //     let filtroEscritos = d.filter((doc) => doc.tipo === "escrito");
-          //     this.infoServ.escritosInfoTotalLength$.next(
-          //       filtroEscritos.length
-          //     );
-          // this.docsEscritos.documentosEscritosLength$.next(
-          //      filtroEscritos.length
-          // );
+
             });
         }
 
@@ -210,13 +178,9 @@ export class EscritosService implements OnDestroy {
       }),
       catchError((err) => {
         //Error throwing to handle data in each observable pipe
-     //    this.docsEscritos.docsEscritosSource$.error(err);
-     //    this.docsResoluciones.docsResolucionesSource$.error(err);
-
         return throwError(err);
       }),
       switchMap((obsPagination) => {
-        console.log(obsPagination)
         //Depending of page number we overwrite acumulated array or inserting more documents based on query string and filters
         if (this.pagina < 2) {
           this.data = obsPagination;
@@ -227,51 +191,6 @@ export class EscritosService implements OnDestroy {
         // returning acumulated array as observable // saved in data class member;
         this.infoServ.escritosInfoAcumLength$.next(this.data.length);
         return of(this.data);
-      }),
-      tap((escritosQueryAcum) => {
-        //Realizamos el filtro de escritos.
-     //    let filtroEscritos = resolucionesQueryAcum.filter(
-     //      (doc) => doc.tipo === "escrito"
-     //    );
-
-        // Enviamos el filtro de 'solo escritos' de los datos de busqueda + filtros. Será recibido en search-escritos.component.
-     //    this.docsEscritos.docsEscritosSource$.next(filtroEscritos);
-
-        // Enviamos el contador de registros del dato anterior al componente que se subscribe a este Subject: filter-tabs.component
-     //    this.infoServ.escritosInfoAcumLength$.next(filtroEscritos.length);
-
-     //    this.documentosLength$.next(resolucionesQueryAcum.length);
-
-        // this.infoServ.documentosInfo$.next(`Mostrando ${resolucionesQueryAcum.length} documentos del Total Documentos: ${this.resolucionesQueryTotal}`);
-
-        //Realizamos el filtro de resoluciones.
-     //    let filtroResoluciones = resolucionesQueryAcum.filter(
-     //      (doc) => doc.tipo === "resolucion"
-     //    );
-        // console.log(filtroResoluciones.length)
-        // Enviamos el filtro de 'solo resoluciones' de los datos de busqueda + filtros. Será recibido en search-resoluciones.component.
-
-        // Enviamos el contador de resoluciones del dato anterior al componente que se subscribe a este Subject: filter-tabs.component
-        // this.docsResoluciones.documentosResolucionesLength$.next(
-        //      +filtroResoluciones.length
-        // );
-
-
-        // if we get total documents we stop scroll handler to prevent more API calls
-        if (escritosQueryAcum.length / this.escritosQueryTotal >= 1) {
-          // this.stopScroll$.next(true);
-          console.log(
-            `%c${escritosQueryAcum.length / this.escritosQueryTotal}`,
-            "lightred"
-          );
-        } else {
-          // if not we continue making new API calls and handling scrolls
-          // this.stopScroll$.next(false);
-          console.log(
-            `%c${escritosQueryAcum.length / this.escritosQueryTotal}`,
-            "lightred"
-          );
-        }
       }),
       //cache of acumulated array of documents - pagination
       shareReplay(1)

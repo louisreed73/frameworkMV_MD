@@ -13,7 +13,6 @@ export class ResumeDocumentComponent implements OnInit {
   constructor(private searchTriggerServ: SearchTriggerService) {}
 
   ngOnInit() {
-    console.log(this.documento);
     // this.pdfDownload_Name = `documento_${this.documento.id}.pdf`;
     this.pdfDownload_Name = `documento_${this.documento.id}.pdf`;
     console.log(this.pdfDownload_Name);

@@ -30,14 +30,9 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   // Recibimos el Observable con los datos del número total de documentos / Escritos / por término de búsqueda acumulado en pagination.
   docsEscritos$ = this.escritos.escritos$.pipe(
     catchError((e: any) => {
-      // Saving error message from http Request Error
-      // this.errorObj = e.name;
+
       this.infoServ.httpErrorInfo$.next(e.name);
 
-      //TODO to comment and uncomment if necessary for checking response and reload page
-      //TODO stopping spinner on http request error
-      // this.spinner.requestSpinner$.next(false);
-      //TODO to remove only for checking response and reload page
       setTimeout(() => {
         this.window.document.defaultView.location.reload();
       }, 4000);
@@ -72,14 +67,6 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
      =    Incorporacion Integracion nuevo Filtro 20-04-2021 =
      =============================================*/
 
-  // nombrado$_$ = this.filtroS.config$;
-
-  // formA$_$ = this.filtroS.formGrupo$;
-
-  // nombrado1$_$ = this.filtroS.config1$;
-
-  // formA1$_$ = this.filtroS.formGrupo1$;
-
   @ViewChildren(FiltroComponent)
   filtrosComp: QueryList<FiltroComponent>;
   someCollap$: Subject<boolean> = new Subject();
@@ -89,26 +76,13 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
 
 
 
-  // filtrosDocumentos;
   filtrosEscritos;
 
-  // filtroDocumentosSub = this.filtroS
-  //   .getFiltrosDocumentos()
-  //   .pipe()
-  //   .subscribe((data) => {
-  //     // console.log(data);
-  //     // this.filtrosDocumentos = data;
-  //     this.filtrosDocumentos = {
-  //       data: data,
-  //       clase: "documentos",
-  //     };
-  //   });
-
+  
   filtroEscritosSub:Subscription  = this.filtroS
     .getFiltrosEscritos()
     .pipe()
     .subscribe((data) => {
-      // console.log(data);
       this.filtrosEscritos = {
         data,
         clase: "escritos",
@@ -118,11 +92,8 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   /*=====  End of Incorporacion Integracion nuevo Filtro  ======*/
 
   constructor(
-    // private documentos: DocumentosService,
-    // private docsEscritos: DocsEscritosService,
+
     private escritos: EscritosService,
-    // private spinner: SpinnerService,
-    //TODO to remove only for checking response and reload page
     @Inject(Window) private window: Window,
     public filtroS: FiltrosService,
     private infoServ: InfoService
@@ -136,12 +107,6 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.infoServ.infoPath$.next("escritos");
-    // this.elementScrollTrigger.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   // behavior: environment.app.scrollBehavior,
-    // });
-
     this.infoServSubs=combineLatest([
       this.infoServ.escritosInfoAcumLength$,
       this.infoServ.escritosInfoTotalLength$,
@@ -149,7 +114,6 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
     .pipe(
       tap(data=>{
         let result=data[0]/data[1];
-        console.log(`%ccalculando si se puede detener el Scroll en esta página:${result===1}`,'color:gold')
         if(result===1) {
           this.escritos.stopScroll$.next(true)
         }
@@ -173,13 +137,10 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
           });
           // this.someCollap=someCollap;
           this.someCollap$.next(someCollap);
-          // console.log(someCollap)
           return of(someCollap);
         })
       )
       .subscribe((d) => {
-        // console.log("Estoy abriendo!");
-        console.log(d);
       });
   }
 
@@ -191,16 +152,13 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   }
 
   collapsing() {
-    console.log("collapsando!!!");
-    console.log("Algo hay que hacer");
     let allToggles = this.filtrosComp.first.toggles.toArray();
     let someCollap = allToggles.some((tog) => {
       return tog.nativeElement.previousElementSibling.checked;
-    });
-    console.log(someCollap);
-
+    });    
+    
     allToggles.forEach((tog) => {
-      console.log(tog.nativeElement.previousElementSibling.checked);
+      tog.nativeElement.previousElementSibling.checked;
     });
 
     if (!someCollap) {

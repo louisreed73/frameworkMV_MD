@@ -41,12 +41,8 @@ export class DocumentoComponent implements OnInit, OnDestroy {
 
     return (e) => {
       if (!e.total) {
-        console.log(e);
         let total = this.tempString.length;
-        // console.log(`%cdividimos la frase completa entre 5 y es: ${div}`,'color:lime');
         let shorten = this.tempString.slice(0, Math.round(total / 2));
-        // console.log(`%cLa divisón por el contador es: ${div*count}`,'color:lime');
-        // console.log(`%cLa frase ahora es: ${shorten.join("")}`,'color:lime');
         this.fuzzySearching(shorten.join(""));
         this.tempString = shorten;
         console.log(`%cEl contador es:${(count += 4)}`, "color:gold");
@@ -57,8 +53,6 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   })();
 
   constructor(
-    // private route: ActivatedRoute,
-    // private documentosServ: DocumentosService,
     private ngxExtendedPdfViewerService: NgxExtendedPdfViewerService,
     private searchTriggerServ: SearchTriggerService,
     @Inject(DOCUMENT) private _document: Document
@@ -69,21 +63,13 @@ export class DocumentoComponent implements OnInit, OnDestroy {
       .pipe(
         map((d) => {
           let clearedSpacesString = d.split(/\s/);
-          console.log(clearedSpacesString);
           return clearedSpacesString;
         })
       )
       .subscribe((d) => {
-        console.log(d);
-
         this.tempString = d;
         this.fuzzySearching(d.join(""));
       });
-  }
-
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
   }
 
   // {
@@ -96,21 +82,15 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   //  }
 
   pRendered(e) {
-    console.log(e);
   }
 
   estadoBusqueda(e) {
-    console.log(e);
   }
 
   _buscando(e) {
     if (!e.total) {
-      console.log(e);
       let total = this.tempString.length;
-      // console.log(`%cdividimos la frase completa entre 5 y es: ${div}`,'color:lime');
       let shorten = this.tempString.slice(0, Math.round(total / 2));
-      // console.log(`%cLa divisón por el contador es: ${div*count}`,'color:lime');
-      // console.log(`%cLa frase ahora es: ${shorten.join("")}`,'color:lime');
       this.fuzzySearching(shorten.join(""));
       this.tempString = shorten;
     } else {
