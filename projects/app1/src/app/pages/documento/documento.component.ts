@@ -34,6 +34,8 @@ export class DocumentoComponent implements OnInit, OnDestroy {
 
   tempString: Array<string> = [];
 
+  
+
   buscando: any = (() => {
     let count = 10;
 

@@ -1,11 +1,13 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  Inject,
   OnDestroy,
   OnInit,
 } from "@angular/core";
-import { Subject, Subscription } from "rxjs";
-import { tap } from "rxjs/operators";
+import { fromEvent, Subject, Subscription } from "rxjs";
+import { debounceTime, delay, skip, skipUntil, tap, throttleTime } from "rxjs/operators";
 import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 import { SearchTriggerService } from "projects/app1/src/app/services/search-trigger.service";
 import { SpinnerService } from "projects/app1/src/app/services/spinner.service";
@@ -21,7 +23,7 @@ import { EscritosService } from "../../services/escritos.service";
   styleUrls: ["./search-layout.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchLayoutComponent implements OnInit, OnDestroy {
+export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   /*=============================================
   =            Subscriptions            =
   =============================================*/
@@ -51,7 +53,8 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
 
   /*=====  End of Pagination memeber  ======*/
 
-  container = "mat-sidenav-content";
+  // container = "mat-sidenav-content";
+  element = this.window.document.querySelector("mat-sidenav-content");
 
   constructor(
     private documentos: DocumentosService,
@@ -60,10 +63,25 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
     private spinner: SpinnerService,
     private searchTrigger: SearchTriggerService,
     private _appService: AppService,
-    private location: Location
+    private location: Location,
+    @Inject(Window) private window: Window
   ) {}
 
   ngOnInit() {
+    // console.log(this.element);
+    // let element = this.window.document.querySelector("mat-sidenav-content");
+    // element.addEventListener("scroll",(e) => {
+    //   console.log(
+    //     `%cScrolling en el documento: ${element.scrollTop}`,
+    //     "color:gold"
+    //   );
+    //   console.log(
+    //     `%cScrolling en el documento: ${element.scrollHeight}`,
+    //     "color:gold"
+    //   );
+
+    // })
+
     // on Init we subscribe to initial page - ie page 1;
 
     // this._appService.closeLateralMenu();
@@ -118,6 +136,55 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+
+    fromEvent(this.element, "scroll")
+      .pipe(
+        // skip(20),
+        debounceTime(100),
+        tap(d=>{
+                console.log(
+          `%cScrolling en el elemento, scrollTop: ${d}`,
+          "color:lime"
+        );
+        }),
+        tap(this.calculateScrollBottomPosition.call(this))
+      )
+      .subscribe((e: Event) => {
+        // console.log(
+        //   `%cScrolling en el elemento, scrollTop: ${element.scrollTop}`,
+        //   "color:lime"
+        // );
+        // console.log(
+        //   `%cGetting Height en el elemento, scrollHeight: ${element.scrollHeight}`,
+        //   "color:lime"
+        // );
+        // console.log(
+        //   `%cGetting Height en el elemento, scrollTop + clientHeight: ${element.scrollTop + element.clientHeight}`,
+        //   "color:cyan"
+        // );
+        // console.log(
+        //   `%cScrolling en el elemento, clientTop: ${element.clientTop}`,
+        //   "color:gold"
+        // );
+        // console.log(
+        //   `%cGetting Height en el elemento, clientHeight: ${element.clientHeight}`,
+        //   "color:gold"
+        // );
+        // this.calculateScrollBottomPosition();
+        // console.log(
+        //   `%cScrolling en el documento: ${JSON.stringify(
+        //     this.window.document.querySelector(".search-results"),
+        //     null,
+        //     2
+        //   )}`,
+        //   "color:lime"
+        // );
+      });
+  }
+
   onScroll() {
     // On scroll we stopped the handler to prevent continously sending request to API
     // We increment pagination for the next request
@@ -149,5 +216,39 @@ export class SearchLayoutComponent implements OnInit, OnDestroy {
     this.stopScrollSub.unsubscribe();
     this.stopScrollSubResoluciones.unsubscribe();
     this.stopScrollSubEscritos.unsubscribe();
+  }
+
+  calculateScrollBottomPosition() {
+    let temp = 0;
+
+    return () => {
+      let scrollDown = false;
+
+      // console.log(this.element.scrollTop);
+      console.log(`%cLa variable temporal: ${temp}`, "color:yellow");
+      console.log(
+        `%cLa variable temporal a insertar: ${this.element.scrollTop}`,
+        "color:yellow"
+      );
+      if (this.element.scrollTop > temp) {
+        scrollDown = true;
+      }
+      console.log(`%cScrollDown!!!!: ${scrollDown}`, "color:yellow");
+      temp = this.element.scrollTop;
+      console.log(this.element.clientHeight);
+      console.log(this.element.clientHeight);
+      // console.log(element.);
+      // console.log(this);
+      let scrollTop = this.element.scrollTop,
+        clientHeight = this.element.clientHeight,
+        scrollHeight = this.element.scrollHeight;
+      let marginToBottom = scrollHeight - (scrollTop + clientHeight);
+      if (marginToBottom < 140 && scrollDown) {
+        console.log(`%cMargin to Bottom: ${marginToBottom}`, "color:yellow");
+        this.onScroll();
+      } else {
+        console.log(`%cNo has llegado!!!: ${marginToBottom}`, "color:red");
+      }
+    };
   }
 }

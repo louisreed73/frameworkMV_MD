@@ -14,6 +14,7 @@ import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { InfoService } from "projects/app1/src/app/services/info.service";
 import { FiltroComponent } from "projects/app1/src/app/sharedComponents/filtro/filtro.component";
 import { EscritosService } from "../../../services/escritos.service";
+import { environment } from "@environments/environment";
 
 @Component({
   selector: "app-search-escritos",
@@ -84,6 +85,8 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   someCollap$: Subject<boolean> = new Subject();
   toggleCollapseSub: Subscription;
   infoServSubs:Subscription;
+  elementScrollTrigger = this.window.document.querySelector("mat-sidenav-content");
+
 
 
   // filtrosDocumentos;
@@ -133,6 +136,11 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.infoServ.infoPath$.next("escritos");
+    // this.elementScrollTrigger.scrollTo({
+    //   top: 0,
+    //   left: 0,
+    //   // behavior: environment.app.scrollBehavior,
+    // });
 
     this.infoServSubs=combineLatest([
       this.infoServ.escritosInfoAcumLength$,

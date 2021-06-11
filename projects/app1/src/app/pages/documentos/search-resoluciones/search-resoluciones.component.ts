@@ -13,6 +13,7 @@ import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { InfoService } from "projects/app1/src/app/services/info.service";
 import { FiltroComponent } from "projects/app1/src/app/sharedComponents/filtro/filtro.component";
 import { ResolucionesService } from "../../../services/resoluciones.service";
+import { environment } from "@environments/environment";
 
 @Component({
   selector: "app-search-resoluciones",
@@ -83,6 +84,8 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   someCollap$: Subject<boolean> = new Subject();
   toggleCollapseSub: Subscription;
   infoServSubs: Subscription;
+  elementScrollTrigger = this.window.document.querySelector("mat-sidenav-content");
+
 
   // filtrosDocumentos;
   filtrosResoluciones;
@@ -132,6 +135,11 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.infoServ.infoPath$.next("resoluciones");
+    // this.elementScrollTrigger.scrollTo({
+    //   top: 0,
+    //   left: 0,
+    //   // behavior: environment.app.scrollBehavior,
+    // });
 
     this.infoServSubs = combineLatest([
       this.infoServ.resolucionesInfoAcumLength$,

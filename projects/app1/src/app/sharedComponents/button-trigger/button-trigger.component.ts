@@ -76,16 +76,16 @@ export class ButtonTriggerComponent implements OnInit, AfterViewInit {
 
         if (event instanceof MouseEvent) {
           // console.log(event.type)
-          // this.elementScrollTrigger.scrollTo({
-          //   top: 0,
-          //   left: 0,
-          //   behavior: environment.app.scrollBehavior,
-          // });
-          this.window.scrollTo({
+          this.elementScrollTrigger.scrollTo({
             top: 0,
             left: 0,
             behavior: environment.app.scrollBehavior,
           });
+          // this.window.scrollTo({
+          //   top: 0,
+          //   left: 0,
+          //   behavior: environment.app.scrollBehavior,
+          // });
           this.searchTrigger.updatedSearch.tipo = routePath;
           if (routePath === "documentos") {
             this.searchTrigger.updatedPaginaDocumentos = 1;

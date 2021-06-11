@@ -16,6 +16,7 @@ import { DocumentosService } from "projects/app1/src/app/services/documentos.ser
 import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { InfoService } from "projects/app1/src/app/services/info.service";
 import { FiltroComponent } from "projects/app1/src/app/sharedComponents/filtro/filtro.component";
+import { environment } from "@environments/environment";
 
 @Component({
   selector: "app-search-documents",
@@ -78,6 +79,8 @@ export class SearchDocumentsComponent
   someCollap$: Subject<boolean> = new Subject();
   toggleCollapseSub: Subscription;
   infoServSubs: Subscription;
+  elementScrollTrigger = this.window.document.querySelector("mat-sidenav-content");
+
 
   filtrosDocumentos;
   // filtrosResoluciones;
@@ -114,7 +117,11 @@ export class SearchDocumentsComponent
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.infoServ.infoPath$.next("documentos");
-    // let calculo$=
+    // this.elementScrollTrigger.scrollTo({
+    //   top: 0,
+    //   left: 0,
+    //   // behavior: environment.app.scrollBehavior,
+    // });
 
     this.infoServSubs = combineLatest([
       this.infoServ.documentosInfoAcumLength$,
@@ -196,6 +203,8 @@ export class SearchDocumentsComponent
       });
     }
   }
+
+
 
   cleanFilters() {
     let props = Object.keys(this.filtrosComp.first.filtroFormGroup.controls);
