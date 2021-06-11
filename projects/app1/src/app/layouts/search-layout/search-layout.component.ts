@@ -32,6 +32,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   stopScrollSub: Subscription;
   stopScrollSubResoluciones: Subscription;
   stopScrollSubEscritos: Subscription;
+  scrollInfiniteSub: Subscription;
 
   /*=====  End of Subscriptions  ======*/
 
@@ -140,7 +141,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
 
-    fromEvent(this.element, "scroll")
+    this.scrollInfiniteSub=fromEvent(this.element, "scroll")
       .pipe(
         // skip(20),
         debounceTime(100),
@@ -216,6 +217,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     this.stopScrollSub.unsubscribe();
     this.stopScrollSubResoluciones.unsubscribe();
     this.stopScrollSubEscritos.unsubscribe();
+    this.scrollInfiniteSub.unsubscribe();
   }
 
   calculateScrollBottomPosition() {
