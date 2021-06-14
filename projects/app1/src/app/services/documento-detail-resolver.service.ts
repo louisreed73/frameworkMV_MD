@@ -6,6 +6,7 @@ import {
 } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { delay } from "rxjs/operators";
+import { DocumentoDetailService } from "./documento-detail.service";
 
 @Injectable({
   providedIn: "root",
@@ -21,6 +22,7 @@ export class DetailDocumentResolveGuard implements Resolve<any> {
     console.log(route.data);
     // console.log(state);
     console.log(_id);
+    console.log("Llamando el resolver!!!");
     // return new Promise((res)=>{
 
     //     setTimeout(() => {
@@ -31,13 +33,13 @@ export class DetailDocumentResolveGuard implements Resolve<any> {
     //     }, 2000);
     // })
 
-    return of({
-      id: _id,
-      descripcion: `descripcion documento ${_id}`,
-      tipo_documental: `tipo documental ${_id}`,
-      magistrado: `magistrado ${_id}`,
-      pdfSrc: `/assets/ejemplo_pdf_3.pdf`,
-    }).pipe(delay(1000));
+    return this.documentDetail.getDocumentById(_id);
+  }
+
+  constructor(
+      private documentDetail:DocumentoDetailService
+  ) {
+
   }
   
 }
