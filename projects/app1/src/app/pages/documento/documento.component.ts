@@ -50,7 +50,7 @@ export class DocumentoComponent implements OnInit, OnDestroy {
         this.tempString = shorten;
         console.log(`%cEl contador es:${(count += 4)}`, "color:gold");
       } else {
-        console.log("Hay resultados!!!!");
+        // console.log("Hay resultados!!!!");
       }
     };
   })();
@@ -62,7 +62,7 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.pdfSrc=this.documento.pdfSrc
+    this.pdfSrc=this.documento.pdfSrc;
     this.fuzzySubsc = this.searchTriggerServ.fuzzySearch
       .pipe(
         map((d) => {
@@ -91,16 +91,16 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   estadoBusqueda(e) {
   }
 
-  _buscando(e) {
-    if (!e.total) {
-      let total = this.tempString.length;
-      let shorten = this.tempString.slice(0, Math.round(total / 2));
-      this.fuzzySearching(shorten.join(""));
-      this.tempString = shorten;
-    } else {
-      console.log("Hay resultados!!!!");
-    }
-  }
+  // _buscando(e) {
+  //   if (!e.total) {
+  //     let total = this.tempString.length;
+  //     let shorten = this.tempString.slice(0, Math.round(total / 2));
+  //     this.fuzzySearching(shorten.join(""));
+  //     this.tempString = shorten;
+  //   } else {
+  //     console.log("Hay resultados!!!!");
+  //   }
+  // }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
@@ -114,11 +114,11 @@ export class DocumentoComponent implements OnInit, OnDestroy {
     let findButton = this._document.querySelector(
       "#viewFind"
       ) as HTMLButtonElement;
-      console.log(`%cLos elementos son: ${findButton}`, "color:lime");
+      // console.log(`%cLos elementos son: ${findButton}`, "color:lime");
     let findBar = this._document.querySelector("#findbar") as HTMLElement;
     let searchisHidden = findBar.classList.contains("hidden");
 
-    if (!searchisHidden) {
+    if (searchisHidden) {
       findButton.click();
     }
     this.ngxExtendedPdfViewerService.find(query, {
