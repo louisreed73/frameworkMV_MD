@@ -9,7 +9,7 @@ import {
   Subscription,
 } from "rxjs";
 import { shareReplay, switchMap, toArray } from "rxjs/operators";
-import { environment } from "projects/app1/src/environments/environment";
+import { environment } from "src/environments/environment";
 import {
   config1,
   config2,
@@ -42,7 +42,7 @@ export class FiltrosService implements OnDestroy {
 
   getRequestValoresDocumentos() {
     this.reqValoresDocumentosSub = combineLatest([
-      this.http.get<any>(`${environment.baseURLApi}/tipos-documentales`),
+      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/tipos-documentales`),
       from([
         {
           data: {
@@ -53,7 +53,7 @@ export class FiltrosService implements OnDestroy {
           },
         },
       ]),
-      this.http.get<any>(`${environment.baseURLApi}/tipos-procedimientos`),
+      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/tipos-procedimientos`),
       from([
         {
           data: {
@@ -64,8 +64,8 @@ export class FiltrosService implements OnDestroy {
           },
         },
       ]),
-      this.http.post<any>(`${environment.baseURLApi}/magistrados`, {}),
-      this.http.get<any>(`${environment.baseURLApi}/tipos-escritos`),
+      this.http.post<any>(`${environment.app.baseURLApiCatalogos}/magistrados`, {}),
+      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/tipos-escritos`),
     ])
       .pipe(
         switchMap((data) => {

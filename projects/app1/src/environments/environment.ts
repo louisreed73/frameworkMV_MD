@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURLApi:"http://localhost:8080/bjus_rest_catalogos/v1"
+  // baseURLApi:"http://localhost:8080/bjus_rest_catalogos/v1"
 };
 
 /*
