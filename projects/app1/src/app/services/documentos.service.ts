@@ -96,23 +96,23 @@ export class DocumentosService implements OnDestroy {
   // in this pipeline we are going to make http request based in this information
   // Logic to check acumulated data, based in page number - API pagination
   documentos$: Observable<any>;
-  private _selectedDocument: any;
+  // private _selectedDocument: any;
 
-  get selectedDocument() {
-    return this._selectedDocument;
-  }
+  // get selectedDocument() {
+  //   return this._selectedDocument;
+  // }
 
-  set selectedDocument(doc: any) {
-    this._selectedDocument = doc;
-    console.log(
-      `%c Nuevo Documento a visualizar!!!: ${JSON.stringify(
-        this._selectedDocument,
-        null,
-        2
-      )}`,
-      "color:lime"
-    );
-  }
+  // set selectedDocument(doc: any) {
+  //   this._selectedDocument = doc;
+  //   console.log(
+  //     `%c Nuevo Documento a visualizar!!!: ${JSON.stringify(
+  //       this._selectedDocument,
+  //       null,
+  //       2
+  //     )}`,
+  //     "color:lime"
+  //   );
+  // }
 
   constructor(
     private http: HttpClient,

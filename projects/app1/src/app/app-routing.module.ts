@@ -13,45 +13,53 @@ import { SharedUtilitiesModule } from "./sharedModules/shared-utilities/shared-u
 import { UserInputComponent } from "./components/user-input/user-input.component";
 import { DocumentCardComponent } from "./components/document-card/document-card.component";
 // import { HeaderComponent } from './components/header/header.component';
-import { NgxExtendedPdfViewerModule, PdfFindButtonComponent } from 'ngx-extended-pdf-viewer';
+import {
+  NgxExtendedPdfViewerModule,
+  PdfFindButtonComponent,
+} from "ngx-extended-pdf-viewer";
 import { PdfFindbarService } from "ngx-extended-pdf-viewer/lib/toolbar/pdf-findbar/pdf-findbar-service";
+import { DetailDocumentResolveGuard } from "./services/documento-detail-resolver.service";
 const routes: Routes = [
-     // { path: "", pathMatch: "full", redirectTo: "documentos" },
-     {
-          path: "",
-          component: SearchLayoutComponent,
-          loadChildren: () =>
-               import("./modules/documentos/page-documentos.module").then(
-                    (m) => m.PagesDocumentsModule
-               ),
-     },
-     {
-          path: "documento",
-          component: DetailLayoutComponent,
-          children: [{ path: ":id", component: DocumentoComponent }],
-     },
-
+  // { path: "", pathMatch: "full", redirectTo: "documentos" },
+  {
+    path: "",
+    component: SearchLayoutComponent,
+    loadChildren: () =>
+      import("./modules/documentos/page-documentos.module").then(
+        (m) => m.PagesDocumentsModule
+      ),
+  },
+  {
+    path: "documento/:id",
+    component: DetailLayoutComponent,
+    resolve: { documento: DetailDocumentResolveGuard },
+    //     children: [
+    //       {
+    //         path: ":id",
+    //         component: DocumentoComponent,
+    //       },
+    //     ],
+  },
 ];
 
 @NgModule({
-     imports: [
-          RouterModule.forRoot(routes, {
-               preloadingStrategy: PreloadAllModules,
-          }),
-          CommonModule,
-          InfiniteScrollModule,
-          SharedUtilitiesModule,
-          NgxExtendedPdfViewerModule,
-
-     ],
-     exports: [RouterModule],
-     declarations: [
-          SearchLayoutComponent,
-          DetailLayoutComponent,
-          DocumentoComponent,
-          FilterTabsComponent,
-          SearchFormComponent,
-          UserInputComponent,
-     ],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+    }),
+    CommonModule,
+    InfiniteScrollModule,
+    SharedUtilitiesModule,
+    NgxExtendedPdfViewerModule,
+  ],
+  exports: [RouterModule],
+  declarations: [
+    SearchLayoutComponent,
+    DetailLayoutComponent,
+    DocumentoComponent,
+    FilterTabsComponent,
+    SearchFormComponent,
+    UserInputComponent,
+  ],
 })
 export class AppRoutingModule {}

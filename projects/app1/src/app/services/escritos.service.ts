@@ -97,17 +97,17 @@ export class EscritosService implements OnDestroy {
   // in this pipeline we are going to make http request based in this information
   // Logic to check acumulated data, based in page number - API pagination
   escritos$: Observable<any>;
-  private _selectedDocument: any;
-  // private _isShowSideBar:boolean=true;
+  // private _selectedDocument: any;
+  // // private _isShowSideBar:boolean=true;
 
-  get selectedDocument() {
-    return this._selectedDocument;
-  }
+  // get selectedDocument() {
+  //   return this._selectedDocument;
+  // }
 
-  set selectedDocument(doc: any) {
-    this._selectedDocument = doc;
+  // set selectedDocument(doc: any) {
+  //   this._selectedDocument = doc;
 
-  }
+  // }
 
   constructor(
     private http: HttpClient,

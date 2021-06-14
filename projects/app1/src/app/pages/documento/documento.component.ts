@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
+  Input,
   OnDestroy,
   OnInit,
 } from "@angular/core";
@@ -20,7 +21,9 @@ import { map } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentoComponent implements OnInit, OnDestroy {
-  pdfSrc = "/assets/ejemplo_pdf_3.pdf";
+  @Input() documento: any;
+  
+  pdfSrc:string;
   pdfQuery: any;
   pageLabel: string;
   fuzzySubsc: Subscription;
@@ -59,6 +62,7 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.pdfSrc=this.documento.pdfSrc
     this.fuzzySubsc = this.searchTriggerServ.fuzzySearch
       .pipe(
         map((d) => {
@@ -106,14 +110,15 @@ export class DocumentoComponent implements OnInit, OnDestroy {
 
   fuzzySearching(query: string): void {
     console.log(`%cLa frase ahora es: ${query}`, "color:lime");
-
+    
     let findButton = this._document.querySelector(
       "#viewFind"
-    ) as HTMLButtonElement;
+      ) as HTMLButtonElement;
+      console.log(`%cLos elementos son: ${findButton}`, "color:lime");
     let findBar = this._document.querySelector("#findbar") as HTMLElement;
     let searchisHidden = findBar.classList.contains("hidden");
 
-    if (searchisHidden) {
+    if (!searchisHidden) {
       findButton.click();
     }
     this.ngxExtendedPdfViewerService.find(query, {

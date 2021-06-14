@@ -1,5 +1,6 @@
 import { Location } from "@angular/common";
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 
 @Component({
@@ -17,12 +18,15 @@ export class DetailLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private documentosServ: DocumentosService,
     private location: Location,
-    @Inject(Window) private window: Window
+    @Inject(Window) private window: Window,
+    private route:ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.documento = this.documentosServ.selectedDocument;
+    // this.documento = this.documentosServ.selectedDocument;
+    this.documento =this.route.snapshot.data.documento;
     this.window.document.body.style.overflow = "hidden";
+    console.log(this.route.snapshot.data.documento)
   }
 
   volver() {
