@@ -25,14 +25,12 @@
         </svg>
       </label>
       <aside>
-        <!-- <app-document-card [documento]="documento"></app-document-card> -->
-        <!-- <p>{{documento | json}}</p> -->
+        <!-- Sección datos del documento -->
         <app-resume-document [documento]="documento"></app-resume-document>
-        <!-- <p>Hijos de puta</p> -->
       </aside>
     </div>
     <main [ngClass]="{'m-l30': _isShowSideBar}">
-      <!-- <router-outlet></router-outlet> -->
+      <!-- Sección renderizado del documento -->
       <app-documento [documento]="documento"></app-documento>
     </main>
 

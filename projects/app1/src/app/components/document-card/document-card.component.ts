@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-document-card",
@@ -13,27 +7,11 @@ import { DocumentosService } from "projects/app1/src/app/services/documentos.ser
   styleUrls: ["./document-card.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DocumentCardComponent implements OnInit {
+export class DocumentCardComponent {
   @Input() documento: any;
-  constructor(
-    private router: Router,
-    // private route:ActivatedRoute
-  ) // private documentosServ: DocumentosService
-  {}
-
-  ngOnInit() {
-    // console.log(this.route.snapshot.url[0])
-  }
+  constructor(private router: Router) {}
 
   selectedDocument(e) {
-    // e.preventDefault();
-    console.log(this.documento);
-    // this.documentosServ.selectedDocument = this.documento;
-    // e.preventDeafult();
-
-    this.router.navigate(
-      ["/documento/", this.documento.id]
-      // {queryParams:{from:this.documento}}
-    );
+    this.router.navigate(["/documento/", this.documento.id]);
   }
 }

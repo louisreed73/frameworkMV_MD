@@ -37,7 +37,7 @@ export class DocumentosService implements OnDestroy {
       resoluciones: undefined,
     });
   // Actual page Observable - pagination for http request - actual page
-     //  pagina$: Subject<number> = new Subject();
+  //  pagina$: Subject<number> = new Subject();
 
   // Observable - to use for passing information to tabs - Acumulated Array length for documents
   documentosLength$: BehaviorSubject<number> = new BehaviorSubject(null);
@@ -133,7 +133,7 @@ export class DocumentosService implements OnDestroy {
         this.formulario = formulario;
         this.pagina = pagina;
         this.formulario.currentSearch = search.tipo;
-          //  this.infoServ.infoPath$.next(search.tipo)
+        //  this.infoServ.infoPath$.next(search.tipo)
         console.log(
           `%cEsto es lo que recibo de los filtros: ${JSON.stringify(
             this.formulario,

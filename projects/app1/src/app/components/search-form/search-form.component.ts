@@ -24,6 +24,7 @@ export class SearchFormComponent implements OnInit {
     =            Subscriptions for this component  =
       =============================================*/
 
+  //Subscription del observable valueChanges del input
   Subc: Subscription;
 
   /*=====  End of Subscriptions for this component  ======*/
@@ -34,8 +35,6 @@ export class SearchFormComponent implements OnInit {
 
   //form Control del input del string de búsqueda
   searchInput = new FormControl();
-  // Selections Filters to apply for the documents
-  // @ViewChild(NgForm, { static: true }) formulario: NgForm;
 
   /*=====  End of User input references to get data  ======*/
 
@@ -50,7 +49,6 @@ export class SearchFormComponent implements OnInit {
 
   constructor(
     private combinacion: DocumentosService,
-    @Inject(Window) private window: Window,
     private searchTrigger: SearchTriggerService
   ) {}
 
@@ -62,32 +60,20 @@ export class SearchFormComponent implements OnInit {
       .subscribe((inputSearch) => {
         this.triggerNewSearch(inputSearch);
       });
-
-    //      this.Subc = this.searchTrigger.triggerSearch
-    //      .pipe(
-    //           // tap(console.log)
-    //           )
-    //           .subscribe(()=>{
-    //      // this.triggerNewSearch(this.searchInput.value)
-
-    // })
   }
 
   ngOnDestroy(): void {
-    // We subscribe to changes in string query
+    // We unsubscribe to changes in string query
     this.Subc.unsubscribe();
   }
 
   triggerNewSearch(inputSearch) {
-    // this.window.scrollTo(0, 0);
-
     // Stopping the scroll trigger until http request response
     this.combinacion.stopScroll$.next(true);
-    // Communicate to subscribers change in search query string
-    // this.combinacion.inputSearch$.next(inputSearch);
-    // Sending page 1 - always when changed input or selections
-    // Scroll is unique responsible for increment pagination
-    // this.combinacion.pagina$.next(this.pagina);
+
+    //Dentro del servicio search-trigger con los setters
+    // Actualizamos en cada input change los valores de string query y página
+    // No lanzamos la busqueda de documentos, solo actualizamos los valores.
 
     this.searchTrigger.updatedSearch = inputSearch;
     this.searchTrigger.updatedPaginaDocumentos = this.pagina;

@@ -1,31 +1,31 @@
 .search {
-    position:relative;
-    display:flex;
-    margin-top:1rem;
+  position: relative;
+  display: flex;
+  margin-top: 1rem;
 }
 
 input {
-    width: 35rem;
-    padding: 0.6rem;
-    font-size:1.2rem;
+  width: 35rem;
+  padding: 0.6rem;
+  font-size: 1.2rem;
 }
 
 input#search {
-    border:none;
-    outline:none;
-    padding:1rem;
-    border-radius:.5rem;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  border-radius: .5rem;
 }
 
 img.search {
-    position: relative;
-    top: 0rem;
-    right: 4.5rem;
-    width: 2rem;
-    height: 2rem;
+  position: relative;
+  top: 0rem;
+  right: 4.5rem;
+  width: 2rem;
+  height: 2rem;
 
 }
 
 label {
-    position:relative
+  position: relative
 }
