@@ -14,7 +14,7 @@ export class DocumentoDetailService {
   constructor(private http: HttpClient) {
     // this.base64Src=(data as any).default.data;
 
-    console.log(this.base64Src)
+    // console.log(this.base64Src)
   }
 
   getDocumentById(id: number) {
