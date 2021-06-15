@@ -33,7 +33,10 @@ export class DetailDocumentResolveGuard implements Resolve<any> {
     //     }, 2000);
     // })
 
-    return this.documentDetail.getDocumentById(1);
+    return this.documentDetail.getDocumentById(1)
+    // .pipe(
+    //   delay(500)
+    // )
   }
 
   constructor(

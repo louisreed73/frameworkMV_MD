@@ -9,11 +9,11 @@
   
   <div class="boxInfoRow">
     <p>ID</p>
-    <p>{{documento?.id}}</p>
+    <p>{{documento?.id || 1}}</p>
   </div>
   <div class="boxInfoRow">
     <p>Descripcion</p>
-    <p>{{documento?.descripcion}}</p>
+    <p>{{documento?.Descripcion}}</p>
   </div>
   <div class="boxInfoRow">
     <p>Tipo Documental</p>
@@ -35,7 +35,7 @@
 </div>
 
 <a  class="flexBoxInfo--red downloadDoc"
-[href]="pdfDownload_Src" 
+[href]="pdfDownload_Src | safeDomHtmlSanitizer" 
 
 target="_blank" [download]="pdfDownload_Name" rel="noopener noreferrer">
   <div class="boxInfoRow">

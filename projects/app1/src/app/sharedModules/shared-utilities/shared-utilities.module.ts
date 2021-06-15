@@ -11,6 +11,7 @@ import { PercentageBarComponent } from "../../sharedComponents/percentage-bar/pe
 import { CollapsibleComponent } from "../../sharedComponents/collapsible/collapsible.component";
 import { DocumentCardComponent } from "projects/app1/src/app/components/document-card/document-card.component";
 import { ResumeDocumentComponent } from "../../sharedComponents/resume-document/resume-document.component";
+import { SafeDomHtmlSanitizerPipe } from "../../pipes/safeDomHTMLpipe/safe-dom-html-sanitizer.pipe";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { ResumeDocumentComponent } from "../../sharedComponents/resume-document/
     PercentageBarComponent,
     CollapsibleComponent,
     ResumeDocumentComponent,
+    SafeDomHtmlSanitizerPipe,
+
     // DocumentCardComponent,
   ],
   imports: [
@@ -42,6 +45,8 @@ import { ResumeDocumentComponent } from "../../sharedComponents/resume-document/
     PercentageBarComponent,
     CollapsibleComponent,
     ResumeDocumentComponent,
+    SafeDomHtmlSanitizerPipe,
+
 
     // DocumentCardComponent,
   ],
