@@ -1,4 +1,3 @@
-import { DOCUMENT } from "@angular/common";
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -9,13 +8,12 @@ import {
   QueryList,
   ViewChildren,
 } from "@angular/core";
-import { combineLatest, of, pipe, Subject, Subscription } from "rxjs";
+import { combineLatest, of, Subject, Subscription } from "rxjs";
 import { catchError, delay, map, tap } from "rxjs/operators";
 import { DocumentosService } from "projects/app1/src/app/services/documentos.service";
 import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { InfoService } from "projects/app1/src/app/services/info.service";
 import { FiltroComponent } from "projects/app1/src/app/sharedComponents/filtro/filtro.component";
-import { environment } from "@environments/environment";
 
 @Component({
   selector: "app-search-documents",
@@ -33,20 +31,19 @@ export class SearchDocumentsComponent
   // Recibimos el Observable con los datos del número total de documentos por término de búsqueda acumulado en pagination.
   documentos$ = this.documentos.documentos$.pipe(
     catchError((e: any) => {
-
-      this.infoServ.httpErrorInfo$.next(e.name);
+      // this.infoServ.httpErrorInfo$.next(e.name);
       //TODO to comment and uncomment if necessary for checking response and reload page
       //TODO stopping spinner on http request error
       // this.spinner.requestSpinner$.next(false);
       //TODO to remove only for checking response and reload page
-      setTimeout(() => {
-        this.window.document.defaultView.location.reload();
-      }, 4000);
+      // setTimeout(() => {
+      //   this.window.document.defaultView.location.reload();
+      // }, 4000);
       return of([]);
     })
   );
 
-  // Observable con el nº total de documentos del término de búsqueda
+  // Observable con el nº total de documentos del término de búsqueda en la consulta de documentos
   docsLength$ = this.documentos.documentosLength$;
 
   /*=====  End of Observables  ======*/
@@ -56,7 +53,8 @@ export class SearchDocumentsComponent
     =============================================*/
 
   // To Save error message in case Http Request Error
-  errorObj;
+  //Todo remove this
+  // errorObj;
 
   /*=====  End of Error Obj member  ======*/
 
@@ -64,21 +62,25 @@ export class SearchDocumentsComponent
      =    Incorporacion Integracion nuevo Filtro 20-04-2021 =
      =============================================*/
 
+  // Getting filtro component in order to clean filters and collapse all/ uncollapse.
   @ViewChildren(FiltroComponent)
   filtrosComp: QueryList<FiltroComponent>;
+  // Subject for broadcast if some filter is collapsed or not
   someCollap$: Subject<boolean> = new Subject();
   toggleCollapseSub: Subscription;
+  // Subscription for combineLatest observables receiving acumulated documents / total documents in order to stop scroll or not;
   infoServSubs: Subscription;
-  elementScrollTrigger = this.window.document.querySelector("mat-sidenav-content");
+  elementScrollTrigger = this.window.document.querySelector(
+    "mat-sidenav-content"
+  );
 
-
+  // Storing actual filters of documents from filtros service an his method getFiltrosDocumentos
   filtrosDocumentos;
 
   filtroDocumentosSub = this.filtroS
     .getFiltrosDocumentos()
     .pipe()
     .subscribe((data) => {
-
       this.filtrosDocumentos = {
         data: data,
         clase: "documentos",
@@ -100,8 +102,11 @@ export class SearchDocumentsComponent
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
+    // sending subject with actual tab open
     this.infoServ.infoPath$.next("documentos");
 
+    // checking if all documents are received --> stopScroll / if not not stopping Scroll
     this.infoServSubs = combineLatest([
       this.infoServ.documentosInfoAcumLength$,
       this.infoServ.documentosInfoTotalLength$,
@@ -121,6 +126,7 @@ export class SearchDocumentsComponent
   }
 
   ngAfterViewInit(): void {
+    //Subscription for observable checking if some filter is open, if so sending subject true (someCollap$)
     this.toggleCollapseSub = this.filtrosComp.first.triggerCollapse
       .pipe(
         delay(0),
@@ -130,11 +136,12 @@ export class SearchDocumentsComponent
             return tog.nativeElement.previousElementSibling.checked;
           });
           this.someCollap$.next(someCollap);
-          return of(someCollap);
+
+          //Todo remove this
+          // return of(someCollap);
         })
       )
-      .subscribe((d) => {
-      });
+      .subscribe((d) => {});
   }
 
   ngOnDestroy(): void {
@@ -145,12 +152,12 @@ export class SearchDocumentsComponent
     this.infoServSubs.unsubscribe();
   }
 
+  // actual method for toggle collapse/uncollapse filters
   collapsing() {
     let allToggles = this.filtrosComp.first.toggles.toArray();
     let someCollap = allToggles.some((tog) => {
       return tog.nativeElement.previousElementSibling.checked;
     });
-
 
     allToggles.forEach((tog) => {
       tog.nativeElement.previousElementSibling.checked;
@@ -171,7 +178,7 @@ export class SearchDocumentsComponent
     }
   }
 
-
+  // actual method for reset all filters values
 
   cleanFilters() {
     let props = Object.keys(this.filtrosComp.first.filtroFormGroup.controls);
