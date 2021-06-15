@@ -24,7 +24,7 @@ import { SearchTriggerService } from "projects/app1/src/app/services/search-trig
   styleUrls: ["./filtro.component.scss"],
 })
 export class FiltroComponent implements OnInit, OnDestroy {
-  @Input() filtroscombinado1;
+  @Input() filtros;
   @ViewChildren("toggleEl")
   toggles: QueryList<ElementRef>;
   configFiltro;
@@ -79,9 +79,9 @@ export class FiltroComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.show$ = this.filtrosServ.showFilters$;
-    this.configFiltro = this.filtroscombinado1.data[0];
-    this.filtroFormGroup = this.filtroscombinado1.data[1];
-    this.clase = this.filtroscombinado1.clase;
+    this.configFiltro = this.filtros.data[0];
+    this.filtroFormGroup = this.filtros.data[1];
+    this.clase = this.filtros.clase;
 
     this.filtrosArrayFormsSubs = this.filtroFormGroup.valueChanges
       .pipe(debounceTime(300))
@@ -141,7 +141,7 @@ export class FiltroComponent implements OnInit, OnDestroy {
 
     let updatedChangesFiltro;
 
-    switch (this.filtroscombinado1.clase) {
+    switch (this.filtros.clase) {
       case "documentos":
         {
           updatedChangesFiltro = {

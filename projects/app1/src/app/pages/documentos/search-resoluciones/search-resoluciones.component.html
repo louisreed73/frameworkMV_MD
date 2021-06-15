@@ -29,7 +29,7 @@
       </div>
     </app-collapsible>
     <div class="filtrosSection" >
-      <app-filtro [filtroscombinado1]="filtrosResoluciones"></app-filtro>
+      <app-filtro [filtros]="filtrosResoluciones"></app-filtro>
     </div>
   </div>
   <div *ngIf="docsResoluciones$ | async as documents" class="noJump">
