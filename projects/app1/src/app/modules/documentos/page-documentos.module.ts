@@ -21,9 +21,6 @@ const routes: Routes = [
     DocumentCardComponent,
   ],
   imports: [CommonModule, SharedUtilitiesModule, RouterModule.forChild(routes)],
-  exports: [
-    // DocumentCardComponent,
-  ],
   providers: [],
 })
 export class PagesDocumentsModule {}

@@ -1,15 +1,12 @@
 <!-- <app-header></app-header> -->
 <div>
-  <!-- Parent container for infinite scroll -->
-
-  {{stopSpinner$ | async}}
   <div class="spinner-container" *ngIf="spinner$ | async">
-    <!-- <p>Loading.......</p> -->
+    <!-- <p>Loading....... Spinner container</p> -->
     <app-spinner></app-spinner>
   </div>
   <main>
-    <!-- <section> -->
-      <app-user-input appFijar [offset]="10"></app-user-input>
+    <!-- <section> directive appFijar when scroll from top 10px add fixed position (class .fixed)-->
+    <app-user-input appFijar [offset]="10"></app-user-input>
   </main>
   <router-outlet></router-outlet>
 </div>

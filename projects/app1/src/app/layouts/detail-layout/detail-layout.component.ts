@@ -8,11 +8,11 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./detail-layout.component.scss"],
 })
 export class DetailLayoutComponent implements OnInit, OnDestroy {
-  documento: any = 23;
+  // detail document object from resolver (data - document-resolver.service) http call api buscador
+  documento: any;
+
+  // variable toggle enabled/disabled margin left (ng-class - m-l30)
   _isShowSideBar: boolean = true;
-  elementScrollTrigger: HTMLElement = this.window.document.querySelector(
-    "mat-sidenav-content"
-  );
 
   constructor(
     private location: Location,
@@ -21,9 +21,10 @@ export class DetailLayoutComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // getting documento detail from resolver
     this.documento = this.route.snapshot.data.documento;
+    // apply body overflow hidden style
     this.window.document.body.style.overflow = "hidden";
-    console.log(this.documento);
   }
 
   volver() {
@@ -31,12 +32,16 @@ export class DetailLayoutComponent implements OnInit, OnDestroy {
   }
 
   isShowSideBar() {
+    // enabled/disabled main html tag class m-l30
     this._isShowSideBar = !this._isShowSideBar;
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
+
+    // apply body overflow auto style / reset out of this detail document page
+
     this.window.document.body.style.overflow = "auto";
   }
 }
