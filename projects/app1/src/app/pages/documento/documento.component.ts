@@ -22,8 +22,8 @@ import { map } from "rxjs/operators";
 })
 export class DocumentoComponent implements OnInit, OnDestroy {
   @Input() documento: any;
-  
-  pdfSrc:string;
+
+  pdfSrc: string;
   pdfQuery: any;
   pageLabel: string;
   fuzzySubsc: Subscription;
@@ -36,8 +36,6 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   ];
 
   tempString: Array<string> = [];
-
-  
 
   buscando: any = (() => {
     let count = 10;
@@ -62,7 +60,8 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.pdfSrc=this.documento.pdfSrc;
+    console.log(this.documento);
+    this.pdfSrc = this.documento.data.pdf;
     this.fuzzySubsc = this.searchTriggerServ.fuzzySearch
       .pipe(
         map((d) => {
@@ -85,11 +84,9 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   //      fuzzySearch?: boolean;
   //  }
 
-  pRendered(e) {
-  }
+  pRendered(e) {}
 
-  estadoBusqueda(e) {
-  }
+  estadoBusqueda(e) {}
 
   // _buscando(e) {
   //   if (!e.total) {
@@ -110,11 +107,11 @@ export class DocumentoComponent implements OnInit, OnDestroy {
 
   fuzzySearching(query: string): void {
     console.log(`%cLa frase ahora es: ${query}`, "color:lime");
-    
+
     let findButton = this._document.querySelector(
       "#viewFind"
-      ) as HTMLButtonElement;
-      // console.log(`%cLos elementos son: ${findButton}`, "color:lime");
+    ) as HTMLButtonElement;
+    // console.log(`%cLos elementos son: ${findButton}`, "color:lime");
     let findBar = this._document.querySelector("#findbar") as HTMLElement;
     let searchisHidden = findBar.classList.contains("hidden");
 

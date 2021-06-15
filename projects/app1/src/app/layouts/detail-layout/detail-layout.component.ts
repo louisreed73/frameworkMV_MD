@@ -26,7 +26,7 @@ export class DetailLayoutComponent implements OnInit, OnDestroy {
     // this.documento = this.documentosServ.selectedDocument;
     this.documento =this.route.snapshot.data.documento;
     this.window.document.body.style.overflow = "hidden";
-    console.log(this.route.snapshot.data.documento)
+    console.log(this.documento)
   }
 
   volver() {
