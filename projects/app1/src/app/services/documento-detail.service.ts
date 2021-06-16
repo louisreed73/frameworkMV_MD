@@ -21,6 +21,9 @@ export class DocumentoDetailService {
     console.log("Llamando el método getDocumentById!!!");
 
     return this.http.get(`${url+id}`)
+    // .pipe(
+    //     delay(10000)
+    //   )
     // .subscribe(d=>{
     //   this.base64Src=(d as any).data.pdf;
     //   console.log(`%cFakeAPibuscador: ${JSON.stringify(d,null,3)}`,'color:gold')
