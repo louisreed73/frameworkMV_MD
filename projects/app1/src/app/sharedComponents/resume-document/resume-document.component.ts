@@ -27,4 +27,6 @@ export class ResumeDocumentComponent implements OnInit {
 
     this.searchTriggerServ.fuzzySearch.next(this.fuzzyString);
   }
+
+
 }

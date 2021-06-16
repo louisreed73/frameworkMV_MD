@@ -69,6 +69,7 @@
     "ngx-extended-pdf-viewer": "^8.0.0",
     "ngx-highlightjs": "^3.0.3",
     "ngx-matomo": "^0.1.4",
+    "ngx-owl-carousel-o": "^2.1.1",
     "phonegap-plugin-multidex": "^1.0.0",
     "phonegap-plugin-push": "^2.3.0",
     "replace-in-file": "^6.1.0",

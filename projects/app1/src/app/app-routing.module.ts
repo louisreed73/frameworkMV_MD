@@ -8,9 +8,7 @@ import { CommonModule } from "@angular/common";
 import { SearchFormComponent } from "./components/search-form/search-form.component";
 import { SharedUtilitiesModule } from "./sharedModules/shared-utilities/shared-utilities.module";
 import { UserInputComponent } from "./components/user-input/user-input.component";
-import {
-  NgxExtendedPdfViewerModule,
-} from "ngx-extended-pdf-viewer";
+import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 import { DetailDocumentResolveGuard } from "./services/documento-detail-resolver.service";
 
 const routes: Routes = [

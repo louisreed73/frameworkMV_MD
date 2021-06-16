@@ -12,7 +12,8 @@ import { CollapsibleComponent } from "../../sharedComponents/collapsible/collaps
 import { DocumentCardComponent } from "projects/app1/src/app/components/document-card/document-card.component";
 import { ResumeDocumentComponent } from "../../sharedComponents/resume-document/resume-document.component";
 import { SafeDomHtmlSanitizerPipe } from "../../pipes/safeDomHTMLpipe/safe-dom-html-sanitizer.pipe";
-
+import { CarouselComponent } from '../../sharedComponents/carousel/carousel.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
   declarations: [
     SpinnerComponent,
@@ -24,6 +25,7 @@ import { SafeDomHtmlSanitizerPipe } from "../../pipes/safeDomHTMLpipe/safe-dom-h
     CollapsibleComponent,
     ResumeDocumentComponent,
     SafeDomHtmlSanitizerPipe,
+    CarouselComponent,
 
     // DocumentCardComponent,
   ],
@@ -32,6 +34,7 @@ import { SafeDomHtmlSanitizerPipe } from "../../pipes/safeDomHTMLpipe/safe-dom-h
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    CarouselModule
   ],
   exports: [
     FormsModule,
@@ -46,6 +49,9 @@ import { SafeDomHtmlSanitizerPipe } from "../../pipes/safeDomHTMLpipe/safe-dom-h
     CollapsibleComponent,
     ResumeDocumentComponent,
     SafeDomHtmlSanitizerPipe,
+    CarouselComponent,
+    CarouselModule
+
 
 
     // DocumentCardComponent,

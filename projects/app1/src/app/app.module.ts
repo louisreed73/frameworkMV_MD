@@ -12,7 +12,8 @@ import { NgxExtendedPdfViewerModule,
      // NgxExtendedPdfViewerServerComponent,
 
  } from "ngx-extended-pdf-viewer";
-import { DatePipe } from "@angular/common";
+// import { DatePipe } from "@angular/common";
+import { RouterModule } from "@angular/router";
 // import { PdfFindbarService } from "ngx-extended-pdf-viewer/lib/toolbar/pdf-findbar/pdf-findbar-service";
 
 // import {serverAPI} from "./mirage.api";
@@ -50,6 +51,7 @@ export class App1Module {
           BrowserModule,
           AppRoutingModule,
           HttpClientModule,
+          RouterModule,
           BrowserAnimationsModule,
           // NgxExtendedPdfViewerModule,
           // NgxExtendedPdfViewerService
