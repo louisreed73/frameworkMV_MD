@@ -172,16 +172,19 @@ input:focus {
     } 
 
 
-  pdf-find-fuzzily {
-    // display: none;
-}
+//   pdf-find-fuzzily {
+//     // display: none;
+// }
 
 .mat-sidenav-container-main .fixed-header{
-    // height: auto !important;
-    // overflow:scroll !important;
     height:100vh !important
 }
 
 #secondaryDownload {
+  display:none;
+}
+
+// hide dark layer in navigation for detail document
+#matSideNavContentProgressLoadingSection {
   display:none;
 }
