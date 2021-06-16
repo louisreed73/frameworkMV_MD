@@ -1,5 +1,5 @@
 <!-- <p>carousel works!</p> -->
-<owl-carousel-o [options]="customOptions">
+<owl-carousel-o [options]="customOptions" (dragging)="nowDragging($event.dragging)">
   <!-- <ng-template carouselSlide>Slide 1</ng-template>
     <ng-template carouselSlide>Slide 2</ng-template>
     <ng-template carouselSlide>Slide 3</ng-template>

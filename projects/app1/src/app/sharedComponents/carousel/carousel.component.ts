@@ -8,7 +8,9 @@ import { SearchTriggerService } from "../../services/search-trigger.service";
   styleUrls: ["./carousel.component.scss"],
 })
 export class CarouselComponent implements OnInit {
-  @Output() triggerFuzzySearch = new EventEmitter<string>();
+  // @Output() triggerFuzzySearch = new EventEmitter<string>();
+
+  isDragging: boolean;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -55,11 +57,18 @@ export class CarouselComponent implements OnInit {
   ngOnInit() {}
 
   clickSnippet(index: number) {
-    console.log(
-      `%cEste es el Snippet: ${this.itemsArray[index]}`,
-      "color:lime"
-    );
+    if (!this.isDragging) {
+      console.log(
+        `%cEste es el Snippet: ${this.itemsArray[index]}`,
+        "color:lime"
+      );
+      this.searchTriggerServ.fuzzySearch.next(this.itemsArray[index]);
+    }
+  }
 
-    this.searchTriggerServ.fuzzySearch.next(this.itemsArray[index]);
+  nowDragging(dragging: boolean) {
+    setTimeout(() => {
+      this.isDragging = dragging;
+    }, 10);
   }
 }
