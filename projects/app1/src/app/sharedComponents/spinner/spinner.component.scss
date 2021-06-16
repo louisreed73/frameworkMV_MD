@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: red;
+  // background: red;
   color: white;
   padding: 2rem;
 }
@@ -11,7 +11,7 @@
 .uploader-status ::ng-deep .mat-spinner circle {
   // stroke: #000000;
   // stroke: #860d8a;
-  stroke: red;
+  stroke:rgba(209, 0, 2, 1);
 }
 
 .uploader-status ::ng-deep .mat-spinner {

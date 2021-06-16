@@ -22,7 +22,7 @@ export class CarouselComponent implements OnInit {
     // navText: ["", ""],
     responsive: {
       0: {
-        items: 4,
+        items: 3,
       },
       500: {
         items: 7,
