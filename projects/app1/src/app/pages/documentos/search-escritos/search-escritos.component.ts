@@ -186,7 +186,6 @@ export class SearchEscritosComponent implements OnDestroy, AfterViewInit {
   }
 
   // actual method for reset all filters values
-
   cleanFilters() {
     let props = Object.keys(this.filtrosComp.first.filtroFormGroup.controls);
     this.filtrosComp.first.filtroFormGroup.reset();

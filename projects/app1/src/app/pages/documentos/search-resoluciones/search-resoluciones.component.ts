@@ -13,7 +13,6 @@ import { FiltrosService } from "projects/app1/src/app/services/filtros.service";
 import { InfoService } from "projects/app1/src/app/services/info.service";
 import { FiltroComponent } from "projects/app1/src/app/sharedComponents/filtro/filtro.component";
 import { ResolucionesService } from "../../../services/resoluciones.service";
-import { environment } from "@environments/environment";
 
 @Component({
   selector: "app-search-resoluciones",
@@ -31,15 +30,15 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
     catchError((e: any) => {
       // Saving error message from http Request Error
       // this.errorObj = e.name;
-      this.infoServ.httpErrorInfo$.next(e.name);
+      // this.infoServ.httpErrorInfo$.next(e.name);
 
       //TODO to comment and uncomment if necessary for checking response and reload page
       //TODO stopping spinner on http request error
       // this.spinner.requestSpinner$.next(false);
       //TODO to remove only for checking response and reload page
-      setTimeout(() => {
-        this.window.document.defaultView.location.reload();
-      }, 4000);
+      // setTimeout(() => {
+      //   this.window.document.defaultView.location.reload();
+      // }, 4000);
       return of([]);
     })
   );
@@ -55,7 +54,8 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
 =============================================*/
 
   // To Save error message in case Http Request Error
-  errorObj;
+  //Todo remove this
+  // errorObj;
 
   /*=====  End of Error Obj member  ======*/
 
@@ -66,13 +66,15 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
 
   @ViewChildren(FiltroComponent)
   filtrosComp: QueryList<FiltroComponent>;
+  // Subject for broadcast if some filter is collapsed or not
   someCollap$: Subject<boolean> = new Subject();
   toggleCollapseSub: Subscription;
+  // Subscription for combineLatest observables receiving acumulated escritos / total escritos in order to stop scroll or not;
   infoServSubs: Subscription;
   elementScrollTrigger = this.window.document.querySelector("mat-sidenav-content");
 
 
-  // filtrosDocumentos;
+  // Storing actual filters of resoluciones from filtros service an his method getFiltrosDocumentos
   filtrosResoluciones;
 
   filtroResolucionesSub: Subscription = this.filtroS
@@ -102,7 +104,11 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
+    // sending subject with actual tab open
     this.infoServ.infoPath$.next("resoluciones");
+
+    // checking if all resoluciones are received --> stopScroll / if not not stopping Scroll
     this.infoServSubs = combineLatest([
       this.infoServ.resolucionesInfoAcumLength$,
       this.infoServ.resolucionesInfoTotalLength$,
@@ -121,6 +127,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    //Subscription for observable checking if some filter is open, if so sending subject true (someCollap$)
     this.toggleCollapseSub = this.filtrosComp.first.triggerCollapse
       .pipe(
         delay(0),
@@ -130,7 +137,8 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
             return tog.nativeElement.previousElementSibling.checked;
           });
           this.someCollap$.next(someCollap);
-          return of(someCollap);
+          //Todo remove this
+          // return of(someCollap);
         })
       )
       .subscribe((d) => {
@@ -143,6 +151,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
     this.infoServSubs.unsubscribe();
   }
 
+  // actual method for toggle collapse/uncollapse filters
   collapsing() {
     let allToggles = this.filtrosComp.first.toggles.toArray();
     let someCollap = allToggles.some((tog) => {
@@ -168,6 +177,7 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
     }
   }
 
+  // actual method for reset all filters values
   cleanFilters() {
     let props = Object.keys(this.filtrosComp.first.filtroFormGroup.controls);
     this.filtrosComp.first.filtroFormGroup.reset();
