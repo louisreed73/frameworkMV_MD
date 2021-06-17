@@ -4,9 +4,9 @@
 .flexBoxInfo,
 .flexBoxInfo--red {
   border-radius: 0.4rem;
-  min-height: 17.6rem;
+  min-height: 10rem;
   background: white;
-  padding: 1rem;
+  padding: .5rem;
   box-shadow: 0 1px 6px 0 rgb(32 33 36 / 30%);
   border: 1px solid rgba(138, 138, 138, .3);
   margin-bottom:2rem;
@@ -57,6 +57,9 @@ a[download] {
   cursor:pointer;
   position:relative;
 }
+// .flexBoxInfo.downloadDoc {
+//   padding:1rem;
+// }
 
 .downloadDocument {
   svg {
@@ -68,14 +71,14 @@ a[download] {
   }
 }
 
-.coincidencias {
-  margin: 3rem auto 2rem;
-  padding:1rem;
-  background:rgba(0, 103, 151, 1);
-  color:white;
-  box-shadow: 0 1px 6px 0 rgb(32 33 36 / 30%);
-  border-radius: .4rem;
-}
+// .coincidencias {
+//   margin: 3rem auto 2rem;
+//   padding:1rem;
+//   background:rgba(0, 103, 151, 1);
+//   color:white;
+//   box-shadow: 0 1px 6px 0 rgb(32 33 36 / 30%);
+//   border-radius: .4rem;
+// }
 
 
 
