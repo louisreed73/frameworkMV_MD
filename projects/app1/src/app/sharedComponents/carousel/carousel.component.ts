@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { SearchTriggerService } from "../../services/search-trigger.service";
 
@@ -8,7 +8,7 @@ import { SearchTriggerService } from "../../services/search-trigger.service";
   styleUrls: ["./carousel.component.scss"],
 })
 export class CarouselComponent implements OnInit {
-  // @Output() triggerFuzzySearch = new EventEmitter<string>();
+  @Input('coincidenciasArray') itemsArray:Array<string>;
 
   isDragging: boolean;
 
@@ -37,32 +37,32 @@ export class CarouselComponent implements OnInit {
     nav: false,
   };
 
-  itemsArray: Array<string> = [
-    "maria",
-    "cesar",
-    "constituir",
-    "representacion",
-    "al mismo",
-    "alvarez",
-    "comunicacion",
-    "intervienen",
-    "tuyu",
-    "a contar",
-    "cristina de cea",
-    "junta universal",
-  ];
+  // itemsArray: Array<string> = [
+  //   "maria",
+  //   "cesar",
+  //   "constituir",
+  //   "representacion",
+  //   "al mismo",
+  //   "alvarez",
+  //   "comunicacion",
+  //   "intervienen",
+  //   "tuyu",
+  //   "a contar",
+  //   "cristina de cea",
+  //   "junta universal",
+  // ];
 
   constructor(private searchTriggerServ: SearchTriggerService) {}
 
   ngOnInit() {}
 
-  clickSnippet(index: number) {
+  clickSnippet(item: string) {
     if (!this.isDragging) {
       console.log(
-        `%cEste es el Snippet: ${this.itemsArray[index]}`,
+        `%cEste es el Snippet: ${item}`,
         "color:lime"
       );
-      this.searchTriggerServ.fuzzySearch.next(this.itemsArray[index]);
+      this.searchTriggerServ.fuzzySearch.next(item);
     }
   }
 

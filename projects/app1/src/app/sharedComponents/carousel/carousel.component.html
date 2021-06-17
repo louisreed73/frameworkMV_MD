@@ -13,6 +13,6 @@
     <ng-template carouselSlide>Slide 11</ng-template>
     <ng-template carouselSlide>Slide 12</ng-template> -->
   <ng-template carouselSlide *ngFor="let item of itemsArray;index as i">
-    <div class="snippetItem" (click)="clickSnippet(i)" [title]="item">{{item}}</div>
+    <div class="snippetItem" (click)="clickSnippet(item)" [title]="item">{{item}}</div>
   </ng-template>
 </owl-carousel-o>

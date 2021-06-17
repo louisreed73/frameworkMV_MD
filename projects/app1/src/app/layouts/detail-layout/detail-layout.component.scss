@@ -22,7 +22,7 @@
 .gains {
   background: rgba(220, 220, 220, .4);
   min-height: calc(100vh - 9rem);
-  padding: 0.7rem 3rem 0.1rem 4rem;
+  padding: 0.7rem 1.5rem 0.1rem 4rem;
 }
 
 .flexBoxAside {
@@ -62,6 +62,8 @@ label {
   height: 2.5rem;
   left: 31rem;
   cursor: pointer;
+  background: white;
+  border-radius: 50%;
   transition: all 0.3s ease-in-out;
 
 
