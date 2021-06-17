@@ -1,5 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { OwlOptions } from "ngx-owl-carousel-o";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
+} from "@angular/core";
+import { CarouselSlideDirective, OwlOptions } from "ngx-owl-carousel-o";
 import { SearchTriggerService } from "../../services/search-trigger.service";
 
 @Component({
@@ -7,10 +17,12 @@ import { SearchTriggerService } from "../../services/search-trigger.service";
   templateUrl: "./carousel.component.html",
   styleUrls: ["./carousel.component.scss"],
 })
-export class CarouselComponent implements OnInit {
-  @Input('coincidenciasArray') itemsArray:Array<string>;
-
+export class CarouselComponent implements OnInit, AfterViewInit {
+  @Input("coincidenciasArray") itemsArray: Array<string>;
+  @ViewChildren("slide")
+  slides: QueryList<ElementRef>;
   isDragging: boolean;
+  indiceActivo: number;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -56,12 +68,36 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit() {}
 
-  clickSnippet(item: string) {
-    if (!this.isDragging) {
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    console.log(`%cRevisando los slides: ${this.slides}`, "color:gold");
+
+    this.slides.forEach((item) => {
       console.log(
-        `%cEste es el Snippet: ${item}`,
+        `%cRevisando los slides: ${item.nativeElement}`,
+        "color:gold"
+      );
+    });
+  }
+
+  clickSnippet(item: string, index: number) {
+    if (!this.isDragging) {
+      this.indiceActivo = index;
+      console.log(
+        `%cEste es el Snippet: ${item} ${index} ${this.indiceActivo}`,
         "color:lime"
       );
+      // if (this.slides) {
+      //   console.log(
+      //     `%cEste es el elementRef: ${JSON.stringify(
+      //       this.slides.toArray()[index],
+      //       null,
+      //       2
+      //     )}`,
+      //     "color:lime"
+      //   );
+      // }
       this.searchTriggerServ.fuzzySearch.next(item);
     }
   }

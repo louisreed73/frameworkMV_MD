@@ -12,7 +12,8 @@
     <ng-template carouselSlide>Slide 10</ng-template>
     <ng-template carouselSlide>Slide 11</ng-template>
     <ng-template carouselSlide>Slide 12</ng-template> -->
-  <ng-template carouselSlide *ngFor="let item of itemsArray;index as i">
-    <div class="snippetItem" (click)="clickSnippet(item)" [title]="item">{{item}}</div>
+  <ng-template carouselSlide #slide *ngFor="let item of itemsArray;index as i">
+    <div class="snippetItem" [ngClass]="{'activo': i===indiceActivo}" (click)="clickSnippet(item,i)" [title]="item">
+      {{item}}</div>
   </ng-template>
 </owl-carousel-o>
