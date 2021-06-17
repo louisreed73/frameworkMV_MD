@@ -114,7 +114,6 @@ input[type="checkbox"]~aside {
 }
 
 input[type="checkbox"]:checked~aside {
-
   position: relative;
   flex: 1 1 auto;
   transform: translateX(-200%);

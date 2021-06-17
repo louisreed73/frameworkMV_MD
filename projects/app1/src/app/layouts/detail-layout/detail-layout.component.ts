@@ -21,6 +21,7 @@ export class DetailLayoutComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // console.log(this.route.snapshot.data.documento);
     // getting documento detail from resolver
     this.documento = this.route.snapshot.data.documento;
     // apply body overflow hidden style

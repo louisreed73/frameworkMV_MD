@@ -17,10 +17,10 @@ import { SearchTriggerService } from "../../services/search-trigger.service";
   templateUrl: "./carousel.component.html",
   styleUrls: ["./carousel.component.scss"],
 })
-export class CarouselComponent implements OnInit, AfterViewInit {
+export class CarouselComponent implements OnInit {
   @Input("coincidenciasArray") itemsArray: Array<string>;
-  @ViewChildren("slide")
-  slides: QueryList<ElementRef>;
+  // @ViewChildren("slide")
+  // slides: QueryList<ElementRef>;
   isDragging: boolean;
   indiceActivo: number;
 
@@ -68,18 +68,18 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {}
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    console.log(`%cRevisando los slides: ${this.slides}`, "color:gold");
+  // ngAfterViewInit(): void {
+  //   //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+  //   //Add 'implements AfterViewInit' to the class.
+  //   console.log(`%cRevisando los slides: ${this.slides}`, "color:gold");
 
-    this.slides.forEach((item) => {
-      console.log(
-        `%cRevisando los slides: ${item.nativeElement}`,
-        "color:gold"
-      );
-    });
-  }
+  //   this.slides.forEach((item) => {
+  //     console.log(
+  //       `%cRevisando los slides: ${item.nativeElement}`,
+  //       "color:gold"
+  //     );
+  //   });
+  // }
 
   clickSnippet(item: string, index: number) {
     if (!this.isDragging) {
@@ -88,16 +88,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
         `%cEste es el Snippet: ${item} ${index} ${this.indiceActivo}`,
         "color:lime"
       );
-      // if (this.slides) {
-      //   console.log(
-      //     `%cEste es el elementRef: ${JSON.stringify(
-      //       this.slides.toArray()[index],
-      //       null,
-      //       2
-      //     )}`,
-      //     "color:lime"
-      //   );
-      // }
+
       this.searchTriggerServ.fuzzySearch.next(item);
     }
   }

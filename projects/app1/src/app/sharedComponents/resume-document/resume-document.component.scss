@@ -11,7 +11,6 @@
   border: 1px solid rgba(138, 138, 138, .3);
   margin-bottom:2rem;
 
-  // color:default;
   &>*:not(:last-child) {
     margin: 0 0 1.5rem;
   }
@@ -20,12 +19,11 @@
     font-weight: 600;
     font-size: 1.3rem;
   }
+
   p {
     font-weight: 500;
     font-size: 1.1rem;
   }
-
-
 
   hr {
     border: none;
@@ -57,9 +55,6 @@ a[download] {
   cursor:pointer;
   position:relative;
 }
-// .flexBoxInfo.downloadDoc {
-//   padding:1rem;
-// }
 
 .downloadDocument {
   svg {
@@ -71,14 +66,6 @@ a[download] {
   }
 }
 
-// .coincidencias {
-//   margin: 3rem auto 2rem;
-//   padding:1rem;
-//   background:rgba(0, 103, 151, 1);
-//   color:white;
-//   box-shadow: 0 1px 6px 0 rgb(32 33 36 / 30%);
-//   border-radius: .4rem;
-// }
 
 
 

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
-import { of } from "rxjs";
+import { combineLatest, of } from "rxjs";
 import { delay } from "rxjs/operators";
 
 import * as data from "../../assets/pdf/pdfArray.json";
@@ -17,12 +17,20 @@ export class DocumentoDetailService {
   }
 
   getDocumentById(id: number) {
+    let finalURLMetadatos=url+id+'?tipo_param=metadatos';
+    let finalURLContenido=url+id+'?tipo_param=contenido';
     console.log("Llamando el método getDocumentById!!!");
+    console.log(finalURLMetadatos);
+    console.log(finalURLContenido);
 
-    return this.http.get(`${url + id}`)
-    .pipe(
-      // delay(10000)
-      );
+
+    return combineLatest([
+      this.http.get(finalURLMetadatos),
+      this.http.get(finalURLContenido),
+    ]) 
+    // .pipe(
+    //   // delay(10000)
+    //   );
     // .subscribe(d=>{
     //   this.base64Src=(d as any).data.pdf;
     //   console.log(`%cFakeAPibuscador: ${JSON.stringify(d,null,3)}`,'color:gold')
