@@ -16,13 +16,13 @@
     "headerButtonLogoutIcon": ""
   },
   "lateralMenuConfig": {
-    "appShortName":"",
-    "appLongName":"",
-    "appDesc":"",
+    "appShortName": "",
+    "appLongName": "",
+    "appDesc": "",
     "position": "start",
     "mode": "side",
     "modeSmall": "over",
-    "initOpen": true,
+    "initOpen": false,
     "alwaysOpen": false,
     "logoApp": "logo-app.png",
     "closeOnSelectItem": false

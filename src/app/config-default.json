@@ -1,7 +1,7 @@
 {
 	"mova": {
-		"appName": "App XXXX",
-		"appDescription": "Aplicación XXXX para el propósito YYYY",
+		"appName": "App Buscador Documentos",
+		"appDescription": "Aplicación Buscador para el propósito Busqueda Documental",
 		"appId": -1,
 		"appVersion": "1.0.0",
 		"appVersionFramework": "1.0.1",
