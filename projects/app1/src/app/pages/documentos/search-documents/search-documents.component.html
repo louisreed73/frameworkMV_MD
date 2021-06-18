@@ -2,17 +2,7 @@
   <div appFijar [offset]="10">
     <app-collapsible>
       <div class="collapsa">
-        <app-minimal>
-          <div class="minimal-layout" (click)="minimalLayoutToggle()" [ngClass]="{'minimal-layoutToggled': _minimalLayoutToggle}">
-            <div class="minimalCircle"></div>
-            <ng-container>
-              <p *ngIf="!_minimalLayoutToggle;else noMinimal">Minimal</p>
-              <ng-template #noMinimal>
-                <p>Show Filters Menu</p>
-              </ng-template>
-            </ng-container>        
-          </div>
-        </app-minimal>
+
         <div class="clean_Filt" (click)="cleanFilters()" *ngIf="!_minimalLayoutToggle">
           <p>
             Limpiar Filtros
@@ -32,8 +22,8 @@
         </div>
 
         <div class="collapsaBox" (click)="collapsing()">
-          <div *ngIf="(someCollap$|async);else notDeployed" >
-            <p *ngIf="!_minimalLayoutToggle">Ocultar Filtros</p>            
+          <div *ngIf="(someCollap$|async);else notDeployed">
+            <p *ngIf="!_minimalLayoutToggle">Ocultar Filtros</p>
           </div>
           <ng-template #notDeployed>
             <p *ngIf="!_minimalLayoutToggle">
@@ -49,6 +39,18 @@
             </svg>
           </div>
         </div>
+        <app-minimal>
+          <div class="minimal-layout" (click)="minimalLayoutToggle()"
+            [ngClass]="{'minimal-layoutToggled': _minimalLayoutToggle}">
+            <ng-container>
+              <p *ngIf="!_minimalLayoutToggle;else noMinimal">Minimal Off</p>
+              <ng-template #noMinimal>
+                <p>Minimal On</p>
+              </ng-template>
+            </ng-container>
+            <div class="minimalCircle"></div>
+          </div>
+        </app-minimal>
 
       </div>
     </app-collapsible>

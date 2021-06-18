@@ -14,7 +14,6 @@ import { SpinnerService } from "projects/app1/src/app/services/spinner.service";
 import { Location } from "@angular/common";
 import { ResolucionesService } from "../../services/resoluciones.service";
 import { EscritosService } from "../../services/escritos.service";
-import { MinimalService } from "../../services/minimal.service";
 
 @Component({
   selector: "app-search-layout",
