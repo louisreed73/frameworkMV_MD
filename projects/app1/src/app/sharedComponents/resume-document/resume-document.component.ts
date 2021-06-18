@@ -52,7 +52,7 @@ export class ResumeDocumentComponent implements OnInit {
       "tuyu",
       "a contar",
       "cristina de cea",
-      "junta universal",
+      "La Junta General podrá optar alternativamente por cualquiera de ellos, sin necesidad de modificación estatutaria.",
     ];
     // console.log(this.pdfDownload_Name);
     // console.log(this.pdfDownload_Src);

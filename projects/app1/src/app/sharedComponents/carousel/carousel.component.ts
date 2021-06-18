@@ -30,7 +30,7 @@ export class CarouselComponent implements OnInit {
     touchDrag: true,
     pullDrag: false,
     dots: true,
-    navSpeed: 700,
+    navSpeed: 100,
     // navText: ["", ""],
     responsive: {
       0: {
