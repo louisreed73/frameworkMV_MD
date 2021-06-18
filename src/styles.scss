@@ -119,11 +119,12 @@ input:focus {
   overflow-y: auto;
   position: fixed;
   z-index: 10;
-  top: 23.5rem;
+  top: 22.9rem;
   // outline: 1px solid #dcdcdc96;
   // outline-offset: -0.1rem;
   outline: 2px solid rgba(0, 103, 151, .3);
   outline-offset: -0.1rem;
+  transition: transform .3s .15s ease-in-out;
 }
 
 .fijo .filtrosSection {

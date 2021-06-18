@@ -73,6 +73,7 @@ export class SearchDocumentsComponent
   elementScrollTrigger = this.window.document.querySelector(
     "mat-sidenav-content"
   );
+  
 
   // Storing actual filters of documents from filtros service an his method getFiltrosDocumentos
   filtrosDocumentos;
@@ -87,11 +88,13 @@ export class SearchDocumentsComponent
       };
     });
 
+    private _minimalLayoutToggle:boolean=false;
+
   constructor(
     private documentos: DocumentosService,
     @Inject(Window) private window: Window,
     public filtroS: FiltrosService,
-    private infoServ: InfoService
+    private infoServ: InfoService,
   ) {}
 
   // Método para comprobar que los datos del OBservable son efectivamente un array
@@ -193,5 +196,19 @@ export class SearchDocumentsComponent
         }
       }
     });
+  }
+
+  minimalLayoutToggle() {
+    let allToggles = this.filtrosComp.first.toggles.toArray();
+    let someCollap = allToggles.some((tog) => {
+      return tog.nativeElement.previousElementSibling.checked;
+    });
+
+    if(this._minimalLayoutToggle && someCollap) {
+      this.collapsing();
+    }
+
+    this._minimalLayoutToggle=!this._minimalLayoutToggle;
+
   }
 }

@@ -14,6 +14,7 @@ import { ResumeDocumentComponent } from "../../sharedComponents/resume-document/
 import { SafeDomHtmlSanitizerPipe } from "../../pipes/safeDomHTMLpipe/safe-dom-html-sanitizer.pipe";
 import { CarouselComponent } from '../../sharedComponents/carousel/carousel.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MinimalComponent } from '../../sharedComponents/minimal/minimal.component';
 @NgModule({
   declarations: [
     SpinnerComponent,
@@ -26,6 +27,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ResumeDocumentComponent,
     SafeDomHtmlSanitizerPipe,
     CarouselComponent,
+    MinimalComponent,
 
     // DocumentCardComponent,
   ],
@@ -50,7 +52,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ResumeDocumentComponent,
     SafeDomHtmlSanitizerPipe,
     CarouselComponent,
-    CarouselModule
+    CarouselModule,
+    MinimalComponent,
+
 
 
 

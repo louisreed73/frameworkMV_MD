@@ -6,7 +6,7 @@
   </div>
   <main>
     <!-- <section> directive appFijar when scroll from top 10px add fixed position (class .fixed)-->
-    <app-user-input appFijar [offset]="10"></app-user-input>
+    <app-user-input appFijar [offset]="10" [ngClass]="{'minimalEnabled': minimal}"></app-user-input>
   </main>
   <router-outlet></router-outlet>
 </div>

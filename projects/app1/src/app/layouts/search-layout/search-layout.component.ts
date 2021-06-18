@@ -14,6 +14,7 @@ import { SpinnerService } from "projects/app1/src/app/services/spinner.service";
 import { Location } from "@angular/common";
 import { ResolucionesService } from "../../services/resoluciones.service";
 import { EscritosService } from "../../services/escritos.service";
+import { MinimalService } from "../../services/minimal.service";
 
 @Component({
   selector: "app-search-layout",
@@ -63,7 +64,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     private spinner: SpinnerService,
     private searchTrigger: SearchTriggerService,
     private location: Location,
-    @Inject(Window) private window: Window
+    @Inject(Window) private window: Window,
   ) {}
 
   ngOnInit() {

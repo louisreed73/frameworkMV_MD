@@ -87,13 +87,16 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
       };
     });
 
+    private _minimalLayoutToggle:boolean=false;
+
+
   /*=====  End of Incorporacion Integracion nuevo Filtro  ======*/
 
   constructor(
     private resoluciones: ResolucionesService,
     @Inject(Window) private window: Window,
     public filtroS: FiltrosService,
-    private infoServ: InfoService
+    private infoServ: InfoService,
   ) {}
 
   // Método para comprobar que los datos del OBservable son efectivamente un array
@@ -191,5 +194,18 @@ export class SearchResolucionesComponent implements OnDestroy, AfterViewInit {
         }
       }
     });
+  }
+
+  minimalLayoutToggle() {
+    let allToggles = this.filtrosComp.first.toggles.toArray();
+    let someCollap = allToggles.some((tog) => {
+      return tog.nativeElement.previousElementSibling.checked;
+    });
+
+    if(this._minimalLayoutToggle && someCollap) {
+      this.collapsing();
+    }
+
+    this._minimalLayoutToggle=!this._minimalLayoutToggle;
   }
 }

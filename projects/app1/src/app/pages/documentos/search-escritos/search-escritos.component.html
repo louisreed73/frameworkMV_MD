@@ -2,7 +2,18 @@
   <div appFijar [offset]="10">
     <app-collapsible>
       <div class="collapsa">
-        <div class="clean_Filt" (click)="cleanFilters()">
+        <app-minimal>
+          <div class="minimal-layout" (click)="minimalLayoutToggle()" [ngClass]="{'minimal-layoutToggled': _minimalLayoutToggle}">
+            <div class="minimalCircle"></div>
+            <ng-container>
+              <p *ngIf="!_minimalLayoutToggle;else noMinimal">Minimal</p>
+              <ng-template #noMinimal>
+                <p>Show Filters Menu</p>
+              </ng-template>
+            </ng-container>        
+          </div>
+        </app-minimal>
+        <div class="clean_Filt" (click)="cleanFilters()" *ngIf="!_minimalLayoutToggle">
           <p>
             Limpiar Filtros
           </p>
@@ -21,15 +32,15 @@
         </div>
 
         <div class="collapsaBox" (click)="collapsing()">
-          <p *ngIf="(someCollap$|async);else notDeployed">
-            Ocultar Filtros
-          </p>
+          <div *ngIf="(someCollap$|async);else notDeployed" >
+            <p *ngIf="!_minimalLayoutToggle">Ocultar Filtros</p>            
+          </div>
           <ng-template #notDeployed>
-            <p>
+            <p *ngIf="!_minimalLayoutToggle">
               Desplegar Filtros
             </p>
           </ng-template>
-          <div class="collapsaBoxIcon" [ngClass]="{'collapsed': (someCollap$|async)}">
+          <div class="collapsaBoxIcon" [ngClass]="{'collapsed': (someCollap$|async)}" *ngIf="!_minimalLayoutToggle">
 
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32" x="0px" y="0px">
               <title>previous-1</title>
@@ -38,9 +49,10 @@
             </svg>
           </div>
         </div>
+
       </div>
     </app-collapsible>
-    <div class="filtrosSection">
+    <div class="filtrosSection" [ngClass]="{'moveLeft': _minimalLayoutToggle}">
       <app-filtro [filtros]="filtrosEscritos"></app-filtro>
     </div>
   </div>

@@ -1,7 +1,13 @@
+
+
 .spinner-container {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(calc(-50% - 45px), calc(-50% - 45px));
   z-index: 30;
+}
+
+.minimalEnabled {
+  padding-bottom:1rem;
 }
