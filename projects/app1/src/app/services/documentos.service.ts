@@ -19,6 +19,13 @@ import {
 import { InfoService } from "./info.service";
 import { SearchTriggerService } from "./search-trigger.service";
 
+/**
+ *
+ * DocumentosService
+ * Responsible for search trigger
+ * getting Consulta API documents
+ *
+ */
 @Injectable({
   providedIn: "root",
 })
@@ -27,32 +34,41 @@ export class DocumentosService implements OnDestroy {
      =            Observables            =
      =============================================*/
 
-  // input string Observable to receive input user string
-  //   inputSearch$: Subject<string> = new Subject();
-  // User Forms Selections - to aplly filters Observable to receive input user string
+  /**
+   *
+   * input string Observable to receive updated filters
+   *   formulariosFiltro$: Subject<object> = new Subject();
+   * User Forms Selections - to apply filters Observable to receive input user string
+   *
+   */
   formularioFiltros$: BehaviorSubject<{ [k: string]: any }> =
     new BehaviorSubject({
       documentos: undefined,
       escritos: undefined,
       resoluciones: undefined,
     });
-  // Actual page Observable - pagination for http request - actual page
-  //  pagina$: Subject<number> = new Subject();
 
-  // Observable - to use for passing information to tabs - Acumulated Array length for documents
+  /**
+   *
+   * Observable - to use for passing information to tabs - Acumulated Array length for documents
+   * documentosLength$
+   */
   documentosLength$: BehaviorSubject<number> = new BehaviorSubject(null);
-  // Observable - to use for passing information to tabs - Total documents of query string
+
+  /**
+   * Observable - to use for passing information to tabs - Total documents of query string
+   * documentosTotalQueryLength$
+   */
   documentosTotalQueryLength$: BehaviorSubject<number> = new BehaviorSubject(
     null
   );
-  // Observable for disabling scroll handler while in htttp request operations
-  stopScroll$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  //TODO remove only for checking testing wrong url
-  // Observable for checking http request Error
-  // url$: BehaviorSubject<string> = new BehaviorSubject(
-  //      "https://my-json-server.typicode.com/louisreed73/fakeAPI/documentos"
-  // );
+  /**
+   * Observable for disabling scroll handler while in htttp request operations
+   * stopScroll$
+   */
+
+  stopScroll$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   /*=====  End of Observables  ======*/
 
@@ -60,7 +76,10 @@ export class DocumentosService implements OnDestroy {
      =            Subscriptions            =
      =============================================*/
 
-  //Subscription for http request query string
+  /**
+   * Subscription for http request query string
+   * documentosTotalQueryLengthS
+   */
   documentosTotalQueryLengthS: Subscription;
 
   /*=====  End of Subscriptions  ======*/
@@ -69,56 +88,77 @@ export class DocumentosService implements OnDestroy {
      =            Class members            =
      =============================================*/
 
-  // query string, received from input user - to save in pipe
+  /**
+   * query string, received from input user - to save in pipe
+   * search
+   */
   search;
 
-  // forms selections of user Filters to apply - to save in pipe
+  /**
+   * forms selections of user Filters to apply - to save in pipe
+   * formulario
+   */
   formulario;
-  // actual pagination number - to save in pipe
+
+  /**
+   * actual pagination number - to save in pipe
+   * pagina
+   */
   pagina;
 
-  // page limit for http request pagination - to use in pipe
+  /**
+   * page limit for http request pagination - to use in pipe
+   * pageLimit
+   */
   pageLimit = 5;
-  // saving an array for acumulating pages - to use depending of actual page -acumulated
+
+  /**
+   *
+   * data saving an array for acumulating pages - to use depending of actual page -acumulated
+   *
+   */
   data = [];
-  // saving total number of documents for query string - to send in observer of total documents
+
+  /**
+   *
+   * saving total number of documents for query string - to send in observer of total documents
+   * docsQueryTotal
+   */
   docsQueryTotal: number;
 
+  /**
+   *
+   * save url from observable toggling url right and wrong
+   *
+   */
   //TODO remove only for checking testing wrong url
-  // save url from observable toggling url right and wrong
   url: string =
     "https://my-json-server.typicode.com/louisreed73/fakeAPI/documentos";
   // url: string="/api/documentos";
 
   /*=====  End of Class members  ======*/
 
-  // Observable to react to input query string / Form Filters / page change
-  // in this pipeline we are going to make http request based in this information
-  // Logic to check acumulated data, based in page number - API pagination
+  /**
+   * Observable to react to input query string / Form Filters / page change
+   * in this pipeline we are going to make http request based in this information
+   * Logic to check acumulated data, based in page number - API pagination
+   * documentos$
+   */
   documentos$: Observable<any>;
-  // private _selectedDocument: any;
 
-  // get selectedDocument() {
-  //   return this._selectedDocument;
-  // }
-
-  // set selectedDocument(doc: any) {
-  //   this._selectedDocument = doc;
-  //   console.log(
-  //     `%c Nuevo Documento a visualizar!!!: ${JSON.stringify(
-  //       this._selectedDocument,
-  //       null,
-  //       2
-  //     )}`,
-  //     "color:lime"
-  //   );
-  // }
-
+  /**
+   * Constructor Initializes Component
+   */
   constructor(
     private http: HttpClient,
     private searchTrigger: SearchTriggerService,
     private infoServ: InfoService
   ) {
+    /**
+     * Observable to react to input query string / Form Filters / page change
+     * in this pipeline we are going to make http request based in this information
+     * Logic to check acumulated data, based in page number - API pagination
+     */
     this.documentos$ = this.searchTrigger.newTriggerSearchDocumentos.pipe(
       switchMap((params) => {
         return from([
@@ -198,6 +238,13 @@ export class DocumentosService implements OnDestroy {
       shareReplay(1)
     );
   }
+
+  /**
+   *
+   * Unsubscribe for documentosTotalQueryLengthS Subscription
+   * Total Query Dcouments Length
+   *
+   */
 
   ngOnDestroy(): void {
     //Unsubscribe from http request query string
