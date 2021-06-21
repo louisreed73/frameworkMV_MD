@@ -241,11 +241,12 @@ export class DocumentosService implements OnDestroy {
 
   /**
    *
+   * Angular Hook
+   * On Destroy of this component logic
    * Unsubscribe for documentosTotalQueryLengthS Subscription
    * Total Query Dcouments Length
    *
    */
-
   ngOnDestroy(): void {
     //Unsubscribe from http request query string
     this.documentosTotalQueryLengthS.unsubscribe();
