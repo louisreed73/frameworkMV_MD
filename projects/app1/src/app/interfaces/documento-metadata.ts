@@ -1,4 +1,20 @@
+
+/**
+ *
+ * DocumentoMetadata
+ * API Buscador
+ * Documento Rendering
+ * info Documento
+ */
 export interface DocumentoMetadata {
+
+  
+  /**
+   *
+   * result
+   * http info
+   *
+   */  
   result: {
     status: boolean;
     info: string;
@@ -16,6 +32,14 @@ export interface DocumentoMetadata {
     }[];
     updated_elements: number;
   };
+
+    /**
+   *
+   * data
+   * API Buscador Documento
+   * data for rendering
+   *
+   */  
   data: {
     pdf: null | string;
     Descripcion: string;
