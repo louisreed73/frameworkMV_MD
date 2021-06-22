@@ -203,9 +203,13 @@ export class FiltroComponent implements OnInit, OnDestroy {
           indice++;
         } else {
           if (this.configFiltro[indice].tipo === "date") {
-            let desde = (value as any).desde.split("-");
-            let hasta = (value as any).hasta.split("-");
-              
+            let desde = (value as { [k: string]: string } && (value as { [k: string]: string }).desde!==null)
+              ? (value as { [k: string]: string }).desde.split("-")
+              : "";
+            let hasta = (value as { [k: string]: string } && (value as { [k: string]: string }).hasta!==null)
+              ? (value as { [k: string]: string }).hasta.split("-")
+              : "";
+
             console.log(desde, hasta);
             // console.log(arrayFecha);
             let NewObject = {
