@@ -1,5 +1,13 @@
 import { FormArray, FormControl, FormGroup } from "@angular/forms";
 
+/**
+ *
+ * Properties, values
+ * and types of different filters
+ * forms - Documentos
+ * config1
+ *
+ */
 let config1 = [
   {
     tipo: "array",
@@ -25,6 +33,14 @@ let config1 = [
   },
 ];
 
+/**
+ *
+ * Forms Groups reactive Forms
+ * different filters
+ * forms - Documentos
+ * config3
+ *
+ */
 let form1: FormGroup = new FormGroup({
   [`arrayData0`]: new FormArray([]),
 
@@ -45,10 +61,12 @@ let form1: FormGroup = new FormGroup({
 
 /**
  *
- * Block comment
+ * Properties, values
+ * and types of different filters
+ * forms - Resoluciones
+ * config2
  *
  */
-
 let config2 = [
   {
     tipo: "array",
@@ -85,6 +103,14 @@ let config2 = [
   },
 ];
 
+/**
+ *
+ * Forms Groups reactive Forms
+ * different filters
+ * forms - Resoluciones
+ * config3
+ *
+ */
 let form2: FormGroup = new FormGroup({
   [`arrayData0`]: new FormArray([]),
 
@@ -113,6 +139,14 @@ let form2: FormGroup = new FormGroup({
   }),
 });
 
+/**
+ *
+ * Properties, values
+ * and types of different filters
+ * forms - Escritos
+ * config3
+ *
+ */
 let config3 = [
   {
     tipo: "array",
@@ -147,6 +181,14 @@ let config3 = [
   },
 ];
 
+/**
+ *
+ * Forms Groups reactive Forms
+ * different filters
+ * forms - Escritos
+ * config3
+ *
+ */
 let form3: FormGroup = new FormGroup({
   [`arrayData0`]: new FormArray([]),
 
@@ -172,4 +214,10 @@ let form3: FormGroup = new FormGroup({
   }),
 });
 
+/**
+ *
+ * Exporting configuration
+ * base for filters forms
+ *
+ */
 export { config1, config2, config3, form1, form2, form3 };

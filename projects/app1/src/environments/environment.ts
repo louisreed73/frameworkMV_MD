@@ -2,6 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+/**
+ *
+ * Production environment
+ * Variables
+ * Global use for the Application
+ * Development mode
+ *
+ */
 export const environment = {
   production: false,
   // baseURLApi:"http://localhost:8080/bjus_rest_catalogos/v1"

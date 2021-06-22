@@ -18,6 +18,13 @@ import { RouterModule } from "@angular/router";
 
 // import {serverAPI} from "./mirage.api";
 
+/**
+ *
+ * Providers Array
+ * Interceptor
+ * and Global Object Window
+ *
+ */
 const providers: Array<any> = [
   {
     provide: HTTP_INTERCEPTORS,
@@ -28,11 +35,6 @@ const providers: Array<any> = [
     provide: Window,
     useValue: window,
   },
-  // {
-  //      provide:"finder",
-  //      useClass:PdfFindbarService
-  // }
-  // NgxExtendedPdfViewerService
 ];
 
 @NgModule({})
