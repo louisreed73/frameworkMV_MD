@@ -1,4 +1,4 @@
-import { Location } from "@angular/common";
+import { DatePipe, formatDate, Location } from "@angular/common";
 import {
   AfterViewInit,
   Component,
@@ -40,7 +40,8 @@ export class FiltroComponent implements OnInit, OnDestroy {
     private combinacion: DocumentosService,
     @Inject(Window) private window: Window,
     private filtrosServ: FiltrosService,
-    private searchTrigger: SearchTriggerService
+    private searchTrigger: SearchTriggerService,
+    public datepipe: DatePipe
   ) {}
 
   get keys() {
@@ -121,7 +122,6 @@ export class FiltroComponent implements OnInit, OnDestroy {
   }
 
   eliminaTodo(keyArray) {
-
     let numberLength = (<FormArray>this.filtroFormGroup.get(keyArray)).length;
 
     for (let index = numberLength - 1; index > -1; index--) {
@@ -202,12 +202,41 @@ export class FiltroComponent implements OnInit, OnDestroy {
             filtrotipoResoluciones;
           indice++;
         } else {
-          transformedData[this.configFiltro[indice].name] = value;
+          if (this.configFiltro[indice].tipo === "date") {
+            let desde = (value as any).desde.split("-");
+            let hasta = (value as any).hasta.split("-");
+              
+            console.log(desde, hasta);
+            // console.log(arrayFecha);
+            let NewObject = {
+              desde:
+                desde[0] && desde[1] && desde[2]
+                  ? desde[2] + "-" + desde[1] + "-" + desde[0]
+                  : "",
+              hasta:
+                hasta[0] && hasta[1] && hasta[2]
+                  ? hasta[2] + "-" + hasta[1] + "-" + hasta[0]
+                  : "",
+            };
+            transformedData[this.configFiltro[indice].name] = NewObject;
+          } else {
+            transformedData[this.configFiltro[indice].name] = value;
+          }
           indice++;
         }
       }
     }
 
-    return transformedData;
+    let newTransformedData = {
+      ...transformedData,
+      "procedimiento nº": transformedData["procedimiento nº / año"]["numero"],
+      "procedimiento año": transformedData["procedimiento nº / año"]["año"],
+    };
+    console.log(newTransformedData);
+    delete newTransformedData["procedimiento nº / año"];
+
+    return newTransformedData;
+
+    // return transformedData;
   }
 }
