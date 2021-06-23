@@ -202,28 +202,26 @@ export class FiltroComponent implements OnInit, OnDestroy {
             filtrotipoResoluciones;
           indice++;
         } else {
-          if (this.configFiltro[indice].tipo === "date") {
-            let desde = (value as { [k: string]: string } && (value as { [k: string]: string }).desde!==null)
-              ? (value as { [k: string]: string }).desde.split("-")
-              : "";
-            let hasta = (value as { [k: string]: string } && (value as { [k: string]: string }).hasta!==null)
-              ? (value as { [k: string]: string }).hasta.split("-")
+           if (this.configFiltro[indice].tipo === "date") {
+            let props=Object.keys(value);
+            let newObject={};
+
+            props.forEach(prop=>{
+              let propSplit=(value as { [k: string]: string } && (value as { [k: string]: string })[prop]!==null)
+              ? (value as { [k: string]: string })[prop].split("-")
               : "";
 
-            console.log(desde, hasta);
-            // console.log(arrayFecha);
-            let NewObject = {
-              desde:
-                desde[0] && desde[1] && desde[2]
-                  ? desde[2] + "-" + desde[1] + "-" + desde[0]
-                  : "",
-              hasta:
-                hasta[0] && hasta[1] && hasta[2]
-                  ? hasta[2] + "-" + hasta[1] + "-" + hasta[0]
-                  : "",
-            };
-            transformedData[this.configFiltro[indice].name] = NewObject;
-          } else {
+              newObject[prop]=propSplit[0] && propSplit[1] && propSplit[2]
+              ? propSplit[2] + "-" + propSplit[1] + "-" + propSplit[0]
+              : "";
+            })
+
+            console.log(newObject);
+
+            transformedData[this.configFiltro[indice].name] = newObject;
+          } 
+          
+          else {
             transformedData[this.configFiltro[indice].name] = value;
           }
           indice++;

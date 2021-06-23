@@ -64,7 +64,7 @@ export class FiltrosService implements OnDestroy {
           },
         },
       ]),
-      this.http.post<any>(`${environment.app.baseURLApiCatalogos}/magistrados`, {}),
+      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/magistrados`),
       this.http.get<any>(`${environment.app.baseURLApiCatalogos}/tipos-escritos`),
     ])
       .pipe(
