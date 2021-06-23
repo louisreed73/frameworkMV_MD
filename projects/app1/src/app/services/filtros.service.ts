@@ -24,12 +24,12 @@ import {
 })
 export class FiltrosService implements OnDestroy {
   reqValoresDocumentosSub: Subscription;
-  reqValoresResolucionesSub: Subscription;
-  reqValoresEscritosSub: Subscription;
+  // reqValoresResolucionesSub: Subscription;
+  // reqValoresEscritosSub: Subscription;
   showFilters$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  triggerCollapse: Subject<any> = new Subject();
+  // triggerCollapse: Subject<any> = new Subject();
 
-  documentosCache: any[];
+  // documentosCache: any[];
 
   constructor(private http: HttpClient) {
     this.getRequestValoresDocumentos();
@@ -37,7 +37,7 @@ export class FiltrosService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.reqValoresDocumentosSub.unsubscribe();
-    this.reqValoresEscritosSub.unsubscribe();
+    // this.reqValoresEscritosSub.unsubscribe();
   }
 
   getRequestValoresDocumentos() {
@@ -79,6 +79,7 @@ export class FiltrosService implements OnDestroy {
         shareReplay(1)
       )
       .subscribe((data) => {
+        console.log(data);
         data.slice(0, data.length - 1).forEach((filtro, index) => {
           this.creaConfig(data, index, config1);
         });
