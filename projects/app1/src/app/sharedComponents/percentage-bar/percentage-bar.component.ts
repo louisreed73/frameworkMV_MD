@@ -15,16 +15,18 @@ export class PercentageBarComponent implements OnInit {
   documentosTotalQueryLength$ = this.infoS.documentosInfoTotalLength$;
   // Recibimos el Observable con los datos del número total de documentos filtrados por término de búsqueda + filtros aplicados o pagination.
   documentosLength$ = this.infoS.documentosInfoAcumLength$;
+  // Recibimos el Observable con los datos del número total de resoluciones por término de búsqueda.
   resolucionesTotalQueryLength$ = this.infoS.resolucionesInfoTotalLength$;
   // Recibimos el Observable con los datos del número total de resoluciones filtrados por término de búsqueda + filtros aplicados o pagination.
   resolucionesLength$ = this.infoS.resolucionesInfoAcumLength$;
+  // Recibimos el Observable con los datos del número total de escritoos por término de búsqueda.
   escritosTotalQueryLength$ = this.infoS.escritosInfoTotalLength$;
   // Recibimos el Observable con los datos del número total de resoluciones filtrados por término de búsqueda + filtros aplicados o pagination.
   escritosLength$ = this.infoS.escritosInfoAcumLength$;
   path$ = this.infoS.infoPath$;
 
   /*=====  Observables to Subscribe End  ======*/
-  // routePath:string = "";
+
   constructor(private infoS: InfoService) {}
 
   ngOnInit() {}

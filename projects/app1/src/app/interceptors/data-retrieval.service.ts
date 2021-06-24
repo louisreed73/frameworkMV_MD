@@ -27,7 +27,7 @@ export class DataRetrievalInterceptor implements HttpInterceptor {
   
   /**
    *
-   * @param spinner {Service} Spinner Service
+   * param: spinner {Service} Spinner Service
    * Service observable
    * communicate activation of Spinner
    * and deactivation
