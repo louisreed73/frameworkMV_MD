@@ -12,18 +12,63 @@ import {
 import { CarouselSlideDirective, OwlOptions } from "ngx-owl-carousel-o";
 import { SearchTriggerService } from "../../services/search-trigger.service";
 
+
+/**
+ *
+ * CarouselComponent
+ * implements ngx-owl-carousel-o
+ * library to display a
+ * carousel of snippets
+ *
+ */
 @Component({
   selector: "app-carousel",
   templateUrl: "./carousel.component.html",
   styleUrls: ["./carousel.component.scss"],
 })
 export class CarouselComponent implements OnInit {
+
+  
+  /**
+   *
+   * itemsArray
+   * data passed from parent component
+   * items as slides to display
+   * in Carousel
+   *
+   */  
   @Input("coincidenciasArray") itemsArray: Array<string>;
   // @ViewChildren("slide")
   // slides: QueryList<ElementRef>;
+
+  
+  /**
+   *
+   * Boolean reflecting
+   * if user is dragging
+   * in Carousel
+   *
+   */  
   isDragging: boolean;
+
+  
+  /**
+   *
+   * number reflecting
+   * actual snippet selected
+   * to search in pdf
+   *
+   */  
   indiceActivo: number;
 
+  
+  /**
+   *
+   * Configuration object
+   * with options for the
+   * library owl-carousel
+   *
+   */  
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -64,8 +109,23 @@ export class CarouselComponent implements OnInit {
   //   "junta universal",
   // ];
 
+  
+  /**
+   *
+   * Constructor,
+   * initializes Component
+   * @param searchTriggerServ {SearchTriggerService} Service it's used as a
+   * trigger for fuzzy Search in pdf viewer
+   *
+   */
   constructor(private searchTriggerServ: SearchTriggerService) {}
 
+  /**
+ *
+ * Angular Hook
+ * Logic needed for On Init
+ * @returns {void}
+ */
   ngOnInit() {}
 
   // ngAfterViewInit(): void {
@@ -81,6 +141,13 @@ export class CarouselComponent implements OnInit {
   //   });
   // }
 
+  
+  /**
+   *
+   * Function to set as active
+   * when user clicked a Slide
+   *
+   */  
   clickSnippet(item: string, index: number) {
     if (!this.isDragging) {
       this.indiceActivo = index;
@@ -93,6 +160,14 @@ export class CarouselComponent implements OnInit {
     }
   }
 
+  
+  /**
+   *
+   * Function to prevent
+   * trigger click when
+   * user is dragging
+   *
+   */  
   nowDragging(dragging: boolean) {
     setTimeout(() => {
       this.isDragging = dragging;
