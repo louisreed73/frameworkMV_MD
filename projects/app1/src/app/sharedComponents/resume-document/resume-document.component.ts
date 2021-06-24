@@ -10,7 +10,7 @@ import { DocumentoMetadata } from "../../interfaces/documento-metadata";
 })
 export class ResumeDocumentComponent implements OnInit {
   @Input() documento: any;
-  fuzzyString: string;
+  // fuzzyString: string;
   pdfDownload_Name: string;
   pdfDownload_Src: string = "";
   currentID: number;
