@@ -1,11 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
+import { environment } from "@environments/environment";
 import { combineLatest, of } from "rxjs";
 import { delay } from "rxjs/operators";
 
 import * as data from "../../assets/pdf/pdfArray.json";
 // const url="https://my-json-server.typicode.com/louisreed73/fakeAPIbuscador/documentos";
-const url = "http://localhost:8080/bjus_rest_buscador/v1/documentos/";
+// const url = "http://localhost:8080/bjus_rest_buscador/v1/documentos/";
+
+
+
 @Injectable({
   providedIn: "root",
 })
@@ -16,9 +20,9 @@ export class DocumentoDetailService {
     // console.log(this.base64Src)
   }
 
-  getDocumentById(id: number) {
-    let finalURLMetadatos=url+id+'?tipo_param=metadatos';
-    let finalURLContenido=url+id+'?tipo_param=contenido';
+  getDocumentById(id: string) {
+    let finalURLMetadatos=environment.app.baseURLApiBuscadorDetailDocument+id+'?tipo_param=metadatos';
+    let finalURLContenido=environment.app.baseURLApiBuscadorDetailDocument+id+'?tipo_param=contenido';
     console.log("Llamando el método getDocumentById!!!");
     console.log(finalURLMetadatos);
     console.log(finalURLContenido);

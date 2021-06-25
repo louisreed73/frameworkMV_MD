@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from "@angular/core";
+import { environment } from "@environments/environment";
 import {
   BehaviorSubject,
   from,
@@ -87,8 +88,8 @@ export class EscritosService implements OnDestroy {
 
   //TODO remove only for checking testing wrong url
   // save url from observable toggling url right and wrong
-  url: string =
-    "https://my-json-server.typicode.com/louisreed73/fakeAPI/escritos";
+  // url: string =
+  //   "https://my-json-server.typicode.com/louisreed73/fakeAPI/escritos";
   // url: string="/api/documentos";
 
   /*=====  End of Class members  ======*/
@@ -159,7 +160,7 @@ export class EscritosService implements OnDestroy {
         // if page is 1 / we send new data with the new string query -or change in filters - new API request - to get total documents
         if (this.pagina < 2) {
           this.escritosTotalQueryLengthS = this.http
-            .get<any>(`${this.url}?q=${this.search}`)
+            .get<any>(`${environment.app.baseURLApiBuscador+'/escritos'}?q=${this.search}`)
             .subscribe((d) => {
 
               this.escritosQueryTotal = d.length;
@@ -173,7 +174,7 @@ export class EscritosService implements OnDestroy {
 
         // we return observable with API call with pagination
         return this.http.get<any>(
-          `${this.url}?q=${this.search}&_page=${this.pagina}&_limit=${this.pageLimit}`
+          `${environment.app.baseURLApiBuscador+'/escritos'}?q=${this.search}&_page=${this.pagina}&_limit=${this.pageLimit}`
         );
       }),
       catchError((err) => {

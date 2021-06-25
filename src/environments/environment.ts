@@ -109,7 +109,11 @@ export const environment = {
   app: {
     // Situar aqui las variables propias de la app segun entornos
     baseURLApiCatalogos: "http://localhost:8080/bjus_rest_catalogos/v1",
-    baseURLApiBuscador: "http://localhost:8080/bjus_rest_buscador/v1",
+    // baseURLApiBuscador: "http://localhost:8080/bjus_rest_buscador/v1",
+    baseURLApiBuscador:
+      "https://my-json-server.typicode.com/louisreed73/fakeAPI",
+    baseURLApiBuscadorDetailDocument:
+      "http://localhost:8080/bjus_rest_buscador/v1/documento/",
     scrollBehavior: "smooth" as ScrollBehavior,
   },
 };

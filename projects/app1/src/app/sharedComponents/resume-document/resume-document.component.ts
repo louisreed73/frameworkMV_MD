@@ -3,6 +3,12 @@ import { ActivatedRoute } from "@angular/router";
 import { SearchTriggerService } from "projects/app1/src/app/services/search-trigger.service";
 import { DocumentoMetadata } from "../../interfaces/documento-metadata";
 
+/**
+ *
+ * ResumeDocumentComponent
+ * 
+ *
+ */
 @Component({
   selector: "app-resume-document",
   templateUrl: "./resume-document.component.html",

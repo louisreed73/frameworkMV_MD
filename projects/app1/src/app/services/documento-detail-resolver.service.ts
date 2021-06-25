@@ -14,9 +14,12 @@ import { DocumentoDetailService } from "./documento-detail.service";
 export class DetailDocumentResolveGuard implements Resolve<any> {
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
+    state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    let _id = +route.params.id;
+    // let _id = +route.params.id;
+    // from 18_DPA to 22_DPA id's returns data
+    // const id:string='H_18050813145J04N32J_0339_18_DPA';
+    let _id: string = "H_18050813145J04N32J_0339_18_DPA";
     let _route = route;
     let _state = state;
     console.log(route.data);
@@ -33,16 +36,11 @@ export class DetailDocumentResolveGuard implements Resolve<any> {
     //     }, 2000);
     // })
 
-    return this.documentDetail.getDocumentById(_id)
+    return this.documentDetail.getDocumentById(_id);
     // .pipe(
     //   delay(500)
     // )
   }
 
-  constructor(
-      private documentDetail:DocumentoDetailService
-  ) {
-
-  }
-  
+  constructor(private documentDetail: DocumentoDetailService) {}
 }
