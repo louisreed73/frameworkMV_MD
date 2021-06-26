@@ -14,6 +14,16 @@ import { SearchTriggerService } from "projects/app1/src/app/services/search-trig
 import { Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 
+/**
+ *
+ * DocumentoComponent
+ * this component implements
+ * render pdf through
+ * ngx-extended-pdf-viewer
+ * it receives documento array bytes
+ * and also run fuzzySearch
+ *
+ */
 @Component({
   selector: "app-documento",
   templateUrl: "./documento.component.html",
@@ -21,23 +31,40 @@ import { map } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentoComponent implements OnInit, OnDestroy {
-  // receiving documento detail object
+  /**
+   *
+   * documento
+   * receiving documento detail object
+   *
+   */
   @Input() documento: any;
 
-  // Store pdfSrc as base64 on init from documento object
+  /**
+   *
+   * pdfSrc
+   * Store pdfSrc as base64 on init
+   * from documento object
+   *
+   */
   pdfSrc: string;
 
   // Todo remove this
   // pdfQuery: any;
   // pageLabel: string;
 
-  // Storing fuzzySearch Subscription when click - Subject sending button fuzzy in resume-document.component
+  /**
+   *
+   * fuzzySubsc
+   * Storing fuzzySearch Subscription
+   * when click - Subject sending button
+   * fuzzy in resume-document.component
+   *
+   */
   fuzzySubsc: Subscription;
 
+  // tempString: Array<string> = [];
 
-  tempString: Array<string> = [];
-
-  // Todo remove this  
+  // Todo remove this
   // buscando: any = (() => {
   //   let count = 10;
 
@@ -54,14 +81,25 @@ export class DocumentoComponent implements OnInit, OnDestroy {
   //   };
   // })();
 
+  /**
+   * Constructor Initializes Component
+   */
   constructor(
     private ngxExtendedPdfViewerService: NgxExtendedPdfViewerService,
     private searchTriggerServ: SearchTriggerService,
     @Inject(DOCUMENT) private _document: Document
   ) {}
 
+  /**
+   *
+   * Angular Hook
+   * On Init of this component logic
+   * We subscribe to fuzzySearch
+   * Subject and when broadcast
+   * we run fuzzy Searching
+   *
+   */
   ngOnInit() {
-
     // Storing array bytes base64 pdf data
     this.pdfSrc = this.documento.data.pdf;
     // Removing spaces in string received for fuzzy Search and calling fuzzySearching method
@@ -73,20 +111,36 @@ export class DocumentoComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((d) => {
-        this.tempString = d;
+        // this.tempString = d;
         this.fuzzySearching(d.join(""));
       });
   }
 
-
-
-
+  /**
+   *
+   * Angular Hook
+   * On Destroy of this component logic
+   * unsubscribing from fuzzSearch
+   * subscription
+   *
+   */
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.fuzzySubsc.unsubscribe();
   }
 
+  /**
+   *
+   * fuzzySearching
+   * Method
+   * Actual fuzzySearch implementation
+   * with ngx-extended-pdf-viewer
+   * find method
+   * we cached button of ngx-extended-pdf-viewer
+   * #viewFind to trigger click
+   *
+   */
   fuzzySearching(query: string): void {
     console.log(`%cLa frase ahora es: ${query}`, "color:lime");
 
@@ -104,14 +158,14 @@ export class DocumentoComponent implements OnInit, OnDestroy {
 
     // Actual extended pdf viewer service find with options, in this case fuzzySearch
     //options for this service:
-      //? {
-  // ?     highlightAll?: boolean;
-  //  ?    matchCase?: boolean;
-  //  ?    wholeWords?: boolean;
-  //  ?    ignoreAccents?: boolean;
-  //  ?    findMultipleSearchTexts?: boolean;
-  //  ?   fuzzySearch?: boolean;
-  //?  }
+    //? {
+    // ?     highlightAll?: boolean;
+    //  ?    matchCase?: boolean;
+    //  ?    wholeWords?: boolean;
+    //  ?    ignoreAccents?: boolean;
+    //  ?    findMultipleSearchTexts?: boolean;
+    //  ?   fuzzySearch?: boolean;
+    //?  }
     this.ngxExtendedPdfViewerService.find(query, {
       fuzzySearch: true,
     });

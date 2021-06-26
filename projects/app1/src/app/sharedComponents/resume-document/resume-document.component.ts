@@ -100,8 +100,9 @@ export class ResumeDocumentComponent implements OnInit {
    *
    */
   ngOnInit() {
-    this.currentID =
-      +this.route.snapshot.url[this.route.snapshot.url.length - 1].path;
+    // this.currentID =
+    //   +this.route.snapshot.url[this.route.snapshot.url.length - 1].path;
+    this.currentID = this.documento[2];
     // console.log(JSON.stringify(this.documento));
     // this.pdfDownload_Name = `documento_${this.documento.id}.pdf`;
     // console.log(
@@ -112,6 +113,7 @@ export class ResumeDocumentComponent implements OnInit {
     //   )}`,
     //   "color:gold"
     // );
+    console.log(this.documento);
     this.documentoData = this.documento[0].data;
     console.log(this.documentoData.data);
     this.pdfDownload_Name = `documento_${this.currentID}.pdf`;
