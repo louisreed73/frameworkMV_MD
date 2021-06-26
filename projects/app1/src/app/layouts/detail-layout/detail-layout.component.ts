@@ -2,6 +2,7 @@ import { Location } from "@angular/common";
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
+
 @Component({
   selector: "app-detail-layout",
   templateUrl: "./detail-layout.component.html",

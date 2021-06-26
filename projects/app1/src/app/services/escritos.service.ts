@@ -21,6 +21,21 @@ import {
 import { InfoService } from "./info.service";
 import { SearchTriggerService } from "./search-trigger.service";
 
+/**
+ *
+ * Escritos Service
+ * It's used to get escritos
+ * calling API Buscador
+ * it receives info about updated Page
+ * upadated Filters
+ * string input user -buscar button trigger-
+ * Also it broadcast info about escritos
+ * acumulated / total escritos
+ * trough Info Service
+ * and run logic
+ * to stop scroll event
+ *
+ */
 @Injectable({
   providedIn: "root",
 })
@@ -29,25 +44,52 @@ export class EscritosService implements OnDestroy {
      =            Observables            =
      =============================================*/
 
-  // input string Observable to receive input user string
+  /**
+   *
+   * inputSearch$
+   * input string Observable to
+   * receive input user string
+   *
+   */
   inputSearch$: Subject<string> = new Subject();
-  // User Forms Selections - to aplly filters Observable to receive input user string
+
+  /**
+   *
+   * formularioFiltros$
+   * User Forms Selections
+   * - to apply filters Observable
+   * to receive input user string
+   *
+   */
   formularioFiltros$: BehaviorSubject<{ [k: string]: any }> =
     new BehaviorSubject({
       documentos: undefined,
       escritos: undefined,
       resoluciones: undefined,
     });
-  // Actual page Observable - pagination for http request - actual page
-  // pagina$: Subject<number> = new Subject();
 
-  // Observable - to use for passing information to tabs - Acumulated Array length for documents
-  documentosLength$: BehaviorSubject<number> = new BehaviorSubject(null);
+  /**
+   *
+   * documentosLength$
+   * Observable - to use for passing
+   * information to tabs -
+   * Acumulated Array length for documents
+   *
+   */
+  // documentosLength$: BehaviorSubject<number> = new BehaviorSubject(null);
   // Observable - to use for passing information to tabs - Total documents of query string
-  documentosTotalQueryLength$: BehaviorSubject<number> = new BehaviorSubject(
-    null
-  );
-  // Observable for disabling scroll handler while in htttp request operations
+  // documentosTotalQueryLength$: BehaviorSubject<number> = new BehaviorSubject(
+  //   null
+  // );
+
+  /**
+   *
+   * stopScroll$
+   * Observable for
+   * disabling scroll handler
+   * while in htttp request operations
+   *
+   */
   stopScroll$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   //TODO remove only for checking testing wrong url
@@ -62,7 +104,12 @@ export class EscritosService implements OnDestroy {
      =            Subscriptions            =
      =============================================*/
 
-  //Subscription for http request query string
+  /**
+   *
+   * escritosTotalQueryLengthS
+   * Subscription for http request query string
+   *
+   */
   escritosTotalQueryLengthS: Subscription;
 
   /*=====  End of Subscriptions  ======*/
@@ -71,19 +118,58 @@ export class EscritosService implements OnDestroy {
      =            Class members            =
      =============================================*/
 
-  // query string, received from input user - to save in pipe
+  /**
+   *
+   * search
+   * query string, received from
+   * input user - to save in pipe
+   *
+   */
   search;
 
-  // forms selections of user Filters to apply - to save in pipe
+  /**
+   *
+   * formulario
+   * forms selections of user
+   * Filters to apply - to save in pipe
+   *
+   */
   formulario;
-  // actual pagination number - to save in pipe
+
+  /**
+   *
+   * pagina
+   * actual pagination number - to save in pipe
+   *
+   */
   pagina;
 
-  // page limit for http request pagination - to use in pipe
+  /**
+   *
+   * pageLimit
+   * page limit for http request pagination
+   * to use in pipe
+   *
+   */
   pageLimit = 5;
-  // saving an array for acumulating pages - to use depending of actual page -acumulated
+
+  /**
+   *
+   * data
+   * saving an array for acumulating pages
+   * to use depending of actual page - acumulated
+   *
+   */
   data = [];
-  // saving total number of documents for query string - to send in observer of total documents
+
+  /**
+   *
+   * escritosQueryTotal:
+   * saving total number of escritos
+   * for query string - to send in observer
+   * of total escritos
+   *
+   */
   escritosQueryTotal: number;
 
   //TODO remove only for checking testing wrong url
@@ -94,12 +180,18 @@ export class EscritosService implements OnDestroy {
 
   /*=====  End of Class members  ======*/
 
-  // Observable to react to input query string / Form Filters / page change
-  // in this pipeline we are going to make http request based in this information
-  // Logic to check acumulated data, based in page number - API pagination
+  /**
+   *
+   * escritos$
+   * Observable to react to input query string
+   * / Form Filters / page change - Escritos
+   * in this pipeline we are going to make http
+   * request based in this information
+   * Logic to check acumulated data,
+   * based in page number - API pagination
+   *
+   */
   escritos$: Observable<any>;
-  // private _selectedDocument: any;
-  // // private _isShowSideBar:boolean=true;
 
   // get selectedDocument() {
   //   return this._selectedDocument;
@@ -110,13 +202,15 @@ export class EscritosService implements OnDestroy {
 
   // }
 
+  /**
+   * Constructor Initializes Component
+   */
   constructor(
     private http: HttpClient,
     private searchTrigger: SearchTriggerService,
     private infoServ: InfoService
   ) {
     this.escritos$ = this.searchTrigger.newTriggerSearchEscritos.pipe(
-      // startWith("Comienzo"),
       switchMap((params) => {
         return from([
           this.searchTrigger.updatedFiltro,
@@ -130,7 +224,6 @@ export class EscritosService implements OnDestroy {
         this.formulario = formulario;
         this.pagina = pagina;
         this.formulario.currentSearch = search.tipo;
-     //    this.infoServ.infoPath$.next(search.tipo)
         console.log(
           `%cEsto es lo que recibo de los filtros: ${JSON.stringify(
             this.formulario,
@@ -157,47 +250,73 @@ export class EscritosService implements OnDestroy {
         );
       }),
       switchMap((obsCombined) => {
-        // if page is 1 / we send new data with the new string query -or change in filters - new API request - to get total documents
+        // if page is 1 /
+        // we send new data with the new string query
+        // -or change in filters - new API request
+        // to get total escritos
         if (this.pagina < 2) {
           this.escritosTotalQueryLengthS = this.http
-            .get<any>(`${environment.app.baseURLApiBuscador+'/escritos'}?q=${this.search}`)
+            .get<any>(
+              `${environment.app.baseURLApiBuscador + "/escritos"}?q=${
+                this.search
+              }`
+            )
             .subscribe((d) => {
-
+              // data to calculate total perc of escritos
+              // received from pagination proportional
+              // to escritos.
               this.escritosQueryTotal = d.length;
-              this.infoServ.escritosInfoTotalLength$.next(d.length)
-
+              this.infoServ.escritosInfoTotalLength$.next(d.length);
             });
         }
 
-        // during this operation we cannot trigger scroll handler to prevent more API calls
+        // during this operation we cannot trigger
+        // scroll handler to prevent more API calls
         this.stopScroll$.next(true);
 
-        // we return observable with API call with pagination
+        // we return observable with
+        // API call with pagination
         return this.http.get<any>(
-          `${environment.app.baseURLApiBuscador+'/escritos'}?q=${this.search}&_page=${this.pagina}&_limit=${this.pageLimit}`
+          `${environment.app.baseURLApiBuscador + "/escritos"}?q=${
+            this.search
+          }&_page=${this.pagina}&_limit=${this.pageLimit}`
         );
       }),
       catchError((err) => {
-        //Error throwing to handle data in each observable pipe
+        //Error throwing to handle data
+        // in each observable pipe
         return throwError(err);
       }),
       switchMap((obsPagination) => {
-        //Depending of page number we overwrite acumulated array or inserting more documents based on query string and filters
+        //Depending of page number we overwrite
+        // acumulated array or inserting more escritos
+        // based on query string and filters
         if (this.pagina < 2) {
           this.data = obsPagination;
         }
         if (this.pagina > 1) {
           this.data = this.data.concat(obsPagination);
         }
-        // returning acumulated array as observable // saved in data class member;
+        // returning acumulated array as observable
+        // saved in data class member;
         this.infoServ.escritosInfoAcumLength$.next(this.data.length);
         return of(this.data);
       }),
-      //cache of acumulated array of documents - pagination
+      //cache of acumulated array
+      // of escritos - pagination
       shareReplay(1)
     );
   }
 
+  /**
+   *
+   * Angular Hook
+   * On Destroy of this component logic
+   * Unsubscribe for escritosTotalQueryLengthS
+   * Subscription
+   * Total Query Escritos Length
+   *
+   */
   ngOnDestroy(): void {
     //Unsubscribe from http request query string
     this.escritosTotalQueryLengthS.unsubscribe();
