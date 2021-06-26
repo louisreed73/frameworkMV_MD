@@ -19,30 +19,84 @@ import {
   form3,
 } from "../formulariosFiltrado/formulariosFiltrado.data";
 
+/**
+ * FiltrosService
+ * it fetches API Catalogos
+ * calls to get all Filters
+ * mainly autocomplete options
+ * It also run a configuration
+ * from imported configuration data
+ * an create Form Groups
+ *
+ */
 @Injectable({
   providedIn: "root",
 })
 export class FiltrosService implements OnDestroy {
+  /**
+   *
+   * reqValoresDocumentosSub
+   * Subscription for http Client
+   * in order to get all Filters data
+   * from API Catalogos
+   *
+   */
   reqValoresDocumentosSub: Subscription;
   // reqValoresResolucionesSub: Subscription;
   // reqValoresEscritosSub: Subscription;
+
+  /**
+   *
+   * showFilters$
+   * Subject to broadcast
+   * if all filters for each page
+   * Documentos - Escritos - Resoluciones
+   * is ready
+   *
+   */
   showFilters$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   // triggerCollapse: Subject<any> = new Subject();
 
   // documentosCache: any[];
 
+  /**
+   * Constructor Initializes Service
+   *
+   */
   constructor(private http: HttpClient) {
+    // API Catalogos call
     this.getRequestValoresDocumentos();
   }
 
+  /**
+   *
+   * Angular Hook
+   * On Destroy of this component logic
+   * We unsubscribe from reqValoresDocumentosSub
+   * Subscription
+   *
+   */
   ngOnDestroy(): void {
     this.reqValoresDocumentosSub.unsubscribe();
     // this.reqValoresEscritosSub.unsubscribe();
   }
 
+  /**
+   *
+   * getRequestValoresDocumentos
+   * method
+   * Actual method to get Filters
+   * and run logic to map configuration
+   * of filters data
+   * and create FormGroups for each page
+   * Documentos - Escritos - Resoluciones
+   *
+   */
   getRequestValoresDocumentos() {
     this.reqValoresDocumentosSub = combineLatest([
-      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/tipos-documentales`),
+      this.http.get<any>(
+        `${environment.app.baseURLApiCatalogos}/tipos-documentales`
+      ),
       from([
         {
           data: {
@@ -53,7 +107,9 @@ export class FiltrosService implements OnDestroy {
           },
         },
       ]),
-      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/tipos-procedimientos`),
+      this.http.get<any>(
+        `${environment.app.baseURLApiCatalogos}/tipos-procedimientos`
+      ),
       from([
         {
           data: {
@@ -65,7 +121,9 @@ export class FiltrosService implements OnDestroy {
         },
       ]),
       this.http.get<any>(`${environment.app.baseURLApiCatalogos}/magistrados`),
-      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/tipos-escritos`),
+      this.http.get<any>(
+        `${environment.app.baseURLApiCatalogos}/tipos-escritos`
+      ),
     ])
       .pipe(
         switchMap((data) => {
@@ -100,6 +158,15 @@ export class FiltrosService implements OnDestroy {
       });
   }
 
+  /**
+   *
+   * creaConfig
+   * method
+   * set final FormGroups
+   * key value names, controls
+   * from configuration data
+   *
+   */
   creaConfig(reqVal, reqValNumb, configVar) {
     let datosReq = [];
     reqVal[reqValNumb].forEach((item) => {
@@ -108,12 +175,47 @@ export class FiltrosService implements OnDestroy {
     configVar[reqValNumb].values = datosReq;
   }
 
+  /**
+   *
+   * getFiltrosDocumentos
+   * method
+   * Utility function of this service
+   * to return observable with
+   * final configuration and
+   * FormsGroups of each page
+   * Documentos
+   *
+   */
   getFiltrosDocumentos() {
     return of([config1, form1]);
   }
+
+  /**
+   *
+   * getFiltrosResoluciones
+   * method
+   * Utility function of this service
+   * to return observable with
+   * final configuration and
+   * FormsGroups of each page
+   * Resoluciones
+   *
+   */
   getFiltrosResoluciones() {
     return of([config2, form2]);
   }
+
+  /**
+   *
+   * getFiltrosEscritos
+   * method
+   * Utility function of this service
+   * to return observable with
+   * final configuration and
+   * FormsGroups of each page
+   * Escritos
+   *
+   */
   getFiltrosEscritos() {
     return of([config3, form3]);
   }
