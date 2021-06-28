@@ -1,8 +1,9 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, OnDestroy } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { environment } from "@environments/environment";
 import {
   BehaviorSubject,
+  combineLatest,
   from,
   Observable,
   of,
@@ -30,7 +31,7 @@ import { SearchTriggerService } from "./search-trigger.service";
 @Injectable({
   providedIn: "root",
 })
-export class DocumentosService implements OnDestroy {
+export class DocumentosService  {
   /*=============================================
      =            Observables            =
      =============================================*/
@@ -81,7 +82,7 @@ export class DocumentosService implements OnDestroy {
    * Subscription for http request query string
    * documentosTotalQueryLengthS
    */
-  documentosTotalQueryLengthS: Subscription;
+  // documentosTotalQueryLengthS: Subscription;
 
   /*=====  End of Subscriptions  ======*/
 
@@ -111,7 +112,7 @@ export class DocumentosService implements OnDestroy {
    * page limit for http request pagination - to use in pipe
    * pageLimit
    */
-  pageLimit = 5;
+  pageLimit = environment.app.pageLimit;
 
   /**
    *
@@ -205,40 +206,52 @@ export class DocumentosService implements OnDestroy {
       }),
       switchMap((obsCombined) => {
         // if page is 1 / we send new data with the new string query -or change in filters - new API request - to get total documents
-        if (this.pagina < 2) {
-          this.documentosTotalQueryLengthS = this.http
-            .get<any>(
-              `${environment.app.baseURLApiBuscador + "/documentos"}?q=${
-                this.search
-              }`
-            )
-            .subscribe((d) => {
-              this.docsQueryTotal = d.length;
-              this.infoServ.documentosInfoTotalLength$.next(d.length);
-            });
-        }
+        // if (this.pagina < 2) {
+        //   this.documentosTotalQueryLengthS = combineLatest([
+        //     this.http.get<any>(
+        //       `${environment.app.baseURLApiBuscador + "/documentos"}?q=${
+        //         this.search
+        //       }`
+        //     ),
+        //     this.http.post<any>(
+        //       `${environment.app.baseURLApiBuscadorReal}?$init=${this.pagina}&$limit=${this.pageLimit}`,
+        //       this.formulario
+        //     ),
+        //   ]).subscribe(([fake, realAPI]) => {
+        //     console.log(fake, realAPI);
+        //     // this.docsQueryTotal = realAPI.data.length;
+        //     // this.infoServ.documentosInfoTotalLength$.next(4);
+        //   });
+        // }
 
         // during this operation we cannot trigger scroll handler to prevent more API calls
-        this.stopScroll$.next(true);
-
+        
         // we return observable with API call with pagination
-        return this.http.get<any>(
-          `${environment.app.baseURLApiBuscador + "/documentos"}?q=${
-            this.search
-          }&_page=${this.pagina}&_limit=${this.pageLimit}`
-        );
+        return this.http.post<any>(
+          `${environment.app.baseURLApiBuscadorReal}?$init=${this.pagina}&$limit=${this.pageLimit}`,
+          this.formulario
+          ).pipe(
+            tap((documentos)=>{
+              //Here we harcoded documentos.metadata.totalDocumentos
+              //We must receive total documentos info in metadata
+            this.infoServ.documentosInfoTotalLength$.next(4);
+            this.stopScroll$.next(true);
+
+          })
+        )
       }),
       catchError((err) => {
         //Error throwing to handle data in each observable pipe
         return throwError(err);
       }),
-      switchMap((obsPagination) => {
+      switchMap(({ metadata, data }) => {
+        console.log(metadata, data);
         //Depending of page number we overwrite acumulated array or inserting more documents based on query string and filters
         if (this.pagina < 2) {
-          this.data = obsPagination;
+          this.data = data;
         }
         if (this.pagina > 1) {
-          this.data = this.data.concat(obsPagination);
+          this.data = this.data.concat(data);
         }
         // returning acumulated array as observable // saved in data class member;
         this.infoServ.documentosInfoAcumLength$.next(this.data.length);
@@ -257,8 +270,8 @@ export class DocumentosService implements OnDestroy {
    * Total Query Dcouments Length
    *
    */
-  ngOnDestroy(): void {
-    //Unsubscribe from http request query string
-    this.documentosTotalQueryLengthS.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   //Unsubscribe from http request query string
+  //   // this.documentosTotalQueryLengthS.unsubscribe();
+  // }
 }

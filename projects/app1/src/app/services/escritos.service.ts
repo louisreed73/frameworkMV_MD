@@ -39,7 +39,7 @@ import { SearchTriggerService } from "./search-trigger.service";
 @Injectable({
   providedIn: "root",
 })
-export class EscritosService implements OnDestroy {
+export class EscritosService {
   /*=============================================
      =            Observables            =
      =============================================*/
@@ -110,7 +110,7 @@ export class EscritosService implements OnDestroy {
    * Subscription for http request query string
    *
    */
-  escritosTotalQueryLengthS: Subscription;
+  // escritosTotalQueryLengthS: Subscription;
 
   /*=====  End of Subscriptions  ======*/
 
@@ -151,7 +151,7 @@ export class EscritosService implements OnDestroy {
    * to use in pipe
    *
    */
-  pageLimit = 5;
+  pageLimit = environment.app.pageLimit;
 
   /**
    *
@@ -224,7 +224,7 @@ export class EscritosService implements OnDestroy {
         this.formulario = formulario.escritos || {
           tipo_documento: "E",
         };
-        this.formulario.tipo_documento=this.formulario.tipo_documento||"E"
+        this.formulario.tipo_documento = this.formulario.tipo_documento || "E";
         this.pagina = pagina;
         // this.formulario.currentSearch = search.tipo;
         console.log(
@@ -253,60 +253,60 @@ export class EscritosService implements OnDestroy {
         );
       }),
       switchMap((obsCombined) => {
-        // if page is 1 /
-        // we send new data with the new string query
-        // -or change in filters - new API request
-        // to get total escritos
-        if (this.pagina < 2) {
-          this.escritosTotalQueryLengthS = this.http
-            .get<any>(
-              `${environment.app.baseURLApiBuscador + "/escritos"}?q=${
-                this.search
-              }`
-            )
-            .subscribe((d) => {
-              // data to calculate total perc of escritos
-              // received from pagination proportional
-              // to escritos.
-              this.escritosQueryTotal = d.length;
-              this.infoServ.escritosInfoTotalLength$.next(d.length);
-            });
-        }
+        // if page is 1 / we send new data with the new string query -or change in filters - new API request - to get total documents
+        // if (this.pagina < 2) {
+        //   this.documentosTotalQueryLengthS = combineLatest([
+        //     this.http.get<any>(
+        //       `${environment.app.baseURLApiBuscador + "/documentos"}?q=${
+        //         this.search
+        //       }`
+        //     ),
+        //     this.http.post<any>(
+        //       `${environment.app.baseURLApiBuscadorReal}?$init=${this.pagina}&$limit=${this.pageLimit}`,
+        //       this.formulario
+        //     ),
+        //   ]).subscribe(([fake, realAPI]) => {
+        //     console.log(fake, realAPI);
+        //     // this.docsQueryTotal = realAPI.data.length;
+        //     // this.infoServ.documentosInfoTotalLength$.next(4);
+        //   });
+        // }
 
-        // during this operation we cannot trigger
-        // scroll handler to prevent more API calls
-        this.stopScroll$.next(true);
+        // during this operation we cannot trigger scroll handler to prevent more API calls
 
-        // we return observable with
-        // API call with pagination
-        return this.http.get<any>(
-          `${environment.app.baseURLApiBuscador + "/escritos"}?q=${
-            this.search
-          }&_page=${this.pagina}&_limit=${this.pageLimit}`
-        );
+        // we return observable with API call with pagination
+        return this.http
+          .post<any>(
+            `${environment.app.baseURLApiBuscadorReal}?$init=${this.pagina}&$limit=${this.pageLimit}`,
+            this.formulario
+          )
+          .pipe(
+            tap((documentos) => {
+              //Here we harcoded documentos.metadata.totalDocumentos
+              //We must receive total escritos info in metadata
+              this.infoServ.escritosInfoTotalLength$.next(4);
+              this.stopScroll$.next(true);
+            })
+          );
       }),
       catchError((err) => {
-        //Error throwing to handle data
-        // in each observable pipe
+        //Error throwing to handle data in each observable pipe
         return throwError(err);
       }),
-      switchMap((obsPagination) => {
-        //Depending of page number we overwrite
-        // acumulated array or inserting more escritos
-        // based on query string and filters
+      switchMap(({ metadata, data }) => {
+        console.log(metadata, data);
+        //Depending of page number we overwrite acumulated array or inserting more documents based on query string and filters
         if (this.pagina < 2) {
-          this.data = obsPagination;
+          this.data = data;
         }
         if (this.pagina > 1) {
-          this.data = this.data.concat(obsPagination);
+          this.data = this.data.concat(data);
         }
-        // returning acumulated array as observable
-        // saved in data class member;
+        // returning acumulated array as observable // saved in data class member;
         this.infoServ.escritosInfoAcumLength$.next(this.data.length);
         return of(this.data);
       }),
-      //cache of acumulated array
-      // of escritos - pagination
+      //cache of acumulated array of documents - pagination
       shareReplay(1)
     );
   }
@@ -320,8 +320,8 @@ export class EscritosService implements OnDestroy {
    * Total Query Escritos Length
    *
    */
-  ngOnDestroy(): void {
-    //Unsubscribe from http request query string
-    this.escritosTotalQueryLengthS.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   //Unsubscribe from http request query string
+  //   this.escritosTotalQueryLengthS.unsubscribe();
+  // }
 }

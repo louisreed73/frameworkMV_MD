@@ -112,9 +112,12 @@ export const environment = {
     // baseURLApiBuscador: "http://localhost:8080/bjus_rest_buscador/v1",
     baseURLApiBuscador:
       "https://my-json-server.typicode.com/louisreed73/fakeAPI",
+    baseURLApiBuscadorReal:
+      "http://localhost:8080/bjus_rest_buscador/v1/documentos",
     baseURLApiBuscadorDetailDocument:
       "http://localhost:8080/bjus_rest_buscador/v1/documento/",
     scrollBehavior: "smooth" as ScrollBehavior,
+    pageLimit:2
   },
 };
 
