@@ -14,6 +14,7 @@ import { SpinnerService } from "projects/app1/src/app/services/spinner.service";
 import { Location } from "@angular/common";
 import { ResolucionesService } from "../../services/resoluciones.service";
 import { EscritosService } from "../../services/escritos.service";
+import { environment } from "@environments/environment";
 
 /**
  *
@@ -203,7 +204,7 @@ export class SearchLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     this.scrollInfiniteSub = fromEvent(this.element, "scroll")
       .pipe(
         // skip(20),
-        debounceTime(100),
+        debounceTime(environment.app.debounceTimeScroll),
         tap(this.calculateScrollBottomPosition.call(this))
       )
       .subscribe((e: Event) => {});

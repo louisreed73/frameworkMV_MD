@@ -117,7 +117,8 @@ export const environment = {
     baseURLApiBuscadorDetailDocument:
       "http://localhost:8080/bjus_rest_buscador/v1/documento/",
     scrollBehavior: "smooth" as ScrollBehavior,
-    pageLimit:2
+    pageLimit: 2,
+    debounceTimeScroll: 20,
   },
 };
 
