@@ -25,7 +25,7 @@ export class SpinnerService {
    * http call in process - true
    * http response - false
    * for rendering Spinner - true
-   * hiding Spinner -false
+   * hiding Spinner - false
    *
    */
   requestSpinner$: Subject<boolean> = new Subject();

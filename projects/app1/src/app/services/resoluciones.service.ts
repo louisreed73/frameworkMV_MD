@@ -224,9 +224,12 @@ export class ResolucionesService implements OnDestroy {
       tap(([formulario, search, pagina]) => {
         // saving all the data
         this.search = search.query;
-        this.formulario = formulario;
+        this.formulario = formulario.resoluciones || {
+          tipo_documento: "R",
+        };
+        this.formulario.tipo_documento=this.formulario.tipo_documento||"R"
         this.pagina = pagina;
-        this.formulario.currentSearch = search.tipo;
+        // this.formulario.currentSearch = search.tipo;
         console.log(
           `%cEsto es lo que recibo de los filtros: ${JSON.stringify(
             this.formulario,

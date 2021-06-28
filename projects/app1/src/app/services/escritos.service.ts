@@ -221,9 +221,12 @@ export class EscritosService implements OnDestroy {
       tap(([formulario, search, pagina]) => {
         // saving all the data
         this.search = search.query;
-        this.formulario = formulario;
+        this.formulario = formulario.escritos || {
+          tipo_documento: "E",
+        };
+        this.formulario.tipo_documento=this.formulario.tipo_documento||"E"
         this.pagina = pagina;
-        this.formulario.currentSearch = search.tipo;
+        // this.formulario.currentSearch = search.tipo;
         console.log(
           `%cEsto es lo que recibo de los filtros: ${JSON.stringify(
             this.formulario,

@@ -171,9 +171,12 @@ export class DocumentosService implements OnDestroy {
       tap(([formulario, search, pagina]) => {
         // saving all the data
         this.search = search.query;
-        this.formulario = formulario;
+        this.formulario = formulario.documentos || {
+          tipo_documento: "D",
+        };
+        this.formulario.tipo_documento = this.formulario.tipo_documento || "D";
         this.pagina = pagina;
-        this.formulario.currentSearch = search.tipo;
+        // this.formulario.currentSearch = search.tipo;
         //  this.infoServ.infoPath$.next(search.tipo)
         console.log(
           `%cEsto es lo que recibo de los filtros: ${JSON.stringify(
@@ -204,7 +207,11 @@ export class DocumentosService implements OnDestroy {
         // if page is 1 / we send new data with the new string query -or change in filters - new API request - to get total documents
         if (this.pagina < 2) {
           this.documentosTotalQueryLengthS = this.http
-            .get<any>(`${environment.app.baseURLApiBuscador+'/documentos'}?q=${this.search}`)
+            .get<any>(
+              `${environment.app.baseURLApiBuscador + "/documentos"}?q=${
+                this.search
+              }`
+            )
             .subscribe((d) => {
               this.docsQueryTotal = d.length;
               this.infoServ.documentosInfoTotalLength$.next(d.length);
@@ -216,7 +223,9 @@ export class DocumentosService implements OnDestroy {
 
         // we return observable with API call with pagination
         return this.http.get<any>(
-          `${environment.app.baseURLApiBuscador+'/documentos'}?q=${this.search}&_page=${this.pagina}&_limit=${this.pageLimit}`
+          `${environment.app.baseURLApiBuscador + "/documentos"}?q=${
+            this.search
+          }&_page=${this.pagina}&_limit=${this.pageLimit}`
         );
       }),
       catchError((err) => {

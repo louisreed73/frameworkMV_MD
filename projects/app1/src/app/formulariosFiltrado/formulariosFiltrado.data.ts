@@ -11,16 +11,16 @@ import { FormArray, FormControl, FormGroup } from "@angular/forms";
 let config1 = [
   {
     tipo: "array",
-    name: "tipo documental",
+    name: "tipo_documental",
   },
   {
     tipo: "date",
-    name: "fecha tramitacion",
+    name: "fecha_tramitacion",
     values: ["desde", "hasta"],
   },
   {
     tipo: "array",
-    name: "tipo procedimiento",
+    name: "tipo_procedimiento",
   },
   {
     tipo: "input",
@@ -44,7 +44,7 @@ let config1 = [
 let form1: FormGroup = new FormGroup({
   [`arrayData0`]: new FormArray([]),
 
-  ["fecha tramitacion"]: new FormGroup({
+  ["fecha_tramitacion"]: new FormGroup({
     ["desde"]: new FormControl(""),
     ["hasta"]: new FormControl(""),
   }),
@@ -70,16 +70,16 @@ let form1: FormGroup = new FormGroup({
 let config2 = [
   {
     tipo: "array",
-    name: "tipo documental",
+    name: "tipo_documental",
   },
   {
     tipo: "date",
-    name: "fecha tramitacion",
+    name: "fecha_tramitacion",
     values: ["desde", "hasta"],
   },
   {
     tipo: "array",
-    name: "tipo procedimiento",
+    name: "tipo_procedimiento",
   },
   {
     tipo: "input",
@@ -92,13 +92,13 @@ let config2 = [
   },
   {
     tipo: "checkbox",
-    name: "tipo resolucion",
+    name: "tipo_resolucion",
     multi: true,
     values: [],
   },
   {
     tipo: "date",
-    name: "fecha resolucion",
+    name: "fecha_resolucion",
     values: [],
   },
 ];
@@ -114,7 +114,7 @@ let config2 = [
 let form2: FormGroup = new FormGroup({
   [`arrayData0`]: new FormArray([]),
 
-  ["fecha tramitacion"]: new FormGroup({
+  ["fecha_tramitacion"]: new FormGroup({
     ["desde"]: new FormControl(""),
     ["hasta"]: new FormControl(""),
   }),
@@ -128,12 +128,12 @@ let form2: FormGroup = new FormGroup({
 
   [`arrayData4`]: new FormArray([]),
 
-  ["tipo resolucion"]: new FormGroup({
+  ["tipo_resolucion"]: new FormGroup({
     ["auto"]: new FormControl(""),
     ["sentencia"]: new FormControl(""),
   }),
 
-  ["fecha resolucion"]: new FormGroup({
+  ["fecha_resolucion"]: new FormGroup({
     ["desde"]: new FormControl(""),
     ["hasta"]: new FormControl(""),
   }),
@@ -150,16 +150,16 @@ let form2: FormGroup = new FormGroup({
 let config3 = [
   {
     tipo: "array",
-    name: "tipo documental",
+    name: "tipo_documental",
   },
   {
     tipo: "date",
-    name: "fecha tramitacion",
+    name: "fecha_tramitacion",
     values: ["desde", "hasta"],
   },
   {
     tipo: "array",
-    name: "tipo procedimiento",
+    name: "tipo_procedimiento",
   },
   {
     tipo: "input",
@@ -173,11 +173,11 @@ let config3 = [
 
   {
     tipo: "array",
-    name: "tipo escrito",
+    name: "tipo_escrito",
   },
   {
     tipo: "date",
-    name: "fecha presentacion",
+    name: "fecha_presentacion",
   },
 ];
 
@@ -192,7 +192,7 @@ let config3 = [
 let form3: FormGroup = new FormGroup({
   [`arrayData0`]: new FormArray([]),
 
-  ["fecha tramitacion"]: new FormGroup({
+  ["fecha_tramitacion"]: new FormGroup({
     ["desde"]: new FormControl(""),
     ["hasta"]: new FormControl(""),
   }),
@@ -208,7 +208,7 @@ let form3: FormGroup = new FormGroup({
 
   [`arrayData5`]: new FormArray([]),
 
-  ["fecha presentacion"]: new FormGroup({
+  ["fecha_presentacion"]: new FormGroup({
     ["desde"]: new FormControl(""),
     ["hasta"]: new FormControl(""),
   }),
