@@ -31,7 +31,7 @@
           </span>
           <!-- checking Forms Groups changes length, ie if changed checking! End-->
 
-          {{configFiltro[i].name | titlecase}}
+          {{configFiltro[i].name | replaceUnderDash | titlecase}}
         </label>
         <ng-container *ngIf="dameTipo(key)==='FormGroup'">
           <div [formGroupName]="key" class="filter_common filter_common-static">
