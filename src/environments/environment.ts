@@ -19,23 +19,24 @@ export const environment = {
       dametokenButtonLabel: "Usuario y contraseña",
       dametokenInfoLabel:
         "Introduzca su usuario y contraseña de Directorio Activo",
-      wso2SystemEnabled: true,
+      wso2SystemEnabled: false,
       wso2ButtonLabel: "Usuario y contraseña (wso2)",
       wso2InfoLabel: "Introduzca su usuario y contraseña de Directorio Activo",
-      autologinSystemEnabled: true,
+      autologinSystemEnabled: false,
       autologinButtonLabel: "Broker de identidades",
       autologinInfoLabel:
         "Acceda mediante el broker de identidades con Certificado Digital, Clave PIN o Clave Permanente",
     },
     authenticationService: {
       authenticationDefaultSystem: "dameToken", // dameToken | wso2 | autologin
-      technicalModules: ["XXXX_APP"],
+      technicalModules: ["BJUS"],
       authenticationTechnicalModuleIndex: 0,
       dameTokenConfig: {
         uriBase: "https://desesb.madrid.org/fesb_rest_token/v1/token/getToken",
         uriEliminaToken:
           "https://desesb.madrid.org/fesb_rest_token/v1/token/eliminaToken",
-        authenticationSystem: "Intranet",
+        authenticationSystem: "IntranetJusDA",
+        // expirationTime: 604800000, // Una semana en milisegundos
         expirationTime: 604800000, // Una semana en milisegundos
       },
       autologinConfig: {
