@@ -16,16 +16,16 @@
   </div>
   <div class="boxInfoRow">
     <p>Tipo Documental</p>
-    <p>{{documentoData?.tipo_documental}}</p>
+    <p>{{documentoData?.tipo_documental+''}}</p>
   </div>
   <div class="boxInfoRow">
     <p>Magistrado</p>
-    <p>{{documentoData?.estado_escrito}}</p>
+    <p>{{documentoData?.estado_escrito+''}}</p>
   </div>
   <hr>
   <div class="boxInfoRow">
     <p>Relevancia</p>
-    <p [style.color]="'green'">{{'100%'}}</p>
+    <p [style.color]="'green'">{{documentoData?.relevancia+' %'}}</p>
   </div>
 
 

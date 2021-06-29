@@ -176,6 +176,7 @@ export class DocumentosService  {
           tipo_documento: "D",
         };
         this.formulario.tipo_documento = this.formulario.tipo_documento || "D";
+        this.formulario.search = this.search;
         this.pagina = pagina;
         // this.formulario.currentSearch = search.tipo;
         //  this.infoServ.infoPath$.next(search.tipo)
