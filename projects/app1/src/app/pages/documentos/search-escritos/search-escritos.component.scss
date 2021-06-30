@@ -1,6 +1,8 @@
+@import '../../../scss/abstracts/abstracts';
+
 :host section {
   position: relative;
-  margin-top: 12.4rem;
+  margin-top: $searchMargin;
 }
 
 

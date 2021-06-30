@@ -228,7 +228,7 @@ export class ResolucionesService {
           tipo_documento: "R",
         };
         this.formulario.tipo_documento = this.formulario.tipo_documento || "R";
-        this.formulario.search = this.search;
+        this.formulario.busqueda = this.search;
         this.pagina = pagina;
         // this.formulario.currentSearch = search.tipo;
         console.log(

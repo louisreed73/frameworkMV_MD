@@ -3,7 +3,8 @@
 //-----------------------------------------------------------------( INI )---------------------------------------------------------------//
 
 @import './mova/styles.scss'; // Importar los estilos y las fuentes de MOVA
-
+@import "abstracts";
+@import "base";
 //---------------------------------------------------------------------------------------------------------------------------------------//
 //------------------------------------------- NO TOCAR EL CÓDIGO CONTENIDO ENTRE ESTAS LINEAS -------------------------------------------//
 //-----------------------------------------------------------------( FIN )---------------------------------------------------------------//
@@ -21,16 +22,6 @@ $corporative: $corporative-comunidad-madrid;
 $accent: $accent-comunidad-madrid;
 // Color accent de Salud Madrid
 //$accent: $accent-salud-madrid; // (Descomentar el principio de la linea para utilizar este valor)
-
-
-@import "abstracts";
-@import "base";
-
-// body {
-//   font-family: $font-main;
-// }
-
-
 
 
 section {
@@ -124,7 +115,7 @@ input:focus {
   // outline-offset: -0.1rem;
   outline: 2px solid rgba(0, 103, 151, .3);
   outline-offset: -0.1rem;
-  transition: transform .3s .15s ease-in-out;
+  transition: transform .2s  ease-in-out;
 }
 
 .fijo .filtrosSection {
@@ -165,7 +156,7 @@ input:focus {
         font-family: $font-main;
         cursor:pointer !important;
       }
-        label,button {
+        label,button,select {
   
           font-family: $font-main;
           cursor:pointer !important;
@@ -190,10 +181,21 @@ input:focus {
   display:none;
 }
 
+input.mat-input-element {
+  margin-top: -0.0625em;
+  height: 2rem;
+  padding: 1rem;
+  font-size:1.2rem;
+}
 
 
-// .owl-carousel.owl-drag .owl-item {
-//   color:red;
-//   text-align:center;
-//   // max-width:15rem !important;
-// }
+
+:not(.login-button) > .mat-button .mat-button-wrapper .mat-icon {
+  top: -0.4rem;
+  position: relative;
+}
+
+#iconTitleChildren {
+  margin-top: 0rem;
+}
+

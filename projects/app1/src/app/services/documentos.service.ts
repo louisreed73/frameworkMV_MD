@@ -31,7 +31,7 @@ import { SearchTriggerService } from "./search-trigger.service";
 @Injectable({
   providedIn: "root",
 })
-export class DocumentosService  {
+export class DocumentosService {
   /*=============================================
      =            Observables            =
      =============================================*/
@@ -173,10 +173,10 @@ export class DocumentosService  {
         // saving all the data
         this.search = search.query;
         this.formulario = formulario.documentos || {
-          tipo_documento: "D",
+          tipo_documento: "",
         };
-        this.formulario.tipo_documento = this.formulario.tipo_documento || "D";
-        this.formulario.search = this.search;
+        this.formulario.tipo_documento = this.formulario.tipo_documento || "";
+        this.formulario.busqueda = this.search;
         this.pagina = pagina;
         // this.formulario.currentSearch = search.tipo;
         //  this.infoServ.infoPath$.next(search.tipo)
@@ -226,20 +226,21 @@ export class DocumentosService  {
         // }
 
         // during this operation we cannot trigger scroll handler to prevent more API calls
-        
+
         // we return observable with API call with pagination
-        return this.http.post<any>(
-          `${environment.app.baseURLApiBuscadorReal}?$init=${this.pagina}&$limit=${this.pageLimit}`,
-          this.formulario
-          ).pipe(
-            tap((documentos)=>{
+        return this.http
+          .post<any>(
+            `${environment.app.baseURLApiBuscadorReal}?$init=${this.pagina}&$limit=${this.pageLimit}`,
+            this.formulario
+          )
+          .pipe(
+            tap((documentos) => {
               //Here we harcoded documentos.metadata.totalDocumentos
               //We must receive total documentos info in metadata
-            this.infoServ.documentosInfoTotalLength$.next(4);
-            this.stopScroll$.next(true);
-
-          })
-        )
+              this.infoServ.documentosInfoTotalLength$.next(4);
+              this.stopScroll$.next(true);
+            })
+          );
       }),
       catchError((err) => {
         //Error throwing to handle data in each observable pipe
