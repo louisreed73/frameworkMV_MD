@@ -444,7 +444,7 @@ export class FiltroComponent implements OnInit, OnDestroy {
         transformedData[this.configFiltro[indice].name] = tempAutocomplete;
         indice++;
       } else {
-        if (this.configFiltro[indice].name === "tipo resolucion") {
+        if (this.configFiltro[indice].name === "tipo_resolucion") {
           let filtrotipoResoluciones = Object.keys(value).filter(
             (k) => value[k]
           );
