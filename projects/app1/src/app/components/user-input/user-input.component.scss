@@ -1,15 +1,18 @@
+@import '../../../../src/app/scss/abstracts/abstracts';
+
 :host {
 
   position: fixed;
   display: block;
   width: calc(100vw - 1.7rem);
-  top: 6.4rem;
+  top: $userInputTop;
   background: rgba(236, 236, 236, 1);
   border-bottom: 1px solid rgb(215 215 215);
   z-index: 10;
   padding: 0.6rem 3rem 1rem;
   transition: top .2s cubic-bezier(0, 1.09, 1, 1),
   padding-bottom .3s cubic-bezier(0, 1.09, 1, 1);
+  padding-bottom:$userInputPaddingBottom;
 
 }
 

@@ -1,7 +1,9 @@
+@import '../../../../src/app/scss/abstracts/abstracts';
+
 :host {
     position: fixed;
     z-index: 10;
-    top: 19rem;
+    top: $filterMenuCollapsibleComponentTop;
     right: 4.5rem;
     display: flex;
     flex-flow: row wrap;
