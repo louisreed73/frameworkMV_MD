@@ -482,8 +482,8 @@ export class FiltroComponent implements OnInit, OnDestroy {
 
     let newTransformedData = {
       ...transformedData,
-      "nProcedimiento": transformedData["procedimiento nº / año"]["numero"],
-      "anyo_procedimiento": transformedData["procedimiento nº / año"]["año"],
+      nProcedimiento: transformedData["procedimiento nº / año"]["numero"],
+      anyo_procedimiento: transformedData["procedimiento nº / año"]["año"],
     };
     console.log(newTransformedData);
     delete newTransformedData["procedimiento nº / año"];
