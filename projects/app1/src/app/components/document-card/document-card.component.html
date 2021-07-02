@@ -27,8 +27,9 @@
     <div class="downloadBox">
       <!-- <p>{{documento | json}}</p> -->
       <div>
-        <a class="iconDownloadBox" [href]="'/assets/pdf/guitars_esp.pdf'" target="_blank" [download]="'download.pdf'"
-          rel="noopener noreferrer">
+        <a class="iconDownloadBox" target="_blank" [download]="(documento?.id_documento||'X')+'.pdf'"
+          rel="noopener noreferrer" (click)="onDownloadDoc($event)" #anchorTagDownload
+          [href]="(pdfData$|async)|safeDomHtmlSanitizer">
           <!-- {{ download.filename }} -->
           <p>descargar</p>
           <div class="iconDownload">
@@ -55,10 +56,13 @@
 
   </div>
   <hr>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam quaerat placeat nihil exercitationem dolore
-    voluptate culpa tenetur reiciendis eligendi quisquam dolores ab, voluptas corrupti optio velit, soluta dolorem
-    mollitia consequatur quis quam autem, facere veritatis. Esse corporis, ipsam atque incidunt dolores, cumque libero
-    explicabo, magni aut assumenda odio exercitationem dolorem deserunt. </p>
-  <app-carousel [coincidenciasArray]="['coincidencia_1','coincidencia_2','coincidencia_3']"
-    [fuzzySearchingActivate]="false"></app-carousel>
+  <p> </p>
+  <app-carousel [coincidenciasArray]="(documento?.snippets || ['Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam quaerat placeat nihil exercitationem dolore
+  voluptate culpa tenet1 reiciendis eligendi quisquam dolores ab, voluptas corrupti optio velit, soluta dolorem
+  mollitia consequatur quis quam autem, facere veritatis. Esse corporis, ipsam atque incidunt dolores, cumque libero
+  explicabo, magni aut assumenda odio exercitationem dolorem deserunt.','Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam quaerat placeat nihil exercitationem dolore
+  voluptate culpa tenet2 reiciendis eligendi quisquam dolores ab, voluptas corrupti optio velit, soluta dolorem
+  mollitia consequatur quis quam autem, facere veritatis. Esse corporis, ipsam atque incidunt dolores, cumque libero
+  explicabo, magni aut assumenda odio exercitationem dolorem deserunt.'])" [fuzzySearchingActivate]="false">
+  </app-carousel>
 </article>

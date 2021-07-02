@@ -199,3 +199,11 @@ input.mat-input-element {
   margin-top: 0rem;
 }
 
+.owl-theme .owl-nav [class*=owl-] {
+  font-size: 1rem;
+  background: rgba(209, 0, 2, 1);
+}
+
+.owl-theme .owl-nav [class*=owl-]:hover {
+  background: green;
+}

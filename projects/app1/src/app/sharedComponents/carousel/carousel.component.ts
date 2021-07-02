@@ -39,6 +39,7 @@ export class CarouselComponent implements OnInit {
   // slides: QueryList<ElementRef>;
 
   @Input() fuzzySearchingActivate: boolean;
+  @Input() onlyDetailDocumentPage: boolean;
 
   /**
    *
@@ -70,24 +71,15 @@ export class CarouselComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
-    dots: true,
+    dots: false,
     navSpeed: 100,
     // navText: ["", ""],
     responsive: {
       0: {
-        items: 3,
-      },
-      500: {
-        items: 7,
-      },
-      740: {
-        items: 8,
-      },
-      940: {
-        items: 10,
+        items: 1,
       },
     },
-    nav: false,
+    nav: true,
   };
 
   // itemsArray: Array<string> = [
@@ -143,7 +135,7 @@ export class CarouselComponent implements OnInit {
    *
    */
   clickSnippet(item: string, index: number) {
-    if (!this.isDragging) {
+    if (!this.isDragging && this.onlyDetailDocumentPage) {
       this.indiceActivo = index;
       console.log(
         `%cEste es el Snippet: ${item} ${index} ${this.indiceActivo}`,
