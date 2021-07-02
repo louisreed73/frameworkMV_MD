@@ -38,7 +38,29 @@ export class CarouselComponent implements OnInit {
   // @ViewChildren("slide")
   // slides: QueryList<ElementRef>;
 
+  /**
+   *
+   * fuzzySearchingActivate
+   * input customization for
+   * carousel if is displayed
+   * in detail document page ie
+   * fuzzySearching active or not
+   *
+   *
+   */
   @Input() fuzzySearchingActivate: boolean;
+
+  /**
+   *
+   * onlyDetailDocumentPage
+   * input customization for
+   * carousel if is displayed
+   * in detail document page ie
+   * snippet active - color blue
+   * current fuzzy Search word
+   *
+   *
+   */
   @Input() onlyDetailDocumentPage: boolean;
 
   /**
@@ -137,16 +159,16 @@ export class CarouselComponent implements OnInit {
   clickSnippet(item: string, index: number) {
     if (!this.isDragging && this.onlyDetailDocumentPage) {
       this.indiceActivo = index;
-      console.log(
-        `%cEste es el Snippet: ${item} ${index} ${this.indiceActivo}`,
-        "color:lime"
-      );
+      // console.log(
+      //   `%cEste es el Snippet: ${item} ${index} ${this.indiceActivo}`,
+      //   "color:lime"
+      // );
 
       if (this.fuzzySearchingActivate) {
-        console.log(
-          `%cEste activada la búsqueda Fuzzy? : ${this.fuzzySearchingActivate}`,
-          "color:cyan"
-        );
+        // console.log(
+        //   `%cEste activada la búsqueda Fuzzy? : ${this.fuzzySearchingActivate}`,
+        //   "color:cyan"
+        // );
 
         this.searchTriggerServ.fuzzySearch.next(item);
       }
