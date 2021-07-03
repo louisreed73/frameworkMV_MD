@@ -4,7 +4,7 @@
       <!-- <a [routerLink]="['/documento',documento.id]"  (click)="selectedDocument()"> -->
       <a (click)="selectedDocument($event)">
         <!-- <img src="/assets/images/file_icons/file_icon_1.svg"> -->
-        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100" x="0px" y="0px">
+        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="10 0 100 100" x="0px" y="0px">
           <title>14</title>
           <g data-name="Group" fill="#006797">
             <path data-name="Compound Path"
@@ -19,7 +19,22 @@
       </a>
     </div>
     <div class="mainInfoBox">
-      <p>{{documento | json}}</p>
+      <div class="mainInfoBox-itemField">
+        <p>Órgano: {{(documento?.organo||'Campo Organo '+documento?.organo)}}</p>
+      </div>
+      <div class="mainInfoBox-itemField">
+        <p>Descripción: {{(documento?.Descripcion||'Campo Descripcion '+documento?.Descripcion)}}</p>
+      </div>
+      <div class="mainInfoBox-itemField">
+        <p>Tipo Documental: {{(documento?.tipo_documental||'Campo Tipo Documental '+documento?.tipo_documental)}}</p>
+      </div>
+      <div class="mainInfoBox-itemField">
+        <p>Nº Resolución: {{(documento?.numero_resolucion||'Campo Nº Resolución '+documento?.numero_resolucion)}}</p>
+      </div>
+      <div class="mainInfoBox-itemField">
+        <p>Fecha Resolución: {{(documento?.fecha_resolucion||'Campo Fecha Resolución '+documento?.fecha_resolucion)}}</p>
+      </div>
+
 
 
       <!-- <app-document-card></app-document-card> -->
