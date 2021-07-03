@@ -74,7 +74,7 @@ hr {
   justify-content: space-evenly;
   font-weight: 600;
   
-  @media screen and (min-width:500px) {
+  @media screen and (min-width:678px) {
     & {
       flex-flow: column;
       flex: 0 1 3rem;
@@ -132,7 +132,7 @@ hr {
     color: green;
     margin: 0 1rem 0;
   }
-  @media screen and (min-width:500px) {
+  @media screen and (min-width:678px) {
     margin-top:1.5rem;
     
   }
