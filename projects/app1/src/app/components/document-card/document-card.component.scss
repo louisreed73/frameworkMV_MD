@@ -51,6 +51,7 @@ hr {
   background: white;
   margin: 1rem 0rem;
   border: 1px solid gainsboro;
+  font-size: 1.1rem;
 
   &-itemField {
     flex: 1 1 20rem;
@@ -121,7 +122,6 @@ hr {
   text-transform: capitalize;
   font-weight: 600;
   font-size: 1.12rem;
-  padding-top:.5rem;
 
   & :first-child {
     // color: green;
@@ -131,6 +131,10 @@ hr {
   & :last-child {
     color: green;
     margin: 0 1rem 0;
+  }
+  @media screen and (min-width:500px) {
+    margin-top:1.5rem;
+    
   }
 }
 
