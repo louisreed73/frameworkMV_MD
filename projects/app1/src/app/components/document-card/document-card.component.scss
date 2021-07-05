@@ -1,3 +1,5 @@
+$breakPointRow:785px;
+
 a {
   text-decoration: none;
   color: inherit;
@@ -44,7 +46,7 @@ hr {
 
 .mainInfoBox {
   // flex: 1 1 75rem;
-  flex: 1 1 27rem;
+  flex: 1 1 55rem;
   display:flex;
   flex-flow:row wrap;
   height: auto;
@@ -74,7 +76,7 @@ hr {
   justify-content: space-evenly;
   font-weight: 600;
   
-  @media screen and (min-width:678px) {
+  @media screen and (min-width:$breakPointRow) {
     & {
       flex-flow: column;
       flex: 0 1 3rem;
@@ -132,7 +134,7 @@ hr {
     color: green;
     margin: 0 1rem 0;
   }
-  @media screen and (min-width:678px) {
+  @media screen and (min-width:$breakPointRow) {
     margin-top:1.5rem;
     
   }
