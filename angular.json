@@ -233,7 +233,7 @@
               "projects/app1/src/assets"
             ],
             "styles": [
-              "projects/app1/src/styles.css"
+              "projects/app1/src/styles.scss"
             ],
             "scripts": []
           }

@@ -8,7 +8,7 @@
     "start:main": "ng serve -o",
     "start:app1": "ng serve -o --project=app1",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test app1",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "serve-des": "node ./build-script.js debug && node --max_old_space_size=8048 ./node_modules/@angular/cli/bin/ng serve",

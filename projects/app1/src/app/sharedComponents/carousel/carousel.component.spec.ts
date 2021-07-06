@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { SharedUtilitiesModule } from "../../sharedModules/shared-utilities/shared-utilities.module";
 
-import { CarouselComponent } from './carousel.component';
+import { CarouselComponent } from "./carousel.component";
 
-describe('CarouselComponent', () => {
+describe("CarouselComponent", () => {
   let component: CarouselComponent;
   let fixture: ComponentFixture<CarouselComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CarouselComponent ]
-    })
-    .compileComponents();
+      // declarations: [ CarouselComponent ]
+      imports: [SharedUtilitiesModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('CarouselComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
