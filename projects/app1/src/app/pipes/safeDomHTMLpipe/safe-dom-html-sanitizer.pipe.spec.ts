@@ -1,3 +1,4 @@
+import { HttpClientModule } from "@angular/common/http";
 import { TestBed } from "@angular/core/testing";
 import { BrowserModule, DomSanitizer } from "@angular/platform-browser";
 import { SafeDomHtmlSanitizerPipe } from "./safe-dom-html-sanitizer.pipe";
@@ -5,7 +6,9 @@ import { SafeDomHtmlSanitizerPipe } from "./safe-dom-html-sanitizer.pipe";
 describe("SafeDomHtmlSanitizerPipe", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserModule],
+      imports: [
+        BrowserModule
+      ],
     });
   });
   it("create an instance", () => {
