@@ -20,6 +20,14 @@ function random() {
 
 describe('Buscador 360 - Buscador Documentos', () => {
 
+  beforeEach(() => {
+    cy.restoreLocalStorage();
+    // cy.setLocalStorage("MOVA_MOV_PLANTILLA", JSON.stringify(credentials) )
+  })
+  afterEach(() => {
+    cy.saveLocalStorage()
+  });
+
 
   it('Documentos Buscador 360 - Busqueda sin input - Enter o Click Boton Buscar', () => {
     Cypress.cy.wait(2000);

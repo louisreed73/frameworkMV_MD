@@ -18,6 +18,14 @@
 
 describe('Buscador 360 - Buscador Documento Card', () => {
 
+  beforeEach(() => {
+    cy.restoreLocalStorage();
+    // cy.setLocalStorage("MOVA_MOV_PLANTILLA", JSON.stringify(credentials) )
+  })
+  afterEach(() => {
+    cy.saveLocalStorage()
+  });
+
 
   it('Documento Card Buscador 360 - Snippets Navegacion', () => {
     Cypress.cy.wait(2000);
