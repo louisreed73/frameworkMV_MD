@@ -84,6 +84,7 @@ export class DocumentCardComponent {
    * @returns void
    */
   selectedDocument(e) {
+    console.log(this.documento.id_documento);
     this.router.navigate(["/documento/", this.documento.id_documento || 1]);
   }
 

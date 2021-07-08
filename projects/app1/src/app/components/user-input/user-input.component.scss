@@ -4,7 +4,7 @@
 
   position: fixed;
   display: block;
-  width: calc(100vw - 1.7rem);
+  width: calc(100vw - .8rem);
   top: $userInputTop;
   background: rgba(236, 236, 236, 1);
   border-bottom: 1px solid rgb(215 215 215);
@@ -14,7 +14,13 @@
   padding-bottom .3s cubic-bezier(0, 1.09, 1, 1);
   padding-bottom:$userInputPaddingBottom;
 
+  @supports (-moz-appearance:none) { 
+    & {
+      width: calc(100vw - 1.8rem);
+    }
+  }
 }
+
 
 :host(.fijo) {
 

@@ -208,3 +208,24 @@ input.mat-input-element {
 .owl-theme .owl-nav [class*=owl-]:hover {
   background: green;
 }
+
+
+
+  
+    ::-webkit-scrollbar {
+      width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(209, 0, 2, 1);
+    // outline: 1px solid slategrey;
+  }
+
+  body {
+    // scroll-width:8px;
+    scrollbar-color:rgba(209, 0, 2, 1) gainsboro;
+  }
