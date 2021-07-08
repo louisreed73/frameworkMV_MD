@@ -2,6 +2,6 @@
 <form [formGroup]="autocompleteFormG">
   <!-- <input type="search" [formControlName]="'autocomplete' + autocompleteInstance" placeholder="Buscar"> -->
   <ng-container *ngFor="let sugerencia of sugerencias;index as i4">
-    <p (click)="getSugerencia(i4)" [style.cursor]="'pointer'">{{sugerencia| titlecase}}</p>
+    <p (click)="getSugerencia(i4)" [style.cursor]="'pointer'" [title]="(sugerencia| titlecase)">{{sugerencia| titlecase}}</p>
   </ng-container>
 </form>
