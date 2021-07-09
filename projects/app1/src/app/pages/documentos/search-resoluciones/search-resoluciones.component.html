@@ -23,7 +23,7 @@
 
         <div class="collapsaBox" (click)="collapsing()">
           <div *ngIf="(someCollap$|async);else notDeployed">
-            <p *ngIf="!_minimalLayoutToggle">Ocultar Filtros</p>
+            <p *ngIf="!_minimalLayoutToggle">Minimizar Filtros</p>
           </div>
           <ng-template #notDeployed>
             <p *ngIf="!_minimalLayoutToggle">

@@ -34,7 +34,7 @@ describe('Buscador 360 - Buscador Documentos', () => {
     // cy.visit("localhost:4200/#/documentos")
 
 
-    cy.get('#search').type("m{enter}");
+    cy.get('#search').type("m{enter}",{timeout:10000});
 
     Cypress.cy.wait(2000);
 
