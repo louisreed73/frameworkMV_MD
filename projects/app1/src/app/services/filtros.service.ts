@@ -95,7 +95,7 @@ export class FiltrosService implements OnDestroy {
   getRequestValoresDocumentos() {
     this.reqValoresDocumentosSub = combineLatest([
       this.http.get<any>(
-        `${environment.app.baseURLApiCatalogos}/tipos-documentales`
+        `${environment.app.baseURLApiCatalogos}/tipos-documentales?$orderby=+descripcion`
       ),
       from([
         {
@@ -108,7 +108,7 @@ export class FiltrosService implements OnDestroy {
         },
       ]),
       this.http.get<any>(
-        `${environment.app.baseURLApiCatalogos}/tipos-procedimientos`
+        `${environment.app.baseURLApiCatalogos}/tipos-procedimientos?$orderby=+descripcion`
       ),
       from([
         {
@@ -120,9 +120,9 @@ export class FiltrosService implements OnDestroy {
           },
         },
       ]),
-      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/magistrados`),
+      this.http.get<any>(`${environment.app.baseURLApiCatalogos}/magistrados?$orderby=+descripcion`),
       this.http.get<any>(
-        `${environment.app.baseURLApiCatalogos}/tipos-escritos`
+        `${environment.app.baseURLApiCatalogos}/tipos-escritos?$orderby=+descripcion`
       ),
     ])
       .pipe(

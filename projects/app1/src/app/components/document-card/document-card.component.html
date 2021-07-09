@@ -19,22 +19,22 @@
     </div>
     <div class="mainInfoBox">
       <div class="mainInfoBox-itemField">
-        <p>Órgano: {{(documento?.organo||'Campo Organo '+documento?.organo)}}</p>
+        <p><b>Órgano: </b>{{(documento?.organo||'Campo Organo '+documento?.organo)}}</p>
       </div>
       <div class="mainInfoBox-itemField">
-        <p>Descripción: {{(documento?.Descripcion||'Campo Descripcion '+documento?.Descripcion)}}</p>
+        <p><b>Descripción: </b>{{(documento?.Descripcion||'Campo Descripcion '+documento?.Descripcion)}}</p>
       </div>
-      <div class="mainInfoBox-itemField">
+      <!-- <div class="mainInfoBox-itemField">
         <p>Tipo Documental: {{(documento?.tipo_documental||'Campo Tipo Documental '+documento?.tipo_documental)}}</p>
+      </div> -->
+      <div class="mainInfoBox-itemField">
+        <p><b>Nº Resolución: </b>{{(documento?.numero_resolucion||'Campo Nº Resolución '+documento?.numero_resolucion)}}</p>
       </div>
       <div class="mainInfoBox-itemField">
-        <p>Nº Resolución: {{(documento?.numero_resolucion||'Campo Nº Resolución '+documento?.numero_resolucion)}}</p>
-      </div>
-      <div class="mainInfoBox-itemField">
-        <p>Fecha Resolución: {{(documento?.fecha_resolucion||'Campo Fecha Resolución '+documento?.fecha_resolucion)}}
+        <p><b>Fecha Resolución: </b>{{(documento?.fecha_resolucion||'Campo Fecha Resolución '+documento?.fecha_resolucion)}}
         </p>
       </div>
-      <div class="mainInfoBox-itemField">
+      <!-- <div class="mainInfoBox-itemField">
         <p>Tipo Escrito: {{(documento?.tipo_escrito||'Campo Tipo Escrito '+documento?.tipo_escrito)}}
         </p>
       </div>
@@ -42,7 +42,7 @@
         <p>Numero / año / Escrito:
           {{(documento?.numero_anyo_escrito||'Campo Numero Año Escrito '+documento?.numero_anyo_escrito)}}
         </p>
-      </div>
+      </div> -->
 
 
 
