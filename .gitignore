@@ -47,3 +47,6 @@ Thumbs.db
 
 # Documentation app
 /projects/app1/documentation
+
+# Production folder
+/www
